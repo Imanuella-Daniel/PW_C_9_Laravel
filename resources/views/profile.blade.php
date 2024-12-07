@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlueHaven Profile</title>
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
 
     <style>
@@ -39,7 +40,7 @@
         }
 
         .navbar-logo {
-            width: 50px; 
+            width: 50px;
             height: auto;
         }
 
@@ -75,7 +76,7 @@
             align-items: center;
             height: 4rem;
         }
-      
+
         nav a {
             color: #000;
             margin: 0 50px;
@@ -84,6 +85,7 @@
             font-size: 1.3rem;
             font-weight: 500;
         }
+
         nav a.active {
             color: #3b82f6;
             border-bottom: 2px solid #3b82f6;
@@ -159,7 +161,7 @@
         }
 
         .navbar-logo {
-            width: 50px; 
+            width: 50px;
             height: auto;
         }
 
@@ -175,7 +177,8 @@
         }
 
         .edit-btn,
-        .logout-btn, .btn-sm {
+        .logout-btn,
+        .btn-sm {
             background-color: #F72585;
             color: #fff;
         }
@@ -226,8 +229,6 @@
                 margin-left: 0;
             }
         }
-
-        
     </style>
 </head>
 
@@ -252,7 +253,7 @@
                 <div class="profile-pic">
                     <i class="fas fa-user"></i>
                 </div>
-                <h5>John Doe</h5>
+                <h5>{{ $user->name }}</h5>
                 <div class="confirmed">
                     <i class="fas fa-check"></i>
                     <span>Email Confirmed</span>
@@ -266,8 +267,7 @@
             <div class="reservations-card">
                 <h5>Your Reservations</h5>
                 <div class="reservation-item">
-                    <img src="{{ asset('img/kamar1.jpg') }}"
-                        alt="Deluxe Double Room" />
+                    <img src="{{ asset('img/kamar1.jpg') }}" alt="Deluxe Double Room" />
                     <p class="mt-3 mb-1"><strong>Deluxe Double Room</strong></p>
                     <p class="mb-1">Check-in: mm/dd/yyyy</p>
                     <p class="mb-3">Guests: 2 Adults</p>
@@ -278,36 +278,37 @@
 
         <div class="content d-flex align-items-start justify-content-between">
             <div class="form-section" style="flex: 1;">
-                <h1><strong>Hello, John Doe</strong></h1>
-                <p>User Id: 22101698991</p>
+                <h1><strong>Hello, {{ $user->NamaDepan }}</strong></h1>
+                <p>User Id: {{ $user->id }}</p>
                 <form>
                     <div class="row mt-3">
                         <div class="col-md-6">
                             <label>First name</label>
-                            <h6>John</h6>
+                            <h6>{{ $user->NamaDepan }}</h6>
                         </div>
                         <div class="col-md-6">
                             <label>Last name</label>
-                            <h6>Doe</h6>
+                            <h6>{{ $user->NamaBelakang }}</h6>
                         </div>
                     </div>
                     <label>Email Address</label>
-                    <h6>johndoeee@gmail.com</h6>
+                    <h6>{{ $user->Email }}</h6>
                     <label>Phone Number</label>
-                    <h6>+62 812-3456-7890</h6>
+                    <h6>{{ $user->NoTelepon }}</h6>
                     <label>Country</label>
-                    <h6>Indonesia</h6>
+                    <h6>{{ $user->Negara }}</h6>
                     <label>Detail Address</label>
-                    <h6>Jl. Babarsari No.43, Janti, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta</h6>
+                    <h6>{{ $user->Alamat }}</h6>
                     <label>Username</label>
-                    <h6>John Doe</h6>
+                    <h6>{{ $user->Username }}</h6>
 
                     <div class="row mt-3">
                         <div class="col-md-3">
                             <a href="{{ route('editProfile') }}" class="btn edit-btn" role="button">Edit Profile</a>
                         </div>
                         <div class="col-md-3">
-                            <button class="btn logout-btn" type="button" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
+                            <button class="btn logout-btn" type="button" data-bs-toggle="modal"
+                                data-bs-target="#logoutModal">Logout</button>
                         </div>
                     </div>
                 </form>
@@ -337,7 +338,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-danger" onclick="window.location.href='{{ route('login') }}'">Logout</button>
+                    <button type="button" class="btn btn-danger"
+                        onclick="window.location.href='{{ route('login') }}'">Logout</button>
                 </div>
             </div>
         </div>

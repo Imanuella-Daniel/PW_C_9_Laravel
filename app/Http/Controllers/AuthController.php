@@ -22,13 +22,11 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        // Log data awal dari permintaan login
         Log::info('Login attempt:', [
             'Username' => $request->Username,
             'ip_address' => $request->ip(),
         ]);
 
-        // Validasi input
         $request->validate([
             'Username' => 'required',
             'password' => 'required',
@@ -36,21 +34,18 @@ class AuthController extends Controller
 
         Log::info('Login input validated.');
 
-        // Cari pengguna berdasarkan username
         $user = User::where('Username', $request->Username)->first();
         Log::info('User data retrieved from DB:', ['user' => $user]);
 
-        // Log hasil pencarian user
         if ($user) {
-            Log::info('User found:', ['Username' => $user->Username]);  // Pastikan 'Username' sesuai dengan kolom database
+            Log::info('User found:', ['Username' => $user->Username]);
         } else {
-            Log::warning('User not found:', ['Username' => $request->Username]);  // Sesuaikan dengan data request
+            Log::warning('User not found:', ['Username' => $request->Username]);
         }
 
         Log::info('Login data received:', $request->all());
 
-        // Periksa kecocokan password
-        if ($user && Hash::check($request->password, $user->Password)) {  // Pastikan perbandingan dengan hash
+        if ($user && Hash::check($request->password, $user->Password)) {
             Log::info('Password matched for user:', ['Username' => $user->Username]);
 
             Auth::login($user);
@@ -66,10 +61,8 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        // Log data awal dari permintaan registrasi
         Log::info('User Registration Request:', $request->all());
 
-        // Validasi input
         $request->validate([
             'NamaBelakang' => 'required|string|max:255',
             'NamaDepan' => 'required|string|max:255',
@@ -82,11 +75,9 @@ class AuthController extends Controller
         ]);
         Log::info('Registration input validated.');
 
-        // Log password yang akan disimpan
         Log::info('Password: ' . $request->input('password'));
         Log::info('Password Confirmation: ' . $request->input('password_confirmation'));
 
-        // Buat pengguna baru di database
         try {
             $user = User::create([
                 'NamaBelakang' => $request->NamaBelakang,
