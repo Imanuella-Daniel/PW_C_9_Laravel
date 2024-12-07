@@ -34,6 +34,12 @@ class AuthController extends Controller
 
         Log::info('Login input validated.');
 
+        // Cek untuk akses admin
+        if ($request->Username === 'Admin' && $request->password === 'admin') {
+            Log::info('Admin login detected. Redirecting to admin_rooms.');
+            return redirect()->route('admin_guest');
+        }
+
         $user = User::where('Username', $request->Username)->first();
         Log::info('User data retrieved from DB:', ['user' => $user]);
 
