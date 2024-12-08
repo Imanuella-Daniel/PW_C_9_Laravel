@@ -20,7 +20,6 @@ Route::post('/signup', [AuthController::class, 'register'])->name('signup.submit
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/admin/rooms', [AdminController::class, 'rooms'])->name('admin_rooms');
 
 
 
