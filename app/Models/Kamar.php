@@ -14,10 +14,14 @@ class Kamar extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'NoKamar',
         'TipeKamar',
+        'HargaKamar',
         'Kapasitas',
         'JumlahKamar',
-        'HargaKamar'
+        'Floor',
+        'Facility',
+        'Status'
     ];
 
     public function pemesananKamar()

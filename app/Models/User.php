@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
     protected $table = 'user';
     protected $primaryKey = 'IDUser';
@@ -27,6 +28,11 @@ class User extends Authenticatable
 
     public function transaksi()
     {
-        return $this->hasMany(Transaksi::class, 'IDUser');
+        return $this->hasMany(Transaksi::class, 'IDUser', 'IDUser');
+    }
+
+    public function pemesananKamar()
+    {
+        return $this->hasMany(PemesananKamar::class, 'IDPesanan', 'IDPesanan');
     }
 }
