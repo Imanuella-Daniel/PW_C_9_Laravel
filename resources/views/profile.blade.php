@@ -266,13 +266,22 @@
 
             <div class="reservations-card">
                 <h5>Your Reservations</h5>
-                <div class="reservation-item">
-                    <img src="{{ asset('img/kamar1.jpg') }}" alt="Deluxe Double Room" />
-                    <p class="mt-3 mb-1"><strong>Deluxe Double Room</strong></p>
-                    <p class="mb-1">Check-in: mm/dd/yyyy</p>
-                    <p class="mb-3">Guests: 2 Adults</p>
-                    <a href="{{ url('seeDetailReservation') }}" class="btn btn-sm">See details</a>
-                </div>
+
+                @if ($reservations->isEmpty())
+                    <p class="mt-3">You have no reservations.</p>
+                @else
+                    @foreach ($reservations as $reservation)
+                        <div class="reservation-item">
+                            <img src="{{ asset('img/kamar1.jpg') }}" alt="{{ $reservation->room->type }}" />
+                            <p class="mt-3 mb-1"><strong>{{ $reservation->room->type }}</strong></p>
+                            <p class="mb-1">Check-in: {{ $reservation->check_in_date }}</p>
+                            <p class="mb-3">Guests: {{ $reservation->adults }} Adults</p>
+                            <a href="{{ url('seeDetailReservation', $reservation->id) }}" class="btn btn-sm">See
+                                details</a>
+                        </div>
+                    @endforeach
+                @endif
+
             </div>
         </div>
 

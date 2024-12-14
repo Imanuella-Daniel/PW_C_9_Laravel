@@ -13,21 +13,22 @@ Route::get('/', function () {
     return view('login');
 });
 
-
-Route::get('admin_guest', [AdminGuestController::class, 'index'])->name('admin_guest'); // For displaying the guest list
-Route::post('admin_guest', [AdminGuestController::class, 'store'])->name('admin_guest'); // For storing a new guest
+Route::get('admin_guest', [AdminGuestController::class, 'index'])->name('admin_guest');
+Route::post('admin_guest', [AdminGuestController::class, 'store'])->name('admin_guest.store');
+Route::post('/admin_guest/update/{id}', [AdminGuestController::class, 'update'])->name('admin_guest.update');
+Route::delete('/admin_guest/{id}', [AdminGuestController::class, 'destroy'])->name('admin_guest.destroy');
 
 Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 Route::get('/editProfile', [UserController::class, 'editProfile'])->name('editProfile');
 Route::put('/editProfile', [UserController::class, 'updateProfile'])->name('profile.update');
 
 Route::get('/signup', [AuthController::class, 'showRegistrationForm'])->name('signup');
-Route::post('/signup', [AuthController::class, 'register'])->name('signup.submit');
+
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-
+Route::post('/signup', [AuthController::class, 'register'])->name('signup.submit');
 
 Route::get('/', function () {
     return view('login');
@@ -54,9 +55,6 @@ Route::get('/accomodation', function () {
     return view('accomodation');
 })->name('accomodation');
 
-Route::get('/available_room', function () {
-    return view('available_room');
-})->name('available_room');
 
 
 Route::get('/special_offers', function () {
@@ -79,21 +77,6 @@ Route::get('/index', function () {
 
 $rooms = [];
 
-Route::post('/admin_rooms/add', function (Request $request) use (&$rooms) {
-    return redirect()->route('admin_rooms');
-});
-
-Route::post('/admin_rooms/edit', function (Request $request) use (&$rooms) {
-    return redirect()->route('admin_rooms');
-});
-
-Route::delete('/admin_rooms/delete/{number}', function ($number) use (&$rooms) {
-    $rooms = array_filter($rooms, function ($room) use ($number) {
-        return $room['number'] !== $number;
-    });
-
-    return redirect()->route('admin_rooms')->with('success', 'Room deleted successfully.');
-});
 
 
 Route::get('/detailmeet', function () {
@@ -103,5 +86,12 @@ Route::get('/detailmeet', function () {
 
 Route::get('admin_rooms', [AdminRoomsController::class, 'index'])->name('admin_rooms');
 Route::post('admin_rooms', [AdminRoomsController::class, 'store'])->name('admin_rooms.store');
-Route::post('admin_rooms/{id}', [AdminRoomsController::class, 'update'])->name('admin_rooms.update');
+Route::put('admin_rooms/{NoKamar}', [AdminRoomsController::class, 'update'])->name('admin_rooms.update');
 Route::delete('/admin/rooms/{NoKamar}', [AdminRoomsController::class, 'destroy'])->name('admin_rooms.destroy');
+
+
+Route::get('/accomodation', [AdminRoomsController::class, 'accomodation'])->name('accomodation');
+
+
+
+Route::get('/available-room', [AdminRoomsController::class, 'showAvailableRooms'])->name('available_room');

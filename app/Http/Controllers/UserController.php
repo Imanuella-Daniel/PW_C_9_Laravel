@@ -14,7 +14,7 @@ class UserController extends Controller
         $users = User::all();
         return view('users.index', compact('users'));
     }
-    public function profile()
+    public function proflie()
     {
         $user = Auth::user();
         return view('profile', compact('user'));
@@ -49,12 +49,10 @@ class UserController extends Controller
         }
 
 
-        //$user->update($validated);
+        $user->update($validated);
 
         return redirect()->route('profile')->with('success', 'Profile updated successfully');
     }
-
-
 
 
     public function show($id)

@@ -52,13 +52,15 @@
             border-color: #1965B3;
         }
 
-        .table th,
+        ..table th,
         .table td {
+            text-align: center;
             padding: 12px 15px;
             vertical-align: middle;
             border: 1px solid #dee2e6;
             line-height: 1.6;
         }
+
 
         .btn-group .btn {
             border-radius: 0;
@@ -72,14 +74,6 @@
             background-color: white;
             padding: 20px;
             margin-top: 20px;
-        }
-
-        .badge-available {
-            background-color: #3bc9db;
-        }
-
-        .badge-booked {
-            background-color: #ff6b6b;
         }
 
         /* Responsive Adjustments */
@@ -149,7 +143,6 @@
                         class="btn {{ $filter === 'Check In' ? 'btn-primary' : 'btn-secondary' }}">Check In</button>
                     <button type="submit" name="filter" value="Check Out"
                         class="btn {{ $filter === 'Check Out' ? 'btn-primary' : 'btn-secondary' }}">Check Out</button>
-
                 </div>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addguest">Add
                     Guest</button>
@@ -157,32 +150,37 @@
             <table class="table table-hover table-bordered table-responsive">
                 <thead>
                     <tr>
-                        <th>Reservation ID</th>
-                        <th>Name</th>
+                        <th>ID Pesanan</th>
+                        <th>Tipe Kamar</th>
                         <th>Room Number</th>
-                        <th>Room Facility</th>
-                        <th>Status</th>
+                        <th>Jumlah Dewasa</th>
+                        <th>Jumlah Anak</th>
+                        <th>Tanggal Pesan</th>
+                        <th>Tanggal Check In</th>
+                        <th>Tanggal Check Out</th>
+                        <th>Permintaan Khusus</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($users as $user)
                         <tr>
-                            <td>{{ $user['id'] }}</td>
-                            <td>{{ $user['name'] }}</td>
-                            <td>{{ $user['room_number'] }}</td>
-                            <td>{{ $user['facility'] }}</td>
-                            <td>
-                                <span
-                                    class="badge {{ $user['status'] === 'Available' ? 'badge-available' : 'badge-booked' }}">
-                                    {{ $user['status'] }}
-                                </span>
-                            </td>
-                            <td>
+                            <td class="text-center">{{ $user->IDPesanan }}</td>
+                            <td class="text-center">{{ $user->kamar->TipeKamar }}</td>
+                            <td class="text-center">{{ $user->kamar->NoKamar }}</td>
+                            <td class="text-center">{{ $user->JumlahDewasa }}</td>
+                            <td class="text-center">{{ $user->JumlahAnak }}</td>
+                            <td class="text-center">{{ $user->TanggalPesan }}</td>
+                            <td class="text-center">{{ $user->TanggalCheckIn }}</td>
+                            <td class="text-center">{{ $user->TanggalCheckOut }}</td>
+                            <td class="text-center">{{ $user->PermintaanKhusus }}</td>
+                            <td class="text-center">
                                 <button class="btn btn-warning btn-sm edit-data"
                                     data-room="{{ json_encode($user) }}">Edit</button>
-                                <button class="btn btn-danger btn-sm"
-                                    onclick="deleteData('{{ $user['id'] }}')">Delete</button>
+                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal{{ $user->IDPesanan }}">
+                                    Delete
+                                </button>
                             </td>
                         </tr>
                     @endforeach
@@ -199,26 +197,55 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="addGuestForm" method="POST" action="{{ route('admin_guest') }}">
+                    <form id="addGuestForm" method="POST" action="{{ route('admin_guest.store') }}">
                         @csrf
                         <div class="mb-3">
-                            <label for="addnama" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="addnama" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="addNumber" class="form-label">Room Number</label>
-                            <input type="text" class="form-control" id="addNumber" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="addfacility" class="form-label">Room Facility</label>
-                            <textarea class="form-control" id="addfacility" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="roomStatus" class="form-label">Status</label>
-                            <select class="form-select" id="roomStatus" required>
-                                <option value="Check In">Check In</option>
-                                <option value="Check Out">Check Out</option>
+                            <label for="NoKamar" class="form-label">Room Number</label>
+                            <select name="NoKamar" class="form-control" required>
+                                @foreach ($kamar as $room)
+                                    <option value="{{ $room->NoKamar }}">{{ $room->NoKamar }} -
+                                        {{ $room->NamaKamar }}</option>
+                                @endforeach
                             </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="NoTransaksi" class="form-label">ID Transaksi</label>
+                            <select name="NoTransaksi" class="form-control" required>
+                                @foreach ($transaksis as $transaksi)
+                                    <option value="{{ $transaksi->NoTransaksi }}">
+                                        {{ $transaksi->NoTransaksi }} - {{ $transaksi->user->NamaDepan }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label for="TanggalPesan" class="form-label">Booking Date</label>
+                            <input type="date" name="TanggalPesan" class="form-control" id="TanggalPesan"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="JumlahDewasa" class="form-label">Adults</label>
+                            <input type="number" name="JumlahDewasa" class="form-control" id="JumlahDewasa"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="JumlahAnak" class="form-label">Children</label>
+                            <input type="number" name="JumlahAnak" class="form-control" id="JumlahAnak" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="PermintaanKhusus" class="form-label">Special Request</label>
+                            <textarea name="PermintaanKhusus" class="form-control" id="PermintaanKhusus"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="TanggalCheckIn" class="form-label">Check-In Date</label>
+                            <input type="date" name="TanggalCheckIn" class="form-control" id="TanggalCheckIn">
+                        </div>
+                        <div class="mb-3">
+                            <label for="TanggalCheckOut" class="form-label">Check-Out Date</label>
+                            <input type="date" name="TanggalCheckOut" class="form-control" id="TanggalCheckOut">
                         </div>
                     </form>
                 </div>
@@ -239,36 +266,69 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editData">
-                        <input type="hidden" id="editId">
+                    <form id="editData" method="POST" action="{{ route('admin_guest.update', '') }}">
+                        @csrf
+                        <input type="hidden" id="editId" name="id">
+
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama</label>
-                            <input type="text" class="form-control" id="nama" required>
+                            <input type="text" class="form-control" id="nama" name="NamaDepan" required>
                         </div>
+
                         <div class="mb-3">
                             <label for="roomNumber" class="form-label">Room Number</label>
-                            <input type="text" class="form-control" id="roomNumber" required>
+                            <input type="text" class="form-control" id="roomNumber" name="NoKamar" required>
                         </div>
+
                         <div class="mb-3">
                             <label for="facility" class="form-label">Facility</label>
-                            <textarea class="form-control" id="facility" required></textarea>
+                            <textarea class="form-control" id="facility" name="PermintaanKhusus" required></textarea>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label for="TanggalCheckIn" class="form-label">Check-In Date</label>
+                            <input type="date" name="TanggalCheckIn" class="form-control" id="TanggalCheckIn">
                         </div>
                         <div class="mb-3">
-                            <label for="status" class="form-label">Status</label>
-                            <select class="form-select" id="status" required>
-                                <option value="Check In">Check In</option>
-                                <option value="Check Out">Check Out</option>
-                            </select>
+                            <label for="TanggalCheckOut" class="form-label">Check-Out Date</label>
+                            <input type="date" name="TanggalCheckOut" class="form-control" id="TanggalCheckOut">
                         </div>
+
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="updateRoomButton">Update Data</button>
+                    <button type="submit" class="btn btn-primary" id="updateRoomButton"
+                        onclick="document.getElementById('editData').submit();">Update Data</button>
                 </div>
             </div>
         </div>
     </div>
+
+    @foreach ($users as $user)
+        <div class="modal fade" id="deleteModal{{ $user->IDPesanan }}" tabindex="-1"
+            aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Delete Room</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this room?</p>
+                        <form method="POST" action="{{ route('admin_guest.destroy', $user->IDPesanan) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 
 
     <script>
@@ -276,21 +336,20 @@
             button.addEventListener('click', function() {
                 const user = JSON.parse(this.dataset.room);
 
-                document.getElementById('editId').value = user.id; // Menyimpan ID reservasi
-                document.getElementById('nama').value = user.name; // Menyimpan nama tamu
-                document.getElementById('roomNumber').value = user
-                    .room_number; // Menyimpan nomor kamar
-                document.getElementById('facility').value = user.facility; // Menyimpan fasilitas
-                document.getElementById('status').value = user.status; // Menyimpan status
+                const form = document.getElementById('editData');
+                form.action = "/admin_guest/update/" + user.IDPesanan;
+
+                document.getElementById('editId').value = user.IDPesanan;
+                document.getElementById('nama').value = user.transaksi.user.NamaDepan;
+                document.getElementById('roomNumber').value = user.kamar.NoKamar;
+                document.getElementById('facility').value = user.PermintaanKhusus;
+                document.getElementById('TanggalCheckIn').value = user.TanggalCheckIn;
+                document.getElementById('TanggalCheckOut').value = user.TanggalCheckOut;
 
                 const editModal = new bootstrap.Modal(document.getElementById('editdata'));
                 editModal.show();
             });
         });
-
-        function deleteData(id) {
-            alert(`Room ${id} deleted successfully!`);
-        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
