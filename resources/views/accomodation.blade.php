@@ -155,6 +155,7 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             position: fixed;
+            margin-top: 5px;
         }
 
         .navbar-logo {
@@ -274,68 +275,45 @@
         <section class="accommodation-section">
         <div class="container">
             <div class="row">
-                <h4 class="room-title">Room</h4>
-                <div class="col-md-12 mb-4">
-                    <div class="room-card d-flex justify-content-between align-items-center p-3 shadow">
-                        <img src="{{ asset('img/kamar1.jpg') }}" alt="Deluxe Double" class="img-fluid">
-                          <div class="room-info">
-                            <h4>Deluxe Double</h4>
-                            <div class="d-flex align-items-center mb-2">
-                                <div class="stars text-warning">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-half"></i>
-                                </div>
-                                <span class="ml-2">4.5 (1200 Reviews)</span>
-                            </div>
-                            <div class="room-details">
-                                <div><i class="bi bi-people-fill"></i> 2 People</div>
-                                <div><i class="fa-solid fa-bed"></i></i> 1 Master Bed</div>
-                                <div><i class="fa-solid fa-bath"></i> 1 Bathroom</div>
-                            </div>
-                            <p class="mb-0">The 40-square-metre Deluxe rooms at Blue Haven Hotel</p>
-                            <p class="mb-0">feature elegant decor and a private balcony with...</p>
-                            <a href="{{ route('view_detail') }}" class="btn btn-pink text-white">See availability</a>
-                        </div>
-                        <div class="room-price text-right">
-                            <h4>Rp. 500,000.00</h4>
-                            <small>Includes taxes</small>
-                        </div>
-                    </div>
-                </div>
+            <h4 class="room-title">Room</h4>
 
+            @foreach ($kamar as $room)
                 <div class="col-md-12 mb-4">
                     <div class="room-card d-flex justify-content-between align-items-center p-3 shadow">
-                        <img src="{{ asset('img/kamar2.jpg') }}" alt="Deluxe Twin" class="img-fluid">
+                        <img src="{{ asset('img/' . $room->gambar) }}" alt="{{ $room->TipeKamar}}" class="img-fluid">
                         <div class="room-info">
-                            <h4>Deluxe Twin</h4>
+                            <h4>{{ $room->TipeKamar }}</h4>
                             <div class="d-flex align-items-center mb-2">
                                 <div class="stars text-warning">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-half"></i>
+                                    @for ($i = 0; $i < floor($room->Rating); $i++)
+                                        <i class="bi bi-star-fill"></i>
+                                    @endfor
+
+                                    @if ($room->Rating - floor($room->Rating) >= 0.5)
+                                        <i class="bi bi-star-half"></i>
+                                    @endif
+
+                                    @for ($i = ceil($room->Rating); $i < 5; $i++)
+                                        <i class="bi bi-star"></i>
+                                    @endfor
                                 </div>
-                                <span class="ml-2">4.0 (1000 Reviews)</span>
+                                <span class="ml-2">{{ $room->Rating }} ({{ $room->reviews }} Reviews)</span>
                             </div>
                             <div class="room-details">
-                                <div><i class="bi bi-people-fill"></i> 2 People</div>
-                                <div><i class="fa-solid fa-bed"></i> 2 Beds</div>
-                                <div><i class="fa-solid fa-bath"></i> 1 Bathroom</div>
+                                <div><i class="bi bi-people-fill"></i> {{ $room->Kapasitas }} People</div>
+                                <div><i class="fa-solid fa-bed"></i> {{ $room->jenis_kasur }}</div>
+                                <div><i class="fa-solid fa-bath"></i> {{ $room->fasilitas_kamar }}</div>
                             </div>
-                            <p class="mb-0">The 40-square-metre Deluxe Twin rooms are elegantly designed and furnished</p>
-                            <p class="mb-0">with sophisticated decor. All rooms features a spacious balcony ....</p>
-                            <a href="#" class="btn btn-pink text-white">See availability</a>
+                            <p class="mb-0">{{ $room->Deskripsi }}</p>
+                            <a href="{{ route('view_detail', ['id' => $room->id]) }}" class="btn btn-pink text-white">See availability</a>
                         </div>
                         <div class="room-price text-right">
-                            <h4>Rp. 450,000.00</h4>
+                            <h4>Rp. {{ number_format($room->HargaKamar, 0, ',', '.') }}</h4>
                             <small>Includes taxes</small>
                         </div>
                     </div>
                 </div>
+            @endforeach
 
                 <h4 class="room-title">Facility</h4>
                 <div class="col-md-12 mb-4">

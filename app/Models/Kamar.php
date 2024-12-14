@@ -21,7 +21,9 @@ class Kamar extends Model
         'JumlahKamar',
         'Floor',
         'Facility',
-        'Status'
+        'Status',
+        'Rating',
+        'Deskripsi'
     ];
 
     public function pemesananKamar()

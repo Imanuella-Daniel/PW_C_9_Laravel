@@ -83,7 +83,7 @@ Route::post('/admin_rooms/add', function (Request $request) use (&$rooms) {
     return redirect()->route('admin_rooms');
 });
 
-Route::post('/admin_rooms/edit', function (Request $request) use (&$rooms) {
+Route::post('/admin_rooms/edit', function (Request $request) use (&                                                             $rooms) {
     return redirect()->route('admin_rooms');
 });
 
@@ -105,3 +105,15 @@ Route::get('admin_rooms', [AdminRoomsController::class, 'index'])->name('admin_r
 Route::post('admin_rooms', [AdminRoomsController::class, 'store'])->name('admin_rooms.store');
 Route::post('admin_rooms/{id}', [AdminRoomsController::class, 'update'])->name('admin_rooms.update');
 Route::delete('/admin/rooms/{NoKamar}', [AdminRoomsController::class, 'destroy'])->name('admin_rooms.destroy');
+
+
+Route::prefix('kamar')->name('kamar.')->group(function () {
+    Route::get('/', [KamarController::class, 'index'])->name('index');
+    Route::get('/create', [KamarController::class, 'create'])->name('create');
+    Route::post('/', [KamarController::class, 'store'])->name('store');
+    Route::get('/{kamar}/edit', [KamarController::class, 'edit'])->name('edit');
+    Route::put('/{kamar}', [KamarController::class, 'update'])->name('update');
+    Route::delete('/{kamar}', [KamarController::class, 'destroy'])->name('destroy');
+});
+
+Route::get('/accomodation', [KamarController::class, 'index'])->name('accomodation');
