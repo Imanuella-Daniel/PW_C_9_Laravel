@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +12,11 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-        body, html {
+        body,
+        html {
             height: 100%;
             margin: 0;
-            font-family: "Roboto", sans-serif;  
+            font-family: "Roboto", sans-serif;
             background-color: #1965B3;
         }
 
@@ -50,7 +52,8 @@
             border-color: #1965B3;
         }
 
-        .table th, .table td {
+        .table th,
+        .table td {
             padding: 12px 15px;
             vertical-align: middle;
             border: 1px solid #dee2e6;
@@ -60,7 +63,7 @@
         .btn-group .btn {
             border-radius: 0;
         }
-        
+
         .table thead th {
             background-color: #f8f9fa;
         }
@@ -99,11 +102,13 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-light fixed-top">
             <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasDarkNavbar">
                     <i class="bi bi-person"></i>
                 </button>
                 <a class="navbar-brand" href="/">
@@ -118,10 +123,10 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link active" href="{{url('admin-rooms')}}">Rooms</a>
+                                <a class="nav-link active" href="{{ url('admin_rooms') }}">Rooms</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="{{url('admin_guest')}}">Guest</a>
+                                <a class="nav-link active" href="{{ url('admin_guest') }}">Guest</a>
                             </li>
                         </ul>
                     </div>
@@ -132,18 +137,22 @@
 
     <div class="container-fluid" style="margin-top: 80px;">
         <form method="GET" action="{{ route('admin_guest') }}" class="d-flex">
-            <input type="text" class="search-bar form-control me-2" name="searchTerm" value="{{ $searchTerm }}" placeholder="Search Reservation ID">
+            <input type="text" class="search-bar form-control me-2" name="searchTerm" value="{{ $searchTerm }}"
+                placeholder="Search Reservation ID">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-        
+
         <div class="table-container border border-primary rounded p-3 mt-3 shadow">
             <form method="GET" action="{{ route('admin_guest') }}" class="mb-4 d-flex justify-content-between">
                 <div class="btn-group me-auto">
-                    <button type="submit" name="filter" value="Check In" class="btn {{ $filter === 'Check In' ? 'btn-primary' : 'btn-secondary' }}">Check In</button>
-                    <button type="submit" name="filter" value="Check Out" class="btn {{ $filter === 'Check Out' ? 'btn-primary' : 'btn-secondary' }}">Check Out</button>
+                    <button type="submit" name="filter" value="Check In"
+                        class="btn {{ $filter === 'Check In' ? 'btn-primary' : 'btn-secondary' }}">Check In</button>
+                    <button type="submit" name="filter" value="Check Out"
+                        class="btn {{ $filter === 'Check Out' ? 'btn-primary' : 'btn-secondary' }}">Check Out</button>
 
                 </div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addguest">Add Guest</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addguest">Add
+                    Guest</button>
             </form>
             <table class="table table-hover table-bordered table-responsive">
                 <thead>
@@ -157,22 +166,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($reservations as $reservation)
-                    <tr>
-                        <td>{{ $reservation['id'] }}</td>
-                        <td>{{ $reservation['name'] }}</td>
-                        <td>{{ $reservation['room_number'] }}</td>
-                        <td>{{ $reservation['facility'] }}</td>
-                        <td>
-                            <span class="badge {{ $reservation['status'] === 'Available' ? 'badge-available' : 'badge-booked' }}">
-                                {{ $reservation['status'] }}
-                            </span>
-                        </td>
-                        <td>
-                            <button class="btn btn-warning btn-sm edit-data" data-room="{{ json_encode($reservation) }}">Edit</button>
-                            <button class="btn btn-danger btn-sm" onclick="deleteData('{{ $reservation['id'] }}')">Delete</button>
-                        </td>
-                    </tr>
+                    @foreach ($users as $user)
+                        <tr>
+                            <td>{{ $user['id'] }}</td>
+                            <td>{{ $user['name'] }}</td>
+                            <td>{{ $user['room_number'] }}</td>
+                            <td>{{ $user['facility'] }}</td>
+                            <td>
+                                <span
+                                    class="badge {{ $user['status'] === 'Available' ? 'badge-available' : 'badge-booked' }}">
+                                    {{ $user['status'] }}
+                                </span>
+                            </td>
+                            <td>
+                                <button class="btn btn-warning btn-sm edit-data"
+                                    data-room="{{ json_encode($user) }}">Edit</button>
+                                <button class="btn btn-danger btn-sm"
+                                    onclick="deleteData('{{ $user['id'] }}')">Delete</button>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -212,7 +224,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="saveRoomButton" onclick="document.getElementById('addGuestForm').submit();">Save Guest</button>
+                    <button type="button" class="btn btn-primary" id="saveRoomButton"
+                        onclick="document.getElementById('addGuestForm').submit();">Save Guest</button>
                 </div>
             </div>
         </div>
@@ -226,7 +239,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editData" >
+                    <form id="editData">
                         <input type="hidden" id="editId">
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama</label>
@@ -260,17 +273,18 @@
 
     <script>
         document.querySelectorAll('.edit-data').forEach(button => {
-        button.addEventListener('click', function () {
-            const reservation = JSON.parse(this.dataset.room);
+            button.addEventListener('click', function() {
+                const user = JSON.parse(this.dataset.room);
 
-            document.getElementById('editId').value = reservation.id; // Menyimpan ID reservasi
-            document.getElementById('nama').value = reservation.name; // Menyimpan nama tamu
-            document.getElementById('roomNumber').value = reservation.room_number; // Menyimpan nomor kamar
-            document.getElementById('facility').value = reservation.facility; // Menyimpan fasilitas
-            document.getElementById('status').value = reservation.status; // Menyimpan status
+                document.getElementById('editId').value = user.id; // Menyimpan ID reservasi
+                document.getElementById('nama').value = user.name; // Menyimpan nama tamu
+                document.getElementById('roomNumber').value = user
+                    .room_number; // Menyimpan nomor kamar
+                document.getElementById('facility').value = user.facility; // Menyimpan fasilitas
+                document.getElementById('status').value = user.status; // Menyimpan status
 
-            const editModal = new bootstrap.Modal(document.getElementById('editdata'));
-            editModal.show(); 
+                const editModal = new bootstrap.Modal(document.getElementById('editdata'));
+                editModal.show();
             });
         });
 
@@ -278,6 +292,7 @@
             alert(`Room ${id} deleted successfully!`);
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>      
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -6,10 +6,16 @@ use App\Http\Controllers\kamarController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminGuestController;
+use App\Http\Controllers\AdminRoomsController;
 
 Route::get('/', function () {
     return view('login');
 });
+
+
+Route::get('admin_guest', [AdminGuestController::class, 'index'])->name('admin_guest'); // For displaying the guest list
+Route::post('admin_guest', [AdminGuestController::class, 'store'])->name('admin_guest'); // For storing a new guest
 
 Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 Route::get('/editProfile', [UserController::class, 'editProfile'])->name('editProfile');
@@ -89,10 +95,13 @@ Route::delete('/admin_rooms/delete/{number}', function ($number) use (&$rooms) {
     return redirect()->route('admin_rooms')->with('success', 'Room deleted successfully.');
 });
 
-Route::post('/admin_guest', function (Request $request) {
-    return redirect()->route('admin_guest');
-});
 
 Route::get('/detailmeet', function () {
     return view('meeting', compact('roomMeet'));
 })->name('meeting');
+
+
+Route::get('admin_rooms', [AdminRoomsController::class, 'index'])->name('admin_rooms');
+Route::post('admin_rooms', [AdminRoomsController::class, 'store'])->name('admin_rooms.store');
+Route::post('admin_rooms/{id}', [AdminRoomsController::class, 'update'])->name('admin_rooms.update');
+Route::delete('/admin/rooms/{NoKamar}', [AdminRoomsController::class, 'destroy'])->name('admin_rooms.destroy');
