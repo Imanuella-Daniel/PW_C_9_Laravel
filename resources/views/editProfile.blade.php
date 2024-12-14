@@ -10,9 +10,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
     <style>
         body {
@@ -23,65 +24,82 @@
         }
 
         .navbar-container {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            z-index: 10;
-            padding-top: 20px;
-        }
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
 
-        .navbar {
-            display: flex;
-            align-items: center;
-            padding: 10px 40px;
-            border-radius: 12px;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+            .navbar {
+                display: flex;
+                align-items: center;
+                padding: 10px 40px;
+                border-radius: 12px;
+                background-color: rgba(255, 255, 255, 0.8);
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                position: fixed;
+            }
 
-        .navbar ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
+            .navbar-logo {
+                width: 50px; 
+                height: auto;
+            }
 
-        .navbar ul li {
-            margin: 0 15px;
-        }
 
-        .navbar ul li a {
-            text-decoration: none;
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 20px;
-            transition: background-color 0.3s, color 0.3s;
-        }
+            .navbar ul {
+                display: flex;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
 
-        .navbar ul li a:hover {
-            color: #F72585;
-            background-color: transparent;
-        }
 
-        .navbar ul li a.active:hover {
-            color: #F72585;
-        }
+            .navbar ul li {
+                margin: 0 15px;
+            }
 
-        .navbar ul li a.active {
-            color: #000;
-        }
+            .navbar ul li a {
+                text-decoration: none;
+                color: #000;
+                padding: 10px 20px;
+                border-radius: 20px;
+                transition: background-color 0.3s, color 0.3s;
+            }
 
+            .navbar ul li a:hover {
+                color: red;
+                background-color: transparent;
+            }
+
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 4rem;
+            }
+        
+            nav a {
+                color: #000;
+                margin: 0 50px;
+                font-family: 'Inika', serif;
+                text-decoration: none;
+                font-size: 1.3rem;
+                font-weight: 500;
+            }
+            nav a.active {
+                color: #3b82f6;
+                border-bottom: 2px solid #3b82f6;
+            }
+       
         .logo {
-            margin: 0 50px;
+            margin: 0 20px;
         }
 
         .logo img {
             height: 50px;
             width: auto;
-            max-height: 100%;
-        }
+            max-height: 100%;
+        }
 
         .row {
             margin: 0 -10px;
@@ -133,6 +151,23 @@
             color: #4CAF50;
             margin-right: 5px;
         }
+
+        .col-md-10 {
+            margin-right: 40px; 
+            margin-left: 10px; 
+            padding: 0 15px;
+            height: 1; /* Pastikan tinggi sesuai */
+            flex: 1; /* Biarkan mengambil semua ruang yang tersedia */
+        }
+        .content {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            min-height: 650px; /* Ubah height menjadi min-height */
+            width: 100%; /* Pastikan lebar penuh */
+        }
+
 
         .form-section {
             flex: 1;
@@ -189,22 +224,18 @@
 </head>
 
 <body>
-    <div class="row">
-        <div class="navbar-container">
-            <nav class="navbar">
-                <ul>
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#">Accommodation</a></li>
-                </ul>
-                <div class="logo">
-                    <img src="{{ asset('img/BLUE HAVEN.png') }}" alt="Blue Haven Logo">
-                </div>
-                <ul>
-                    <li><a href="#">Special Offers</a></li>
-                    <li><a href="{{ url('profile') }}" style="color: #F72585;">Profile</a></li>
-                </ul>
-            </nav>
-        </div>
+    <div class="navbar-container">
+        <nav class="navbar">
+            <ul>
+                <li><a href="{{ route('home_page') }}">Home</a></li>
+                <li><a href="{{ route('accomodation') }}">Accommodation</a></li>
+            </ul>
+            <img src="{{ asset('img/BLUE.png') }}" alt="Logo Hotel" class="navbar-logo">
+            <ul>
+                <li><a href="{{ route('special_offers') }}">Special Offers</a></li>
+                <li><a href="{{ route('profile') }}">Profile</a></li>
+            </ul>
+        </nav>
     </div>
 
     <div class="container-fluid">
@@ -227,58 +258,54 @@
                 </div>
             </div>
 
-            <div class="col-md-10" style ="padding-left: 25px">
-                <div class="content d-flex align-items-center justify-content-between">
-                    <div class="form-section" style="flex: 1;">
+            <div class="col-md-10">
+                <div class="content d-flex flex-column flex-lg-row align-items-stretch">
+                    <div class="form-section mb-4 mb-lg-0 me-lg-3" style="flex: 1;">
                         <h1><strong>Hello, {{ $user->NamaDepan }}</strong></h1>
-                        <p>User Id: {{ $user->id }}</p>
+                        <p>User Id: {{ $user->IDUser }}</p>
                         <form method="POST" action="{{ route('profile.update') }}">
                             @csrf
-                            @method('PUT') <!-- Menggunakan PUT untuk update data -->
-                            <div class="row mt-3">
-                                <div class="col-md-6">
-                                    <label>First name</label>
-                                    <input class="form-control" placeholder="First name" type="text"
-                                        value="{{ $user->NamaDepan }}" name="NamaDepan">
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Last name</label>
-                                    <input class="form-control" placeholder="Last name" type="text"
-                                        value="{{ $user->NamaBelakang }}" name="NamaBelakang">
-                                </div>
-                            </div>
-                            <label>Email Address</label>
-                            <input class="form-control" placeholder="Email address" type="email"
-                                value="{{ $user->Email }}" name="Email">
-                            <label>Phone Number</label>
-                            <input class="form-control" placeholder="Phone Number" type="text"
-                                value="{{ $user->NoTelepon }}" name="NoTelepon">
-                            <label>Country</label>
-                            <input class="form-control" placeholder="Country" type="text"
-                                value="{{ $user->Negara }}" name="Negara">
-                            <label>Detail Address</label>
-                            <textarea class="form-control" placeholder="Detail Address" name="Alamat">{{ $user->Alamat }}</textarea>
-                            <label>Username</label>
-                            <input class="form-control" placeholder="Username" type="text"
-                                value="{{ $user->Username }}" name="Username">
+                            @method('PUT')
 
                             <div class="row mt-3">
-                                <div class="col-md-3">
-                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                <div class="col-md-6">
+                                    <label for="NamaDepan">First name</label>
+                                    <input id="NamaDepan" class="form-control" placeholder="First name" type="text" value="{{ $user->NamaDepan }}" name="NamaDepan">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="NamaBelakang">Last name</label>
+                                    <input id="NamaBelakang" class="form-control" placeholder="Last name" type="text" value="{{ $user->NamaBelakang }}" name="NamaBelakang">
                                 </div>
                             </div>
-                            <div class="row mt-3">
-                                <div class="col-md-3">
-                                    <button class="btn logout-btn" type="button">Logout</button>
+
+                            <label for="Email" class="mt-3">Email Address</label>
+                            <input id="Email" class="form-control" placeholder="Email address" type="email" value="{{ $user->Email }}" name="Email">
+
+                            <label for="NoTelepon" class="mt-3">Phone Number</label>
+                            <input id="NoTelepon" class="form-control" placeholder="Phone Number" type="text" value="{{ $user->NoTelepon }}" name="NoTelepon">
+
+                            <label for="Negara" class="mt-3">Country</label>
+                            <input id="Negara" class="form-control" placeholder="Country" type="text" value="{{ $user->Negara }}" name="Negara">
+
+                            <label for="Alamat" class="mt-3">Detail Address</label>
+                            <textarea id="Alamat" class="form-control" placeholder="Detail Address" name="Alamat">{{ $user->Alamat }}</textarea>
+
+                            <label for="Username" class="mt-3">Username</label>
+                            <input id="Username" class="form-control" placeholder="Username" type="text" value="{{ $user->Username }}" name="Username">
+
+                            <div class="row mt-1">
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-primary me-2 mb-2">Save Changes</button>
+                                </div>
+                                <div class="col-auto">
+                                    <button class="btn logout-btn mb-2" type="button">Logout</button>
                                 </div>
                             </div>
                         </form>
-
-
                     </div>
 
                     <div class="image-section text-center">
-                        <img src="{{ asset('img/Illustration.png') }}" class="img-fluid" style="max-height: 350px;" />
+                        <img src="{{ asset('img/Illustration.png') }}" class="img-fluid" alt="Illustration" style="max-height: 350px;">
                     </div>
                 </div>
             </div>
