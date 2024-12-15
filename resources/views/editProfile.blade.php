@@ -34,9 +34,16 @@
             max-height: 100%;
         }
 
-        .row {
-            margin: 0 -10px;
-            margin-top: 50px;
+        .container-fluid {
+            margin-top: 0;
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .sidebar-wrapper {
+            flex: 0 0 250px;
+            margin-top: 100px;
         }
 
         .sidebar {
@@ -44,17 +51,7 @@
             border-radius: 10px;
             padding: 20px;
             text-align: center;
-            width: 250px;
-            margin: 20px;
-            height: 300px;
-        }
-
-        .content {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px;
-            height: 650px;
+            margin-bottom: 20px;
         }
 
         .profile-pic {
@@ -85,25 +82,13 @@
             margin-right: 5px;
         }
 
-        .col-md-10 {
-            margin-right: 40px; 
-            margin-left: 10px; 
-            padding: 0 15px;
-            height: 1; /* Pastikan tinggi sesuai */
-            flex: 1; /* Biarkan mengambil semua ruang yang tersedia */
-        }
         .content {
             background-color: #fff;
             border-radius: 10px;
             padding: 20px;
-            margin: 20px;
-            min-height: 650px; /* Ubah height menjadi min-height */
-            width: 100%; /* Pastikan lebar penuh */
-        }
-
-
-        .form-section {
-            flex: 1;
+            margin-left: 20px;
+            height: 670px;
+            margin-top: 100px;
         }
 
         .form-section h1 {
@@ -174,28 +159,26 @@
     </div>
 
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2" style ="padding-right: 25px">
-                <div class="sidebar">
-                    <div class="profile-pic">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <p>Upload a Photo</p>
-                    <h5>{{ $user->NamaDepan }}</h5>
-                    <div class="confirmed">
-                        <i class="fas fa-check"></i>
-                        <span>Email Confirmed</span>
-                    </div>
-                    <div class="confirmed">
-                        <i class="fas fa-check"></i>
-                        <span>Mobile Confirmed</span>
-                    </div>
+        <div class="sidebar-wrapper">
+            <div class="sidebar">
+                <div class="profile-pic">
+                    <i class="fas fa-user"></i>
+                </div>
+                <p>Upload a Photo</p>
+                <h5>{{ $user->NamaDepan }}</h5>
+                <div class="confirmed">
+                    <i class="fas fa-check"></i>
+                    <span>Email Confirmed</span>
+                </div>
+                <div class="confirmed">
+                    <i class="fas fa-check"></i>
+                    <span>Mobile Confirmed</span>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-10">
-                <div class="content d-flex flex-column flex-lg-row align-items-stretch">
-                    <div class="form-section mb-4 mb-lg-0 me-lg-3" style="flex: 1;">
+                <div class="content d-flex align-items-start justify-content-between">
+                    <div class="form-section" style="flex: 1;">
                         <h1><strong>Hello, {{ $user->NamaDepan }}</strong></h1>
                         <p>User Id: {{ $user->IDUser }}</p>
                         <form method="POST" action="{{ route('profile.update') }}">
@@ -243,8 +226,6 @@
                         <img src="{{ asset('img/Illustration.png') }}" class="img-fluid" alt="Illustration" style="max-height: 350px;">
                     </div>
                 </div>
-            </div>
-        </div>
     </div>
 
     <footer class="footer">

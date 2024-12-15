@@ -209,7 +209,7 @@
             @foreach ($kamar as $room)
                 <div class="col-md-12 mb-4">
                     <div class="room-card d-flex justify-content-between align-items-center p-3 shadow">
-                        <img src="{{ asset('img/' . $room->gambar) }}" alt="{{ $room->TipeKamar}}" class="img-fluid">
+                    <img src="{{ $room->Gambar }}" alt="{{ $room->TipeKamar }}" class="img-fluid">
                         <div class="room-info">
                             <h4>{{ $room->TipeKamar }}</h4>
                             <div class="d-flex align-items-center mb-2">

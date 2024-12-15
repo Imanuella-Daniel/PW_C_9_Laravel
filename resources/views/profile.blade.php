@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('CSS/navbar.css') }}">
-    
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -105,9 +105,13 @@
         }
 
         .edit-btn,
-        .logout-btn,
         .btn-sm {
             background-color: #F72585;
+            color: #fff;
+        }
+
+        .logout-btn{
+            background-color:rgb(227, 18, 18);
             color: #fff;
         }
 
