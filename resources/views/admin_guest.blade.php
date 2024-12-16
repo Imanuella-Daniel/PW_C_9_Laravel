@@ -154,7 +154,6 @@
                         <th>Tipe Kamar</th>
                         <th>Room Number</th>
                         <th>Jumlah Dewasa</th>
-                        <th>Jumlah Anak</th>
                         <th>Tanggal Pesan</th>
                         <th>Tanggal Check In</th>
                         <th>Tanggal Check Out</th>
@@ -169,7 +168,6 @@
                             <td class="text-center">{{ $user->kamar->TipeKamar }}</td>
                             <td class="text-center">{{ $user->kamar->NoKamar }}</td>
                             <td class="text-center">{{ $user->JumlahDewasa }}</td>
-                            <td class="text-center">{{ $user->JumlahAnak }}</td>
                             <td class="text-center">{{ $user->TanggalPesan }}</td>
                             <td class="text-center">{{ $user->TanggalCheckIn }}</td>
                             <td class="text-center">{{ $user->TanggalCheckOut }}</td>

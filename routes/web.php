@@ -92,6 +92,4 @@ Route::get('/available-room', [AdminRoomsController::class, 'showAvailableRooms'
 Route::get('/room/{NoKamar}', [AdminRoomsController::class, 'show'])->name('room.detail');
 
 Route::get('/booking/{NoKamar}', [TransaksiController::class, 'show'])->name('room_booking');
-Route::post('/process-booking', [TransaksiController::class, 'createTransaction'])->name('processBooking');
-// Route::post('/createTransaction', [TransaksiController::class, 'createTransaction'])->name('createTransaction');
 Route::post('/transaksi/create', [TransaksiController::class, 'createTransaction'])->name('transaksi.create');

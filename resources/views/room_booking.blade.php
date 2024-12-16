@@ -256,12 +256,12 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="userId" class="form-label">User ID</label>
-                                    <input type="number" class="form-control" name="userId"
-                                        placeholder="Enter User ID " required>
+                                    <label for="PermintaanKhusus" class="form-label">Permintaan Khusus</label>
+                                    <textarea class="form-control" name="PermintaanKhusus" id="PermintaanKhusus" placeholder="Masukan Permintaan Khusus"
+                                        required></textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="userId" class="form-label">Email</label>
+                                    <label for="email" class="form-label">Email</label>
                                     <input type="email" class="form-control" name="email" placeholder="Enter Email "
                                         required>
                                 </div>
@@ -311,49 +311,9 @@
                         <div class="card-body">
                             <h6 class="fw-bold">Room Description</h6>
                             <p>{{ $roomDetails['description'] ?? 'Description not available' }}</p>
-                            <h3>Offered Amenities</h3>
+                            <h6 class="fw-bold">Room Description</h6>
+                            <p>{{ $roomDetails['facilities'] ?? 'facilities not available' }}</p>
                             <div class="row">
-                                <div class="col-md-4">
-                                    <ul class="list-unstyled">
-                                        <li class="amenity">
-                                            <span class="amenity-icon" aria-label="Television">📺</span>
-                                            <span>Television with Netflix</span>
-                                        </li>
-                                        <li class="amenity">
-                                            <span class="amenity-icon" aria-label="Internet">📡</span>
-                                            <span>Free Wireless Internet</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul class="list-unstyled">
-                                        <li class="amenity">
-                                            <span class="amenity-icon" aria-label="Air Conditioner">❄️</span>
-                                            <span>Air Conditioner</span>
-                                        </li>
-                                        <li class="amenity">
-                                            <span class="amenity-icon" aria-label="Bathroom">🛁</span>
-                                            <span>Bathroom</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul class="list-unstyled">
-                                        <li class="amenity">
-                                            <span class="amenity-icon" aria-label="Number of rooms"></span>
-                                            <span>Number of rooms</span>
-                                        </li>
-                                        <li class="amenity">
-                                            <span class="amenity-icon" aria-label="Bathroom"></span>
-                                            <div class="input-group mb-3" style="max-width: 120px;">
-                                                <button class="btn btn-pink" type="button" id="decrease">-</button>
-                                                <input type="text" class="form-control text-center" value="1"
-                                                    id="roomNumber" readonly>
-                                                <button class="btn btn-pink" type="button" id="increase">+</button>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
                                 <div class="room-check-form">
                                     <div class="form-group">
                                         <label for="checkin">Check-in date</label>
@@ -363,14 +323,11 @@
                                         <label for="checkout">Check-out date</label>
                                         <input type="date" name="checkout" id="checkout" required>
                                     </div>
-
-
                                     <div class="mb-3">
                                         <label for="person" class="form-label">Person</label>
                                         <input type="number" class="form-control" name="person"
                                             placeholder="Enter Max 4 " required>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -379,27 +336,20 @@
                         <h4 class="card-header text-left fw-bold">Payment options</h4>
                         <div class="card-body">
                             <div class="mb-3">
-                                <label class="form-label">Pilih Opsi Pembayaran</label>
-                                <div class="form-check">
-                                    <input type="radio" class="form-check-input" name="paymentOption"
-                                        value="bank-transfer" id="bank-transfer-option" required>
-                                    <label class="form-check-label" for="bank-transfer-option">Bank Transfer</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" class="form-check-input" name="paymentOption"
-                                        value="e-money" id="e-money-option" required>
-                                    <label class="form-check-label" for="e-money-option">E-money</label>
-                                </div>
                             </div>
+                            <input type="hidden" name="payment_option" id="payment_option" value="">
+                            <input type="hidden" name="IDUser" value="{{ Auth::user()->IDUser }}">
+
                             <ul class="nav nav-tabs mb-3" id="paymentTabs" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="bank-transfer-tab" data-bs-toggle="tab"
-                                        data-bs-target="#bank-transfer" type="button" role="tab">Bank
-                                        Transfer</button>
+                                        data-bs-target="#bank-transfer" type="button" role="tab"
+                                        onclick="setPaymentOption('bank_transfer')">Bank Transfer</button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="e-money-tab" data-bs-toggle="tab"
-                                        data-bs-target="#e-money" type="button" role="tab">E-money</button>
+                                        data-bs-target="#e-money" type="button" role="tab"
+                                        onclick="setPaymentOption('e_money')">E-money</button>
                                 </li>
                             </ul>
                             <div class="tab-content" id="paymentTabsContent">
@@ -420,8 +370,9 @@
                                         </div>
                                         <div class="col-4 d-flex align-items-center">
                                             <label for="NoKartu" class="form-label">Card Number</label>
-                                            <input type="tel" class="form-control" id="NoKartu"
-                                                placeholder="Enter Card Number" required>
+                                            <input type="tel" class="form-control" id="NoKartu" name="NoKartu"
+                                                placeholder="Enter Card Number" value="number" readonly>
+
                                         </div>
                                     </div>
                                 </div>
@@ -441,9 +392,10 @@
                                             @endforeach
                                         </div>
                                         <div class="col-4 d-flex align-items-center">
-                                            <label for="NoKartuPhone" class="form-label">Card Phone Number</label>
-                                            <input type="tel" class="form-control" id="NoKartuPhone"
+                                            <label for="NoKartu" class="form-label">Card Phone Number</label>
+                                            <input type="tel" class="form-control" id="NoKartu" name="NoKartu"
                                                 placeholder="Enter Phone Number" required>
+
                                         </div>
                                     </div>
                                 </div>
@@ -475,56 +427,220 @@
                                     night</small>
                             </h3>
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-pink w-100">Confirm Booking </button>
+                                <button type="submit" class="btn btn-pink w-100">Confirm Booking</button>
                             </div>
-                            </form>
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
     </div>
     <footer class="footer">
-        <div class="container">
-            <span>© 2023 Blue Haven Hotel. All rights reserved.</span>
+        <p>&copy; 2021 Blue Haven Hotel. All rights reserved.</p>
+        <div class="modal fade" id="paymentBank" tabindex="-1" aria-labelledby="paymentBankLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="paymentBankLabel">Payment</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="total-payment" style = "color: #1A1A1A">Total Payment</span>
+                            </div>
+                            <div class="col text-end">
+                                <span class="total-payment"><strong>Rp. 500.000,00</strong></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <img src="{{ asset('img/BRI.png') }}" alt="BRI Logo" style="width: 50px;">
+                            <div>No. Account</div>
+                            <div class="virtual-account">123 4567890</div>
+                            <p class="payment-instructions">Verification process less than 10 minutes after successful
+                                payment</p>
+                        </div>
+                        <p>Pay the order to the Virtual Account above before making another order with the Virtual
+                            Account
+                            so that the number remains the same. </p>
+                        <p>Only accept from BRI Bank.</p>
+
+                        <div class="accordion" id="paymentInstructions">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true"
+                                        aria-controls="collapseOne">
+                                        mBanking Transfer Instructions
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show"
+                                    aria-labelledby="headingOne" data-bs-parent="#paymentInstructions">
+                                    <div class="accordion-body transfer-instructions">
+                                        <p>1 Enter the BRI Mobile Banking menu. Then, select Payment > BRIVA.</p>
+                                        <p>2 Enter BRIVA Number 123 4567890.</p>
+                                        <p>3 Enter your PIN then select Send. If a confirmation message for transactions
+                                            using SMS appears, select OK. The transaction status will be sent via SMS
+                                            and
+                                            can be used as proof of payment.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
+                                        aria-controls="collapseTwo">
+                                        ATM Transfer Instructions
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse"
+                                    aria-labelledby="headingTwo" data-bs-parent="#paymentInstructions">
+                                    <div class="accordion-body transfer-instructions">
+                                        <p>1 Select Other Transactions > Payments > Others > BRIVA.</p>
+                                        <p>2 Enter the BRIVA number 128 081384752007 then select Correct.</p>
+                                        <p>3 Check the information on the screen. Make sure the Merchant is Shopee, the
+                                            Total bill is correct and your username is andreaskuncoro684. If correct,
+                                            select
+                                            Yes. </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-ok" id="paymentOkButton">OK</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.getElementById('checkin').addEventListener('change', calculateTotalPrice);
-        document.getElementById('checkout').addEventListener('change', calculateTotalPrice);
 
-        function calculateTotalPrice() {
-            const checkinDate = document.getElementById('checkin').value;
-            const checkoutDate = document.getElementById('checkout').value;
-            const pricePerNight = {{ $roomDetails['price'] }}; // Harga per malam
+        <div class="modal fade" id="paymentWallet" tabindex="-1" aria-labelledby="paymentWalletLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="paymentWalletLabel">Payment</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="total-payment" style = "color: #1A1A1A">Total Payment</span>
+                            </div>
+                            <div class="col text-end">
+                                <span class="total-payment"><strong>Rp. 500.000,00</strong></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <img src="{{ asset('img/Dana.png') }}" alt="BRI Logo" style="width: 50px;">
+                        </div>
 
-            if (checkinDate && checkoutDate) {
-                const checkin = new Date(checkinDate);
-                const checkout = new Date(checkoutDate);
-                const timeDifference = checkout - checkin;
-                const days = timeDifference / (1000 * 3600 * 24);
+                        <div class="text-center mb-3">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://www.dana.id/&size=150x150"
+                                alt="QR Code" class="img-fluid">
+                            <p>Scan this QR code to pay via DANA</p>
+                        </div>
 
-                if (days > 0) {
-                    const totalPrice = days * pricePerNight;
-                    document.getElementById('price').innerText = 'Rp. ' + totalPrice.toLocaleString('id-ID');
-                } else {
-                    document.getElementById('price').innerText = 'Rp. 0';
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-ok" id="paymentOkButton">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="successModalLabel">Payment</h5>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img src="{{ asset('img\hugeicons_payment-success-02.png') }}" alt="Payment Success"
+                            class="success-icon">
+                        <h3>Payment Success</h3>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-ok" id="successOkButton">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById('paymentOkButton').addEventListener('click', function() {
+                var paymentBank = new bootstrap.Modal(document.getElementById('paymentBank'));
+                paymentBank.hide();
+
+                var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
+            });
+
+            document.getElementById('successOkButton').addEventListener('click', function() {
+                var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.hide();
+                window.location.href = "{{ route('home_page') }}";
+            });
+        </script>
+        <script>
+            // Fungsi untuk format tanggal menjadi format Indonesia (dd MMMM yyyy)
+            function formatDate(date) {
+                return new Date(date).toLocaleDateString('id-ID', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            }
+
+
+            document.getElementById('checkin').addEventListener('input', function() {
+                document.getElementById('checkinText').textContent = formatDate(this.value);
+            });
+
+            document.getElementById('checkout').addEventListener('input', function() {
+                document.getElementById('checkoutText').textContent = formatDate(this.value);
+            });
+        </script>
+        <script>
+            function setPaymentOption(option) {
+                document.getElementById('payment_option').value = option;
+                if (option === 'bank_transfer') {
+                    document.getElementById('NoKartu').disabled = false;
+                    document.getElementById('NoKartuPhone').disabled = true;
+                } else if (option === 'e_money') {
+                    document.getElementById('NoKartu').disabled = true;
+                    document.getElementById('NoKartuPhone').disabled = false;
                 }
             }
-        }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            document.getElementById('checkin').addEventListener('change', calculateTotalPrice);
+            document.getElementById('checkout').addEventListener('change', calculateTotalPrice);
 
-        document.querySelector("form").addEventListener("submit", function(event) {
-            const paymentOption = document.querySelector('input[name="paymentOption"]:checked');
-            if (!paymentOption) {
-                alert("Silakan pilih opsi pembayaran.");
-                event.preventDefault();
+            function calculateTotalPrice() {
+                const checkinDate = document.getElementById('checkin').value;
+                const checkoutDate = document.getElementById('checkout').value;
+                const pricePerNight = {{ $roomDetails['price'] }};
+
+                if (checkinDate && checkoutDate) {
+                    const checkin = new Date(checkinDate);
+                    const checkout = new Date(checkoutDate);
+                    const timeDifference = checkout - checkin;
+                    const days = timeDifference / (1000 * 3600 * 24);
+
+                    if (days > 0) {
+                        const totalPrice = days * pricePerNight;
+                        document.getElementById('price').innerText = 'Rp. ' + totalPrice.toLocaleString('id-ID');
+                    } else {
+                        document.getElementById('price').innerText = 'Rp. 0';
+                    }
+                }
             }
-        });
-    </script>
-
-
+        </script>
 </body>
 
 </html>
