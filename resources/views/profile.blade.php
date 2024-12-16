@@ -282,27 +282,25 @@
 
             <div class="reservations-card">
                 <h5>Your Reservations</h5>
-
-                {{-- @if ($reservations->isEmpty())
+                @if ($pemesananKamar->isEmpty())
                     <p class="mt-3">You have no reservations.</p>
                 @else
-                    @foreach ($reservations as $reservation)
+                    @foreach ($pemesananKamar as $reservation)
                         <div class="reservation-item">
-                            <img src="{{ asset('img/kamar1.jpg') }}" alt="{{ $reservation->room->type }}" />
-                            <p class="mt-3 mb-1"><strong>{{ $reservation->room->type }}</strong></p>
-                            <p class="mb-1">Check-in: {{ $reservation->check_in_date }}</p>
-                            <p class="mb-3">Guests: {{ $reservation->adults }} Adults</p>
-                            <a href="{{ url('seeDetailReservation', $reservation->id) }}" class="btn btn-sm">See
+                            {{-- <img src="{{ asset('storage/' . $reservation->photo) }}" alt="{{ $reservation->TipeKamar }}"
+                                class="img-fluid"> --}}
+                            {{-- <p class="mt-3 mb-1"><strong>Kamar No: {{ $reservation->NoKamar }}</strong></p> --}}
+                            <p class="mb-1">Check-in: {{ $reservation->TanggalCheckIn }}</p>
+                            <p class="mb-3">Guests: {{ $reservation->JumlahDewasa }} Adults</p>
+                            <a href="{{ url('seeDetailReservation', $reservation->IDPesanan) }}" class="btn btn-sm">See
                                 details</a>
                         </div>
                     @endforeach
-                @endif --}}
-
+                @endif
             </div>
         </div>
 
         <div class="content d-flex align-items-start justify-content-between p-5 bg-light rounded shadow">
-            <!-- Section Informasi User -->
             <div class="form-section pe-5" style="flex: 1;">
                 <h1 class="fw-bold text-primary mb-4">Hello, {{ $user->NamaDepan }}</h1>
                 <p class="text-muted">User ID: {{ $user->id }}</p>
@@ -336,7 +334,6 @@
                     <label class="form-label text-secondary fw-semibold">Username</label>
                     <h6 class="text-dark">{{ $user->Username }}</h6>
                 </div>
-                <!-- Tombol Aksi -->
                 <div class="row mt-4">
                     <div class="col-md-6">
                         <a href="{{ route('editProfile') }}" class="btn btn-primary w-100 py-2 fw-bold" role="button">
