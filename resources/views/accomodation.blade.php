@@ -16,13 +16,16 @@
 
         <style>
             body {
-                font-family: 'Inter', sans-serif;
-                margin: 0;
-                padding: 0;
-                overflow-x: hidden;
+                font-family: 'Lora', serif;
+                background-image: url('/img/eksterior2.png');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
             }
-
-
 
             .logo {
                 margin: 0 20px;
@@ -98,9 +101,6 @@
                 margin-left: -10px;
             }
 
-            .stars {
-                font-size: 1.2rem;
-            }
 
             .room-details i {
                 margin-right: 5px;
@@ -149,6 +149,12 @@
             }
 
             .navbar {
+                font-size: 1.3rem;
+                justify-content: space-between;
+                color: #000;
+                margin: 0 50px;
+                font-weight: 500;
+                font-family: 'Lora', serif;
                 display: flex;
                 align-items: center;
                 padding: 10px 40px;
@@ -164,14 +170,12 @@
                 height: auto;
             }
 
-
             .navbar ul {
                 display: flex;
                 list-style: none;
                 margin: 0;
                 padding: 0;
             }
-
 
             .navbar ul li {
                 margin: 0 15px;
@@ -186,41 +190,22 @@
             }
 
             .navbar ul li a:hover {
-                color: red;
-                background-color: transparent;
+                color: #FF4081;
             }
 
-            nav {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                height: 4rem;
-            }
 
-            nav a {
-                color: #000;
-                margin: 0 50px;
-                font-family: 'Inika', serif;
-                text-decoration: none;
-                font-size: 1.3rem;
-                font-weight: 500;
-            }
-
-            nav a.active {
-                color: #3b82f6;
-                border-bottom: 2px solid #3b82f6;
-            }
 
             .footer {
                 background-color: #1965B3;
-                padding: 55px;
-                position: relative;
-                bottom: 0;
+                text-align: center;
+                padding: 20px 0;
                 width: 100%;
+                margin-top: auto;
             }
 
-            .stars {
-                color: #FFD21D;
+            .footer p {
+                margin: 5px 0;
+                color: #fff;
             }
 
             .small-red {
@@ -250,24 +235,49 @@
                 background: #ffff;
                 margin: 10px auto;
             }
+
+            @media (max-width: 768px) {
+                .navbar {
+                    flex-direction: column;
+                }
+
+                .navbar ul {
+                    flex-direction: column;
+                    align-items: center;
+                    width: 100%;
+                }
+
+                .navbar ul li {
+                    margin: 10px 0;
+                }
+
+                .navbar-logo {
+                    margin: 10px 0;
+                }
+            }
+        </style>
         </style>
     </head>
 
     <body>
-
         <div class="navbar-container">
             <nav class="navbar">
-                <ul>
+                <ul class="navbar-links">
                     <li><a href="{{ route('home_page') }}">Home</a></li>
                     <li><a href="{{ route('accomodation') }}">Accommodation</a></li>
                 </ul>
-                <img src="{{ asset('img/BLUE.png') }}" alt="Logo Hotel" class="navbar-logo">
-                <ul>
+
+                <a href="{{ route('home_page') }}" class="navbar-logo-container">
+                    <img src="{{ asset('img/BLUE.png') }}" alt="Blue Haven Hotel Logo" class="navbar-logo">
+                </a>
+
+                <ul class="navbar-links">
                     <li><a href="{{ route('special_offers') }}">Special Offers</a></li>
                     <li><a href="{{ route('profile') }}">Profile</a></li>
                 </ul>
             </nav>
         </div>
+
 
         <div class="banner">
             <div class="banner-content">
@@ -349,7 +359,8 @@
                             class="room-card d-flex justify-content-between align-items-center p-3 shadow position-relative">
                             <span class="badge badge-success position-absolute" style="top: 10px; left: 10px;">10%
                                 off</span>
-                            <img src="{{ asset('img/ruang pertemuan.jpg') }}" alt="Honeymoon Package" class="img-fluid">
+                            <img src="{{ asset('img/ruang pertemuan.jpg') }}" alt="Honeymoon Package"
+                                class="img-fluid">
                             <div class="room-info">
                                 <h4>Meeting Room</h4>
                                 <div class="d-flex align-items-center mb-2">
@@ -455,7 +466,7 @@
 
         <footer class="footer">
             <div class="container text-center">
-                <p style="color: white;">&copy; 2024 Blue Haven Hotel. All Rights Reserved.</p>
+                <p>&copy; 2024 Blue Haven Hotel. All Rights Reserved.</p>
             </div>
         </footer>
 

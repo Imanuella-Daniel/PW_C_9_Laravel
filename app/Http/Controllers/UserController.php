@@ -14,9 +14,9 @@ class UserController extends Controller
         $users = User::all();
         return view('users.index', compact('users'));
     }
-    public function proflie()
+    public function showProfile()
     {
-        $user = Auth::user();
+        $user = auth()->user();
         return view('profile', compact('user'));
     }
 

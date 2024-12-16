@@ -5,30 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Booking - Available Rooms</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&family=Poppins:wght@300;400;700&display=swap"
         rel="stylesheet">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        html,
         body {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-image: url("img/eksterior2.png");
+            font-family: 'Lora', serif;
+            background-image: url('/img/eksterior2.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            flex: 1;
-            padding-bottom: 75px;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .logo {
@@ -43,14 +38,14 @@
 
         .available-rooms {
             text-align: center;
-            margin: 100px auto;
-            margin-top: 240px;
-            width: 80%;
+            margin: 120px auto 40px auto;
+            width: 90%;
+            max-width: 1200px;
             flex-grow: 1;
         }
 
         .available-rooms h1 {
-            color: #000;
+            color: #fff;
             font-size: 36px;
             margin: 20px 0;
         }
@@ -63,35 +58,118 @@
         }
 
         .room-card {
-            background: #fff;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             padding: 20px;
             text-align: left;
             border: 1px solid #e0e0e0;
             display: flex;
             flex-direction: column;
             height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .room-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
 
         .room-card img {
-            width: 120px;
-            height: auto;
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
             border-radius: 10px;
-            margin-right: 30px;
+            margin-bottom: 15px;
         }
 
         .room-card h3 {
-            margin-top: 0;
             font-size: 24px;
             font-weight: bold;
-            color: #000;
+            color: #1965B3;
             border-bottom: 2px solid #E0E2E6;
             padding-bottom: 10px;
-            display: inline-block;
-            width: calc(100% + 120px);
-            margin-left: -10px;
-            margin-bottom: 0px;
+            margin-bottom: 15px;
+        }
+
+
+        .room-details {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .room-details>div {
+            width: 50%;
+            margin-bottom: 5px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .room-details i {
+            margin-right: 5px;
+            color: #1965B3;
+        }
+
+        .price-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .availability-btn {
+            background-color: #FF4081;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .availability-btn:hover {
+            background-color: #1965B3;
+        }
+
+        .discount-price {
+            color: #1965B3;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+
+        .room-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #1965B3;
+            color: #ffffff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .room-title {
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer {
+            background-color: #1965B3;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .footer p {
+            margin: 5px 0;
+            color: #fff;
         }
 
         .navbar-container {
@@ -101,6 +179,12 @@
         }
 
         .navbar {
+            font-size: 1.3rem;
+            justify-content: space-between;
+            color: #000;
+            margin: 0 50px;
+            font-weight: 500;
+            font-family: 'Lora', serif;
             display: flex;
             align-items: center;
             padding: 10px 40px;
@@ -116,14 +200,12 @@
             height: auto;
         }
 
-
         .navbar ul {
             display: flex;
             list-style: none;
             margin: 0;
             padding: 0;
         }
-
 
         .navbar ul li {
             margin: 0 15px;
@@ -138,138 +220,61 @@
         }
 
         .navbar ul li a:hover {
-            color: red;
-            background-color: transparent;
+            color: #FF4081;
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 4rem;
-        }
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
 
-        nav a {
-            color: #000;
-            margin: 0 50px;
-            font-family: 'Inika', serif;
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: 500;
-        }
+            .navbar ul {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
 
-        nav a.active {
-            color: #3b82f6;
-            border-bottom: 2px solid #3b82f6;
-        }
+            .navbar ul li {
+                margin: 10px 0;
+            }
 
-        .room-details {
-            display: flex;
-            flex-wrap: wrap;
-            padding-left: 10px;
-        }
+            .navbar-logo {
+                margin: 10px 0;
+            }
 
-        .room-details>div {
-            width: 50%;
-            margin-bottom: 5px;
-            margin-left: -10px;
-            font-size: 12px;
-        }
+            .room-card {
+                padding: 15px;
+            }
 
-        .price-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
-            height: 50px;
-        }
+            .room-card img {
+                height: 150px;
+            }
 
-        .availability-btn {
-            background-color: #FF4081;
-            color: #fff;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 0;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+            .room-card h3 {
+                font-size: 20px;
+            }
 
-        .discount-price {
-            color: #000;
-            font-size: 20px;
-            font-weight: bold;
-        }
+            .room-details>div {
+                width: 100%;
+                font-size: 12px;
+            }
 
-        .availability-btn {
-            background-color: #FF4081;
-            color: #fff;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 15px;
-        }
+            .price-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
 
-        .availability-btn:hover {
-            background-color: #1965B3;
-        }
+            .availability-btn {
+                width: 100%;
+                margin-top: 10px;
+            }
 
-        .rating {
-            display: flex;
-            align-items: center;
-            margin-top: 5px;
-        }
-
-        .rating-stars {
-            color: gold;
-            margin-right: 8px;
-        }
-
-        .rating-text {
-            font-size: 14px;
-            color: #555;
-        }
-
-        .room-header {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            background-color: #1965B3;
-            color: #ffffff;
-            padding: 15px 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
-        }
-
-        .room-title {
-            font-size: 28px;
-            text-align: left;
-            text-transform: uppercase;
-        }
-
-        .footer {
-            background-color: #1965B3;
-            text-align: center;
-            padding: 20px 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            margin-top: 60px;
-            padding: 55px;
-        }
-
-        .footer p {
-            margin: 5px 0;
-            color: #ffff;
+            .room-title {
+                font-size: 24px;
+            }
         }
     </style>
+
 </head>
 
 <body>
@@ -280,54 +285,54 @@
                 <li><a href="{{ route('home_page') }}">Home</a></li>
                 <li><a href="{{ route('accomodation') }}">Accommodation</a></li>
             </ul>
-            <img src="{{ asset('img/BLUE.png') }}" alt="Logo Hotel" class="navbar-logo">
             <ul>
+                <img src="{{ asset('img/BLUE.png') }}" alt="Logo Hotel" class="navbar-logo">
                 <li><a href="{{ route('special_offers') }}">Special Offers</a></li>
                 <li><a href="{{ route('profile') }}">Profile</a></li>
             </ul>
         </nav>
     </div>
 
-
     <section class="accommodation-section">
         <div class="content">
             <div class="available-rooms">
                 <div class="room-header">
-                    <span class="room-title">Room Available</span>
+                    <span class="room-title">Available Rooms</span>
                 </div>
                 <div class="rooms-container">
                     @foreach ($rooms as $room)
                         <div class="room-card">
-                            <div class="d-flex align-items-start">
-                                <!-- Ganti sesuai dengan path penyimpanan file photo -->
-                                <img src="{{ asset('storage/' . $room->photo) }}" alt="{{ $room->TipeKamar }}"
-                                    class="img-fluid">
-                                <div>
-                                    <h3>{{ $room->TipeKamar }}</h3>
-                                    <div class="room-details">
-                                        <div><i class="bi bi-people-fill"></i> {{ $room->Kapasitas }} People</div>
-                                        <div><i class="fa-solid fa-bed"></i> {{ $room->JumlahKamar }} Rooms</div>
-                                    </div>
-                                    <p style="margin-top: 0px; font-size: 13px;">
-                                        {{ $room->Desc }}
-                                    </p>
-                                    <div class="price-container">
-                                        <span class="discount-price">Rp.
-                                            {{ number_format($room->HargaKamar, 2, ',', '.') }} /night</span>
-                                        <button class="availability-btn">Book Now</button>
-                                    </div>
-                                </div>
+                            <img src="{{ asset('storage/' . $room->photo) }}" alt="{{ $room->TipeKamar }}"
+                                class="img-fluid">
+                            <h3>{{ $room->TipeKamar }}</h3>
+                            <div class="room-details">
+                                <div><i class="bi bi-people-fill"></i> {{ $room->Kapasitas }} People</div>
+                                <div><i class="fa-solid fa-bed"></i> {{ $room->JumlahKamar }} Rooms</div>
+                            </div>
+                            <h3 style="margin-top: 20px">Room Description</h3>
+                            <p style="font-size: 14px; margin-bottom: 15px;">{{ $room->Desc }}</p>
+                            <div class="price-container">
+                                <span class="discount-price">Rp.
+                                    {{ number_format($room->HargaKamar, 0, ',', '.') }} /night</span>
+                                <a href="{{ route('room.detail', $room->NoKamar) }}"
+                                    class="btn btn-primary availability-btn">
+                                    Book Now
+                                </a>
+
                             </div>
                         </div>
                     @endforeach
                 </div>
-
+            </div>
+        </div>
     </section>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2024 Blue Haven Hotel. All Rights Reserved.</p>
+        </div>
+    </footer>
+
 </body>
-<footer class="footer">
-    <div class="container text-center">
-        <p style="color: white;">&copy; 2024 Blue Haven Hotel. All Rights Reserved.</p>
-    </div>
-</footer>
 
 </html>

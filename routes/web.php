@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\kamarController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
@@ -18,13 +18,12 @@ Route::post('admin_guest', [AdminGuestController::class, 'store'])->name('admin_
 Route::post('/admin_guest/update/{id}', [AdminGuestController::class, 'update'])->name('admin_guest.update');
 Route::delete('/admin_guest/{id}', [AdminGuestController::class, 'destroy'])->name('admin_guest.destroy');
 
-Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
 Route::get('/editProfile', [UserController::class, 'editProfile'])->name('editProfile');
 Route::put('/editProfile', [UserController::class, 'updateProfile'])->name('profile.update');
 
 Route::get('/signup', [AuthController::class, 'showRegistrationForm'])->name('signup');
 
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
@@ -66,10 +65,7 @@ Route::get('/detail', function () {
     return view('view_detail');
 })->name('view_detail');
 
-Route::get('/booking', function () {
-    $roomDetails = session('roomDetails');
-    return view('room_booking', compact('roomDetails'));
-})->name('room_booking');
+
 
 Route::get('/index', function () {
     return view('index');
@@ -92,6 +88,10 @@ Route::delete('/admin/rooms/{NoKamar}', [AdminRoomsController::class, 'destroy']
 
 Route::get('/accomodation', [AdminRoomsController::class, 'accomodation'])->name('accomodation');
 
-
-
 Route::get('/available-room', [AdminRoomsController::class, 'showAvailableRooms'])->name('available_room');
+Route::get('/room/{NoKamar}', [AdminRoomsController::class, 'show'])->name('room.detail');
+
+Route::get('/booking/{NoKamar}', [TransaksiController::class, 'show'])->name('room_booking');
+Route::post('/process-booking', [TransaksiController::class, 'createTransaction'])->name('processBooking');
+// Route::post('/createTransaction', [TransaksiController::class, 'createTransaction'])->name('createTransaction');
+Route::post('/transaksi/create', [TransaksiController::class, 'createTransaction'])->name('transaksi.create');

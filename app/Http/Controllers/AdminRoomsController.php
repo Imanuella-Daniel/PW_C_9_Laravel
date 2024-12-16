@@ -148,4 +148,64 @@ class AdminRoomsController extends Controller
         return view('available_room', compact('rooms'));
     }
 
+    public function show($NoKamar)
+    {
+        $room = Kamar::find($NoKamar);
+
+        if (!$room) {
+            abort(404, "Room not found");
+        }
+
+        $roomImages = $this->getRoomImages($room->TipeKamar);
+
+        $facilities = !is_null($room->Facility) ? explode(',', $room->Facility) : [];
+
+        $roomDetails = [
+            'NoKamar' => $room->NoKamar,
+            'name' => $room->TipeKamar,
+            'description' => $room->Desc,
+            'price' => 'Rp. ' . number_format($room->HargaKamar, 0, ',', '.'),
+            'facilities' => !is_null($room->Facility) ? explode(',', $room->Facility) : [],
+            'images' => $this->getRoomImages($room->TipeKamar),
+        ];
+
+        return view('room_detail', compact('roomDetails'));
+    }
+
+
+
+    // Fungsi untuk menentukan gambar berdasarkan tipe kamar
+    private function getRoomImages($type)
+    {
+        // Menggunakan gambar yang sesuai dengan tipe kamar
+        $images = [
+            'Standard' => [
+                asset('img/1.jpg'),
+                asset('img/2.jpg'),  // Anda bisa mengganti dengan gambar lain jika perlu
+                asset('img/bar.jpg')
+            ],
+            'Deluxe' => [
+                asset('img/kamar2.jpg'),
+                asset('img/kamar2.jpg'),  // Anda bisa mengganti dengan gambar lain jika perlu
+                asset('img/kamar2.jpg')
+            ],
+            'Superior' => [
+                asset('img/kamar2.jpg'),
+                asset('img/kamar2.jpg'),  // Anda bisa mengganti dengan gambar lain jika perlu
+                asset('img/kamar2.jpg')
+            ],
+            'Junior Suite' => [
+                asset('img/kamar2.jpg'),
+                asset('img/kamar2.jpg'),
+                asset('img/kamar2.jpg')
+            ],
+            'Suite' => [
+                asset('img/kamar2.jpg'),
+                asset('img/kamar2.jpg'),
+                asset('img/kamar2.jpg')
+            ]
+        ];
+
+        return $images[$type] ?? [];
+    }
 }
