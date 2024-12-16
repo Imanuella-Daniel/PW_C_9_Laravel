@@ -278,7 +278,6 @@
 </head>
 
 <body>
-
     <div class="navbar-container">
         <nav class="navbar">
             <ul>
@@ -292,7 +291,6 @@
             </ul>
         </nav>
     </div>
-
     <section class="accommodation-section">
         <div class="content">
             <div class="available-rooms">
@@ -300,28 +298,28 @@
                     <span class="room-title">Available Rooms</span>
                 </div>
                 <div class="rooms-container">
-                    @foreach ($rooms as $room)
-                        <div class="room-card">
-                            <img src="{{ asset('storage/' . $room->photo) }}" alt="{{ $room->TipeKamar }}"
-                                class="img-fluid">
-                            <h3>{{ $room->TipeKamar }}</h3>
-                            <div class="room-details">
-                                <div><i class="bi bi-people-fill"></i> {{ $room->Kapasitas }} People</div>
-                                <div><i class="fa-solid fa-bed"></i> {{ $room->JumlahKamar }} Rooms</div>
+                    <div class="room-info">
+                        @foreach ($rooms as $room)
+                            <div class="room-card">
+                                <img src="{{ asset('storage/' . $room->photo) }}" alt="{{ $room->TipeKamar }}"
+                                    class="img-fluid">
+                                <h3>{{ $room->TipeKamar }}</h3>
+                                <div class="room-details">
+                                    <div><i class="bi bi-people-fill"></i> {{ $room->Kapasitas }} People</div>
+                                    <div><i class="fa-solid fa-bed"></i> {{ $room->JumlahKamar }} Rooms</div>
+                                </div>
+                                <h3 style="margin-top: 20px">Room Description</h3>
+                                <p style="font-size: 14px; margin-bottom: 15px;">{{ $room->Desc }}</p>
+                                <div class="price-container">
+                                    <span class="discount-price">Rp.
+                                        {{ number_format($room->HargaKamar, 0, ',', '.') }} /night</span>
+                                    <a href="{{ route('room.detail', $room->NoKamar) }}"
+                                        class="btn btn-primary availability-btn">Book Now</a>
+                                </div>
                             </div>
-                            <h3 style="margin-top: 20px">Room Description</h3>
-                            <p style="font-size: 14px; margin-bottom: 15px;">{{ $room->Desc }}</p>
-                            <div class="price-container">
-                                <span class="discount-price">Rp.
-                                    {{ number_format($room->HargaKamar, 0, ',', '.') }} /night</span>
-                                <a href="{{ route('room.detail', $room->NoKamar) }}"
-                                    class="btn btn-primary availability-btn">
-                                    Book Now
-                                </a>
+                        @endforeach
+                    </div>
 
-                            </div>
-                        </div>
-                    @endforeach
                 </div>
             </div>
         </div>

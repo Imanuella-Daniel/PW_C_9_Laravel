@@ -32,10 +32,18 @@ class AdminRoomsController extends Controller
             'filter' => $filter,
         ]);
     }
-    public function accomodation()
+    public function accommodation()
     {
-        $rooms = Kamar::where('Status', 'Available')->get();
-        return view('accomodation', ['rooms' => $rooms]);
+        $rooms = Kamar::all();
+        return view('accomodation', compact('rooms'));
+    }
+
+
+
+    public function showAvailableRooms()
+    {
+        $rooms = Kamar::all();
+        return view('available_room', compact('rooms'));
     }
 
 
@@ -95,7 +103,6 @@ class AdminRoomsController extends Controller
             $validated['photo'] = $request->file('photo')->store('uploads', 'public');
         }
 
-        // Update data kamar
         $room->update([
             'TipeKamar' => $validated['TipeKamar'],
             'HargaKamar' => $validated['HargaKamar'],
@@ -104,7 +111,7 @@ class AdminRoomsController extends Controller
             'Desc' => $validated['Desc'],
             'Facility' => $validated['Facility'],
             'Status' => $validated['Status'],
-            'photo' => $validated['photo'] ?? $room->photo, // Gunakan foto lama jika tidak ada upload
+            'photo' => $validated['photo'] ?? $room->photo,
         ]);
 
         return redirect()->route('admin_rooms')->with('success', 'Room updated successfully!');
@@ -141,13 +148,6 @@ class AdminRoomsController extends Controller
         return view('available_room', compact('availableRooms', 'checkin', 'checkout', 'person'));
     }
 
-
-    public function showAvailableRooms()
-    {
-        $rooms = Kamar::all();
-        return view('available_room', compact('rooms'));
-    }
-
     public function show($NoKamar)
     {
         $room = Kamar::find($NoKamar);
@@ -172,26 +172,22 @@ class AdminRoomsController extends Controller
         return view('room_detail', compact('roomDetails'));
     }
 
-
-
-    // Fungsi untuk menentukan gambar berdasarkan tipe kamar
     private function getRoomImages($type)
     {
-        // Menggunakan gambar yang sesuai dengan tipe kamar
         $images = [
             'Standard' => [
                 asset('img/1.jpg'),
-                asset('img/2.jpg'),  // Anda bisa mengganti dengan gambar lain jika perlu
+                asset('img/2.jpg'),
                 asset('img/bar.jpg')
             ],
             'Deluxe' => [
                 asset('img/kamar2.jpg'),
-                asset('img/kamar2.jpg'),  // Anda bisa mengganti dengan gambar lain jika perlu
+                asset('img/kamar2.jpg'),
                 asset('img/kamar2.jpg')
             ],
             'Superior' => [
                 asset('img/kamar2.jpg'),
-                asset('img/kamar2.jpg'),  // Anda bisa mengganti dengan gambar lain jika perlu
+                asset('img/kamar2.jpg'),
                 asset('img/kamar2.jpg')
             ],
             'Junior Suite' => [

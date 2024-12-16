@@ -50,11 +50,6 @@ Route::get('/seeDetailReservation', function () {
     return view('seeDetailReservation');
 })->name('seeDetailReservation');
 
-Route::get('/accomodation', function () {
-    return view('accomodation');
-})->name('accomodation');
-
-
 
 Route::get('/special_offers', function () {
     return view('special_offers');
@@ -86,10 +81,12 @@ Route::put('admin_rooms/{NoKamar}', [AdminRoomsController::class, 'update'])->na
 Route::delete('/admin/rooms/{NoKamar}', [AdminRoomsController::class, 'destroy'])->name('admin_rooms.destroy');
 
 
-Route::get('/accomodation', [AdminRoomsController::class, 'accomodation'])->name('accomodation');
 
 Route::get('/available-room', [AdminRoomsController::class, 'showAvailableRooms'])->name('available_room');
 Route::get('/room/{NoKamar}', [AdminRoomsController::class, 'show'])->name('room.detail');
 
 Route::get('/booking/{NoKamar}', [TransaksiController::class, 'show'])->name('room_booking');
 Route::post('/transaksi/create', [TransaksiController::class, 'createTransaction'])->name('transaksi.create');
+Route::get('/available-room', [AdminRoomsController::class, 'showAvailableRooms'])->name('available_room');
+
+Route::get('/accomodation', [AdminRoomsController::class, 'accommodation'])->name('accomodation');
