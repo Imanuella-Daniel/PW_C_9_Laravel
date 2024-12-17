@@ -183,20 +183,23 @@
                         <div class="card-body">
                             <h2 class="fw-bold fs-3 mb-3">{{ $roomDetails['name'] }}</h2>
 
-                            <div class="d-flex justify-content-between mb-2">
-                                <p class="fw-bold fs-5 text-muted">
-                                    Check-in: <span id="checkinText">input tanggal</span>
+                            <div class="d-flex justify-content-between align-items-start mb-2 gap-3 text-muted small">
+                                <p class="mb-0">
+                                    Check-in: <br>
+                                    <span id="checkinText">input tanggal</span>
                                 </p>
 
-                                <p class="fw-bold fs-5 text-muted">
-                                    Check-out: <span id="checkoutText">input tanggal</span>
+                                <p class="mb-0">
+                                    Check-out: <br>
+                                    <span id="checkoutText">input tanggal</span>
                                 </p>
                             </div>
-                            <h3 class="fw-bold mb-3">
-                                <span id="price">{{ $roomDetails['formattedPrice'] }}</span><small
-                                    class="text-muted"> /
-                                    night</small>
-                            </h3>
+
+                            <div class="d-flex align-items-baseline">
+                                <h3 class="fw-bold mb-3" id="price">{{ $roomDetails['formattedPrice'] }}</h3>
+                                <span class="text-muted ms-2">/ night</span>
+                            </div>
+
                             <div class="d-grid gap-2">
                                 <button class="btn btn-pink w-100" id="confirmBookingButton">Confirm Booking</button>
                             </div>

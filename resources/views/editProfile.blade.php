@@ -116,12 +116,6 @@
             background-color: #F72585;
             color: #fff;
         }
-
-        .logout-btn {
-            background-color: #F72585;
-            color: #fff;
-        }
-
         label {
             opacity: 0.7;
             font-size: 12px;
@@ -214,9 +208,6 @@
                             <div class="row mt-1">
                                 <div class="col-auto">
                                     <button type="submit" class="btn btn-primary me-2 mb-2">Save Changes</button>
-                                </div>
-                                <div class="col-auto">
-                                    <button class="btn logout-btn mb-2" type="button">Logout</button>
                                 </div>
                             </div>
                         </form>

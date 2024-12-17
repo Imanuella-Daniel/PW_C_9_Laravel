@@ -248,10 +248,10 @@
 
                     <div class="row mt-4">
                         <div class="col-md-3">
-                            <a href="{{ route('editProfile') }}" class="btn btn-primary w-100 py-2 fw-bold" role="button">Edit Profile</a>
+                            <a href="{{ route('editProfile') }}" class="btn btn-primary me-2 mb-2" role="button">Edit Profile</a>
                         </div>
                         <div class="col-md-3">
-                            <button class="btn btn-danger w-100 py-2 fw-bold" type="button" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout
+                            <button class="btn btn-danger me-2 mb-2" type="button" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout
                         </button>
                     </div>
                 </div>
