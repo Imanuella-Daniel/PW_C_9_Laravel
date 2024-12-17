@@ -5,20 +5,27 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Accommodation - Hahahihi Hotel</title>
-        <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap"
+            rel="stylesheet">
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link rel="stylesheet" href="{{ asset('CSS/navbar.css') }}">
 
         <style>
             body {
-                font-family: 'Inter', sans-serif;
-                margin: 0;
-                padding: 0;
-                overflow-x: hidden;
+                font-family: 'Lora', serif;
+                background-image: url('/img/eksterior2.png');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
             }
 
             .logo {
@@ -34,11 +41,11 @@
             .banner {
                 background-image: url("{{ asset('img/kamar1.jpg') }}");
                 background-size: cover;
-                background-position: center; 
+                background-position: center;
                 height: 100vh;
                 position: relative;
-                background-repeat: no-repeat; 
-                filter: brightness(0.9); 
+                background-repeat: no-repeat;
+                filter: brightness(0.9);
             }
 
             .banner-content {
@@ -64,7 +71,7 @@
                 display: flex;
                 align-items: center;
                 position: relative;
-                color: #4F4F4F;     
+                color: #4F4F4F;
             }
 
             .room-card img {
@@ -89,15 +96,12 @@
                 padding-left: 10px;
             }
 
-            .room-details > div {
+            .room-details>div {
                 width: 50%;
                 margin-bottom: 5px;
                 margin-left: -10px;
             }
 
-            .stars {
-                font-size: 1.2rem;
-            }
 
             .room-details i {
                 margin-right: 5px;
@@ -138,49 +142,70 @@
             }
 
             .footer {
-                background-color: #1965B3; 
-                padding: 55px; 
-                position: relative;
-                bottom: 0;
+                background-color: #1965B3;
+                text-align: center;
+                padding: 20px 0;
                 width: 100%;
+                margin-top: auto;
             }
 
-            .stars{
-                color: #FFD21D;
+            .footer p {
+                margin: 5px 0;
+                color: #fff;
             }
 
             .small-red {
-                font-size: 12px; 
+                font-size: 12px;
                 color: red;
             }
 
-            .room-info h4{
+            .room-info h4 {
                 font-weight: bold;
                 color: #000;
             }
 
             .room-title {
-                font-size: 2rem; 
-                font-weight: bold; 
-                color: #ffff; 
+                font-size: 2rem;
+                font-weight: bold;
+                color: #ffff;
                 text-align: center;
-                position: relative; 
-                margin-bottom: 20px; 
+                position: relative;
+                margin-bottom: 20px;
             }
 
             .room-title::after {
-                content: ''; 
+                content: '';
                 display: block;
-                width: 60%; 
-                height: 4px; 
-                background: #ffff; 
+                width: 60%;
+                height: 4px;
+                background: #ffff;
                 margin: 10px auto;
             }
+
+            @media (max-width: 768px) {
+                .navbar {
+                    flex-direction: column;
+                }
+
+                .navbar ul {
+                    flex-direction: column;
+                    align-items: center;
+                    width: 100%;
+                }
+
+                .navbar ul li {
+                    margin: 10px 0;
+                }
+
+                .navbar-logo {
+                    margin: 10px 0;
+                }
+            }
+        </style>
         </style>
     </head>
 
     <body>
-
     <div class="navbar-container">
         <nav class="navbar">
             <ul>
@@ -195,162 +220,49 @@
         </nav>
     </div>
 
-
         <div class="banner">
             <div class="banner-content">
             </div>
         </div>
 
         <section class="accommodation-section">
-        <div class="container">
-            <div class="row">
-            <h4 class="room-title">Room</h4>
-
-            @foreach ($kamar as $room)
-                <div class="col-md-12 mb-4">
-                    <div class="room-card d-flex justify-content-between align-items-center p-3 shadow">
-                    <img src="{{ $room->Gambar }}" alt="{{ $room->TipeKamar }}" class="img-fluid">
-                        <div class="room-info">
-                            <h4>{{ $room->TipeKamar }}</h4>
-                            <div class="d-flex align-items-center mb-2">
-                                <div class="stars text-warning">
-                                    @for ($i = 0; $i < floor($room->Rating); $i++)
-                                        <i class="bi bi-star-fill"></i>
-                                    @endfor
-
-                                    @if ($room->Rating - floor($room->Rating) >= 0.5)
-                                        <i class="bi bi-star-half"></i>
-                                    @endif
-
-                                    @for ($i = ceil($room->Rating); $i < 5; $i++)
-                                        <i class="bi bi-star"></i>
-                                    @endfor
+            <div class="container">
+                <div class="row">
+                    <h4 class="room-title">Room</h4>
+                    @foreach ($rooms as $room)
+                        <div class="col-md-12 mb-4">
+                            <div class="room-card d-flex justify-content-between align-items-center p-3 shadow">
+                                <img src="{{ asset('storage/' . $room->photo) }}" alt="{{ $room->TipeKamar }}"
+                                    class="img-fluid">
+                                <div class="room-info">
+                                    <h3>{{ $room->TipeKamar }}</h3>
+                                    <div class="room-details">
+                                        <div><i class="bi bi-people-fill"></i> {{ $room->Kapasitas }} People</div>
+                                        <div><i class="fa-solid fa-bed"></i> {{ $room->JumlahKamar }} Rooms</div>
+                                    </div>
+                                    <h3 style="margin-top: 20px">Room Description</h3>
+                                    <p style="font-size: 14px; margin-bottom: 15px;">{{ $room->Desc }}</p>
+                                    <div class="price-container">
+                                        <span class="discount-price">Rp.
+                                            {{ number_format($room->HargaKamar, 0, ',', '.') }}/night</span>
+                                        <a href="{{ route('room.detail', $room->NoKamar) }}"
+                                            class="btn btn-primary availability-btn">Book Now</a>
+                                    </div>
                                 </div>
-                                <span class="ml-2">{{ $room->Rating }} ({{ $room->reviews }} Reviews)</span>
                             </div>
-                            <div class="room-details">
-                                <div><i class="bi bi-people-fill"></i> {{ $room->Kapasitas }} People</div>
-                                <div><i class="fa-solid fa-bed"></i> {{ $room->jenis_kasur }}</div>
-                                <div><i class="fa-solid fa-bath"></i> {{ $room->fasilitas_kamar }}</div>
-                            </div>
-                            <p class="mb-0">{{ $room->Deskripsi }}</p>
-                            <a href="{{ route('view_detail', ['id' => $room->id]) }}" class="btn btn-pink text-white">See availability</a>
                         </div>
-                        <div class="room-price text-right">
-                            <h4>Rp. {{ number_format($room->HargaKamar, 0, ',', '.') }}</h4>
-                            <small>Includes taxes</small>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-
-                <h4 class="room-title">Facility</h4>
-                <div class="col-md-12 mb-4">
-                    <div class="room-card d-flex justify-content-between align-items-center p-3 shadow position-relative">
-                        <span class="badge badge-success position-absolute" style="top: 10px; left: 10px;">10% off</span>
-                        <img src="{{ asset('img/ruang pertemuan.jpg') }}" alt="Honeymoon Package" class="img-fluid">
-                        <div class="room-info">
-                            <h4>Meeting Room</h4>
-                            <div class="d-flex align-items-center mb-2">
-                                <div class="stars text-warning">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-half"></i>
-                                </div>
-                                <span class="ml-2">4.5 (600 Reviews)</span>
-                            </div>
-                            <div class="room-details">
-                                <div><i class="bi bi-people-fill"></i></i> 14 People</div>
-                                <div><i class="fa-solid fa-toilet"></i></i></i> 1 Bathroom</div>
-                            </div>
-                            <p class="mb-0">This meeting room can accommodate up to 14 people, making</p>
-                            <p class="mb-0">it ideal for business meetings, strategic sessions....</p>
-                            <a href="{{ route('meeting') }}" class="btn btn-pink text-white">See availability</a>
-                        </div>
-                        <div class="room-price text-right">
-                            <h4 class="small-red" style="font-size: 12px; color: red;"><del>Rp. 1,000,000.00</del></h4>
-                            <h4>Rp. 900,000.00</h4>
-                            <small>Includes taxes</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12 mb-4">
-                    <div class="room-card d-flex justify-content-between align-items-center p-3 shadow position-relative">
-                        <span class="badge badge-success position-absolute" style="top: 10px; left: 10px;">30% off</span>
-                        <img src="{{ asset('img/bed.jpg') }}" alt="Honeymoon Package" class="img-fluid">
-                        <div class="room-info">
-                            <h4>Honeymoon</h4>
-                            <div class="d-flex align-items-center mb-2">
-                                <div class="stars text-warning">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-half"></i>
-                                </div>
-                                <span class="ml-2">5.0 (1200 Reviews)</span>
-                            </div>
-                            <div class="room-details">
-                                <div><i class="bi bi-people-fill"></i></i> 2 People</div>
-                                <div><i class="fa-solid fa-bed"></i> 1 Exclusive bed</div>
-                                <div><i class="bi bi-shower"></i></i> 1 Bathroom</div>
-                            </div>
-                            <p class="mb-0">This luxurious room offers a private pool and intimate</p>
-                            <p class="mb-0">experience, perfect for couples looking to celebrate special ....</p>
-                            <a href="#" class="btn btn-pink text-white">See availability</a>
-                        </div>
-                        <div class="room-price text-right">
-                            <h4 class="small-red" style="font-size: 12px; color: red;"><del>Rp. 1,000,000.00</del></h4>
-                            <h4>Rp. 700,000.00</h4>
-                            <small>Includes taxes</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12 mb-4">
-                    <div class="room-card d-flex justify-content-between align-items-center p-3 shadow position-relative">
-                        <span class="badge badge-success position-absolute" style="top: 10px; left: 10px;">30% off</span>
-                        <img src="{{ asset('img/dining.jpg') }}" alt="Honeymoon Package" class="img-fluid">
-                        <div class="room-info">
-                            <h4>Romantic Dining</h4>
-                            <div class="d-flex align-items-center mb-2">
-                                <div class="stars text-warning">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-half"></i>
-                                </div>
-                                <span class="ml-2">4.7 (950 Reviews)</span>
-                            </div>
-                            <div class="room-details">
-                                <div><i class="bi bi-people-fill"></i></i> 2 People</div>
-                            </div>
-                            <p class="mb-0">Enjoy an intimate and elegant dining experience, perfect for</p>
-                            <p class="mb-0">couples celebrating special moments. Guests will be treated....</p>
-                            <a href="#" class="btn btn-pink text-white">See availability</a>
-                        </div>
-                        <div class="room-price text-right">
-                            <h4 class="small-red" style="font-size: 12px; color: red;"><del>Rp. 1,000,000.00</del></h4>
-                            <h4>Rp. 700,000.00</h4>
-                            <small>Includes taxes</small>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
-        </div>
-
         </section>
+
 
         <footer class="footer">
             <div class="container text-center">
-                <p style="color: white;">&copy; 2024 Blue Haven Hotel. All Rights Reserved.</p>
+                <p>&copy; 2024 Blue Haven Hotel. All Rights Reserved.</p>
             </div>
         </footer>
-        
+
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 

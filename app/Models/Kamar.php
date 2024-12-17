@@ -19,16 +19,16 @@ class Kamar extends Model
         'HargaKamar',
         'Kapasitas',
         'JumlahKamar',
-        'Floor',
+        'Desc',
         'Facility',
         'Status',
+        'photo'
         'Rating',
         'Deskripsi',
-        'Gambar'
     ];
 
-    public function pemesananKamar()
+    public function reservations()
     {
-        return $this->hasMany(PemesananKamar::class, 'NoKamar');
+        return $this->hasMany(PemesananKamar::class, 'NoKamar', 'NoKamar');
     }
 }

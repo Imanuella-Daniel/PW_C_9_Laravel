@@ -56,11 +56,19 @@
 
         .table th,
         .table td {
+            max-width: 15px;
             padding: 12px 15px;
             vertical-align: middle;
+            text-align: center;
             border: 1px solid #dee2e6;
             line-height: 1.6;
         }
+
+        .table img {
+            max-width: 150px;
+            height: auto;
+        }
+
 
         .btn-group .btn {
             border-radius: 0;
@@ -163,42 +171,56 @@
                         <th>Harga Kamar</th>
                         <th>Kapasitas</th>
                         <th>Jumlah Kamar</th>
-                        <th>Floor</th>
+                        <th>Desc Room</th>
                         <th>Facility</th>
                         <th>Status</th>
                         <th>Actions</th>
+                        <th>FOTO</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($filteredRooms as $room)
+                    @if ($filteredRooms->isEmpty())
                         <tr>
-                            <td>{{ $room->NoKamar }}</td>
-                            <td>{{ $room->TipeKamar }}</td>
-                            <td>{{ $room->HargaKamar }}</td>
-                            <td>{{ $room->Kapasitas }}</td>
-                            <td>{{ $room->JumlahKamar }}</td>
-                            <td>{{ $room->Floor }}</td>
-                            <td>{{ $room->Facility }}</td>
-                            <td>
-                                <span
-                                    class="badge {{ strtolower(trim($room->Status)) === 'available' ? 'bg-primary' : 'badge bg-danger' }}">
-                                    {{ $room->Status }}
-                                </span>
-
-                            </td>
-                            <td>
-                                <button class="btn btn-warning btn-sm edit-room" data-bs-toggle="modal"
-                                    data-bs-target="#editRoomModal" data-room="{{ json_encode($room) }}">
-                                    Edit
-                                </button>
-
-                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal{{ $room->NoKamar }}">
-                                    Delete
-                                </button>
+                            <td colspan="10" class="text-center text-muted">
+                                No rooms available at the moment.
                             </td>
                         </tr>
-                    @endforeach
+                    @else
+                        @foreach ($filteredRooms as $room)
+                            <tr>
+                                <td>{{ $room->NoKamar }}</td>
+                                <td>{{ $room->TipeKamar }}</td>
+                                <td>{{ $room->HargaKamar }}</td>
+                                <td>{{ $room->Kapasitas }}</td>
+                                <td>{{ $room->JumlahKamar }}</td>
+                                <td>{{ $room->Desc }}</td>
+                                <td>{{ $room->Facility }}</td>
+                                <td>
+                                    <span
+                                        class="badge {{ strtolower(trim($room->Status)) === 'available' ? 'bg-primary' : 'badge bg-danger' }}">
+                                        {{ $room->Status }}
+                                    </span>
+
+                                </td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm edit-room" data-bs-toggle="modal"
+                                        data-bs-target="#editRoomModal" data-room="{{ json_encode($room) }}">
+                                        Edit
+                                    </button>
+
+                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal{{ $room->NoKamar }}">
+                                        Delete
+                                    </button>
+                                </td>
+
+                                <td>
+                                    <img src="{{ asset('storage/' . $room->photo) }}" alt="Room Photo"
+                                        class="room-photo">
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>
@@ -213,17 +235,18 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{ route('admin_rooms.store') }}">
+                    <form method="POST" action="{{ route('admin_rooms.store') }}" enctype="multipart/form-data">
+
                         @csrf
                         <div class="mb-3">
                             <label for="TipeKamar" class="form-label">Room Type</label>
                             <select class="form-control" id="TipeKamar" name="TipeKamar" required>
                                 <option value="" disabled selected>Select room type</option>
-                                <option value="standard">Standard Room</option>
-                                <option value="deluxe">Deluxe Room</option>
-                                <option value="superior">Superior Room</option>
-                                <option value="junior-suite">Junior Suite</option>
-                                <option value="suite">Suite</option>
+                                <option value="Standard">Standard Room</option>
+                                <option value="Deluxe">Deluxe Room</option>
+                                <option value="Superior">Superior Room</option>
+                                <option value="Junior Suite">Junior Suite</option>
+                                <option value="Suite">Suite</option>
                             </select>
                         </div>
                         <div class="mb-3">
@@ -239,8 +262,8 @@
                             <input type="number" class="form-control" id="JumlahKamar" name="JumlahKamar" required>
                         </div>
                         <div class="mb-3">
-                            <label for="Floor" class="form-label">Floor</label>
-                            <input type="number" class="form-control" id="Floor" name="Floor" required>
+                            <label for="Desc" class="form-label">Desc Room</label>
+                            <textarea class="form-control" id="Desc" name="Desc" rows="3" required></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="Facility" class="form-label">Facilities</label>
@@ -253,6 +276,11 @@
                                 <option value="booked">Booked</option>
                             </select>
                         </div>
+                        <div class="mb-3">
+                            <label for="photo" class="form-label">Room Photo</label>
+                            <input type="file" class="form-control" id="photo" name="photo" required>
+                        </div>
+
                         <button type="submit" class="btn btn-primary">Add Room</button>
                     </form>
 
@@ -271,10 +299,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{ route('admin_rooms.update', ':id') }}" id="editRoomForm">
+                    <form method="POST" action="{{ route('admin_rooms.update', $room->NoKamar) }}"
+                        id="editRoomForm" enctype="multipart/form-data">
                         @csrf
-                        @method('POST') <!-- This is to mimic PUT request -->
-                        <input type="hidden" id="editRoomId" name="NoKamar">
+                        @method('PUT')
+
+                        <input type="hidden" id="editRoomId" name="NoKamar" value="{{ $room->NoKamar }}">
+
                         <div class="mb-3">
                             <label for="TipeKamar" class="form-label">Room Type</label>
                             <select class="form-control" id="editTipeKamar" name="TipeKamar" required>
@@ -301,8 +332,8 @@
                                 required>
                         </div>
                         <div class="mb-3">
-                            <label for="Floor" class="form-label">Floor</label>
-                            <input type="number" class="form-control" id="editFloor" name="Floor" required>
+                            <label for="Desc" class="form-label">Desc Room</label>
+                            <textarea class="form-control" id="editDesc" name="Desc" rows="3" required></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="Facility" class="form-label">Facilities</label>
@@ -315,6 +346,13 @@
                                 <option value="booked">Booked</option>
                             </select>
                         </div>
+                        <div class="mb-3">
+                            <label for="editPhoto" class="form-label">Room Photo</label>
+                            <input type="file" class="form-control" id="editPhoto" name="photo">
+                            <small class="form-text text-muted">Leave blank if you don't want to change the
+                                photo.</small>
+                        </div>
+
                         <button type="submit" class="btn btn-primary">Save Changes</button>
                     </form>
                 </div>
@@ -353,22 +391,23 @@
     </script>
 
     <script>
-        document.querySelectorAll('.edit-room').forEach(button => {
+        document.querySelectorAll('.edit-room').forEach(function(button) {
             button.addEventListener('click', function() {
-                const room = JSON.parse(this.getAttribute('data-room'));
-                document.getElementById('editRoomId').value = room.NoKamar;
+                const room = JSON.parse(this.getAttribute('data-room')); // Ambil data kamar
+                const form = document.getElementById('editRoomForm');
+
+                // Ganti action form dengan NoKamar dinamis
+                form.action = "{{ route('admin_rooms.update', ':NoKamar') }}".replace(':NoKamar', room
+                    .NoKamar);
+
+                // Isi input form modal edit
                 document.getElementById('editTipeKamar').value = room.TipeKamar;
                 document.getElementById('editHargaKamar').value = room.HargaKamar;
                 document.getElementById('editKapasitas').value = room.Kapasitas;
                 document.getElementById('editJumlahKamar').value = room.JumlahKamar;
-                document.getElementById('editFloor').value = room.Floor;
+                document.getElementById('editDesc').value = room.Desc;
                 document.getElementById('editFacility').value = room.Facility;
                 document.getElementById('editStatus').value = room.Status;
-
-                // Update action URL
-                const formAction = document.getElementById('editRoomForm').action.replace(':id', room
-                    .NoKamar);
-                document.getElementById('editRoomForm').action = formAction;
             });
         });
     </script>

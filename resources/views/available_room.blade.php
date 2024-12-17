@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Booking - Available Rooms</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&family=Poppins:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('CSS/navbar.css') }}">
 
     <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-        }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background-image: url("img/eksterior2.png");
+            font-family: 'Lora', serif;
+            background-image: url('/img/eksterior2.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             background-color: #1965B3;
             flex: 1;
             padding-bottom: 75px; 
@@ -35,21 +35,21 @@
         }
 
         .logo img {
-                height: 50px;
-                width: auto;
-                max-height: 100%;
-        }
-        
+            height: 50px;
+            width: auto;
+            max-height: 100%;
+        }
+
         .available-rooms {
             text-align: center;
-            margin: 100px auto; 
-            margin-top: 240px; 
-            width: 80%;
-            flex-grow: 1; 
+            margin: 120px auto 40px auto;
+            width: 90%;
+            max-width: 1200px;
+            flex-grow: 1;
         }
 
         .available-rooms h1 {
-            color: #000;
+            color: #fff;
             font-size: 36px;
             margin: 20px 0;
         }
@@ -62,29 +62,35 @@
         }
 
         .room-card {
-            background: #fff;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             padding: 20px;
             text-align: left;
             border: 1px solid #e0e0e0;
-            display: flex; 
+            display: flex;
             flex-direction: column;
-            height: 100%; 
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .room-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
 
         .room-card img {
-            width: 120px;
-            height: auto;
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
             border-radius: 10px;
-            margin-right: 30px;
+            margin-bottom: 15px;
         }
 
         .room-card h3 {
-            margin-top: 0;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
-            color: #000;
+            color: #1965B3;
             border-bottom: 2px solid #E0E2E6;
             padding-bottom: 10px; 
             display: inline-block; 
@@ -93,28 +99,35 @@
             margin-bottom: 10px; /* Tambahkan sedikit jarak dari elemen berikutnya */
         }
 
-                
         .room-details {
             display: flex;
             flex-wrap: wrap;
             padding-left: 10px;
         }
 
-        .room-details > div {
+        .room-details>div {
+            font-size: 12px;
             width: 50%;
             margin-bottom: 5px;
-            margin-left: -10px;
-            font-size: 12px; 
-        }
-                
-        .price-container {
-            display: flex; 
-            justify-content: space-between; 
+            font-size: 14px;
+            display: flex;
             align-items: center;
-            margin-top: auto; 
-            height: 50px;
         }
-        
+
+        .room-details i {
+            margin-right: 5px;
+            color: #1965B3;
+        }
+
+        .price-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
         .availability-btn {
             background-color: #FF4081;
             color: #fff;
@@ -123,11 +136,50 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            margin-top: 0; 
-            height: 100%; 
-            display: flex; 
-            align-items: center; 
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .availability-btn:hover {
+            background-color: #1965B3;
+        }
+
+        .discount-price {
+            color: #1965B3;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .room-header {
+            display: flex;
+            align-items: center;
             justify-content: center;
+            background-color: #1965B3;
+            color: #ffffff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .room-title {
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer {
+            background-color: #1965B3;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .footer p {
+            margin: 5px 0;
+            color: #fff;
         }
 
         .discount-price {
@@ -136,138 +188,65 @@
             font-weight: bold;
         }
 
-        .availability-btn {
-            background-color: #FF4081;
-            color: #fff;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 15px;
-        }
-
-        .availability-btn:hover {
-            background-color: #1965B3;
-        }
-
-        .rating {
-            display: flex;
-            align-items: center;
-            margin-top: 5px;
-        }
-
-        .rating-stars {
-            color: gold;
-            margin-right: 8px;
-        }
-
-        .rating-text {
-            font-size: 14px;
-            color: #555;
-        }
-
-        .room-header {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            background-color: #1965B3; 
-            color: #ffffff; 
-            padding: 15px 20px; 
-            border-radius: 10px; 
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
-            margin-bottom: 20px; 
-        }
-
-        .room-title {
-            font-size: 28px; 
-            text-align: left;
-            text-transform: uppercase; 
-        }
-
-        .footer {
-            background-color: #1965B3;
-            text-align: center;
-            padding: 20px 0;
-            position: relative; 
-            bottom: 0;
-            width: 100%;
-            margin-top: 60px;
-            padding: 55px; 
-        }
-
-        .footer p {
-            margin: 5px 0;
-            color: #ffff;
         }
     </style>
-</head>
-<body>
 
+</head>
+
+<body>
     <div class="navbar-container">
         <nav class="navbar">
             <ul>
                 <li><a href="{{ route('home_page') }}">Home</a></li>
                 <li><a href="{{ route('accomodation') }}">Accommodation</a></li>
             </ul>
-            <img src="{{ asset('img/BLUE.png') }}" alt="Logo Hotel" class="navbar-logo">
             <ul>
+                <img src="{{ asset('img/BLUE.png') }}" alt="Logo Hotel" class="navbar-logo">
                 <li><a href="{{ route('special_offers') }}">Special Offers</a></li>
                 <li><a href="{{ route('profile') }}">Profile</a></li>
             </ul>
         </nav>
     </div>
-
-
     <section class="accommodation-section">
-    <div class="content">
-        <div class="available-rooms">
-            <div class="room-header">
-                <span class="room-title">Room Available</span>
-            </div>
-            <div class="rooms-container">
-                @foreach ($kamar as $room)
-                    <div class="room-card">
-                        <div class="d-flex align-items-start">
-                            <img src="{{ $room->Gambar }}" alt="{{ $room->TipeKamar }}" class="img-fluid">
-                            <div>
+        <div class="content">
+            <div class="available-rooms">
+                <div class="room-header">
+                    <span class="room-title">Available Rooms</span>
+                </div>
+                <div class="rooms-container">
+                    <div class="room-info">
+                        @foreach ($rooms as $room)
+                            <div class="room-card">
+                                <img src="{{ asset('storage/' . $room->photo) }}" alt="{{ $room->TipeKamar }}"
+                                    class="img-fluid">
                                 <h3>{{ $room->TipeKamar }}</h3>
-                                <div class="rating">
-                                    <div class="rating-stars">
-                                        @for ($i = 1; $i <= floor($room->Rating); $i++)
-                                            <i class="bi bi-star-fill"></i>
-                                        @endfor
-                                        @if ($room->rating - floor($room->Rating) > 0)
-                                            <i class="bi bi-star-half"></i>
-                                        @endif
-                                    </div>
-                                    <div class="rating-text">{{ $room->Rating }} ({{ $room->reviews }} Reviews)</div>
-                                </div>
                                 <div class="room-details">
                                     <div><i class="bi bi-people-fill"></i> {{ $room->Kapasitas }} People</div>
-                                    <div><i class="fa-solid fa-bed"></i> {{ $room->bed }}</div>
-                                    <div><i class="fa-solid fa-bath"></i> {{ $room->bathroom }}</div>
+                                    <div><i class="fa-solid fa-bed"></i> {{ $room->JumlahKamar }} Rooms</div>
+                                </div>
+                                <h3 style="margin-top: 20px">Room Description</h3>
+                                <p style="font-size: 14px; margin-bottom: 15px;">{{ $room->Desc }}</p>
+                                <div class="price-container">
+                                    <span class="discount-price">Rp.
+                                        {{ number_format($room->HargaKamar, 0, ',', '.') }} /night</span>
+                                    <a href="{{ route('room.detail', $room->NoKamar) }}"
+                                        class="btn btn-primary availability-btn">Book Now</a>
                                 </div>
                             </div>
-                        </div>
-                        <h5 style="margin-top: 20px">Room Description</h5>
-                        <p style="margin-top: 0px; font-size: 13px;">
-                            {{ $room->Deskripsi }}
-                        </p>
-                        <div class="price-container">
-                            <span class="discount-price">Rp. {{ number_format($room->HargaKamar, 2, ',', '.') }} /night</span>
-                            <a href="{{ route('room_booking', ['id' => $room->NoKamar]) }}" class="availability-btn">Book Now</a>
-                        </div>
+                        @endforeach
                     </div>
-                @endforeach
+
+                </div>
             </div>
         </div>
-    </div>
-</section>
-</body>
+    </section>
+
     <footer class="footer">
         <div class="container text-center">
-            <p style="color: white;">&copy; 2024 Blue Haven Hotel. All Rights Reserved.</p>
+            <p>&copy; 2024 Blue Haven Hotel. All Rights Reserved.</p>
         </div>
     </footer>
+
+</body>
+
 </html>

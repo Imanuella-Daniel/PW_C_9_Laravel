@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlueHaven Profile</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
@@ -24,6 +27,11 @@
             background-color: #1965B3;
         }
 
+        h1,
+        h5 {
+            font-family: 'Playfair Display', serif;
+        }
+        
         .logo {
             margin: 0 20px;
         }
@@ -161,6 +169,77 @@
                 margin-left: 0;
             }
         }
+
+        .navbar-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar {
+            font-size: 1.3rem;
+            justify-content: space-between;
+            color: #000;
+            margin: 0 50px;
+            font-weight: 500;
+            font-family: 'Lora', serif;
+            display: flex;
+            align-items: center;
+            padding: 10px 40px;
+            border-radius: 12px;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            position: fixed;
+        }
+
+        .navbar-logo {
+            width: 50px;
+            height: auto;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            color: #FF4081;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .navbar ul li {
+                margin: 10px 0;
+            }
+
+            .navbar-logo {
+                margin: 10px 0;
+            }
+        }
     </style>
 </head>
 
@@ -171,7 +250,11 @@
                 <li><a href="{{ route('home_page') }}" class="{{ request()->routeIs('home_page') ? 'active' : '' }}">Home</a></li>
                 <li><a href="{{ route('accomodation') }}" class="{{ request()->routeIs('accomodation') ? 'active' : '' }}">Accommodation</a></li>
             </ul>
-            <img src="{{ asset('img/BLUE.png') }}" alt="Logo Hotel" class="navbar-logo">
+
+            <a href="{{ route('home_page') }}" class="navbar-logo-container">
+                <img src="{{ asset('img/BLUE.png') }}" alt="Blue Haven Hotel Logo" class="navbar-logo">
+            </a>
+
             <ul>
                 <li><a href="{{ route('special_offers') }}" class="{{ request()->routeIs('special_offers') ? 'active' : '' }}">Special Offers</a></li>
                 <li><a href="{{ route('profile') }}" class="{{ request()->routeIs('profile') ? 'active' : '' }}">Profile</a></li>
@@ -185,7 +268,7 @@
                 <div class="profile-pic">
                     <i class="fas fa-user"></i>
                 </div>
-                <h5>{{ $user->name }}</h5>
+                <h5>{{ $user ? $user->NamaDepan : 'User not logged in' }}</h5>
                 <div class="confirmed">
                     <i class="fas fa-check"></i>
                     <span>Email Confirmed</span>
@@ -198,16 +281,23 @@
 
             <div class="reservations-card">
                 <h5>Your Reservations</h5>
-                <div class="reservation-item">
-                    <img src="{{ asset('img/kamar1.jpg') }}" alt="Deluxe Double Room" />
-                    <p class="mt-3 mb-1"><strong>Deluxe Double Room</strong></p>
-                    <p class="mb-1">Check-in: mm/dd/yyyy</p>
-                    <p class="mb-3">Guests: 2 Adults</p>
-                    <a href="{{ url('seeDetailReservation') }}" class="btn btn-sm">See details</a>
-                </div>
+                @if ($pemesananKamar->isEmpty())
+                    <p class="mt-3">You have no reservations.</p>
+                @else
+                    @foreach ($pemesananKamar as $reservation)
+                        <div class="reservation-item">
+                            {{-- <img src="{{ asset('storage/' . $reservation->photo) }}" alt="{{ $reservation->TipeKamar }}"
+                                class="img-fluid"> --}}
+                            {{-- <p class="mt-3 mb-1"><strong>Kamar No: {{ $reservation->NoKamar }}</strong></p> --}}
+                            <p class="mb-1">Check-in: {{ $reservation->TanggalCheckIn }}</p>
+                            <p class="mb-3">Guests: {{ $reservation->JumlahDewasa }} Adults</p>
+                            <a href="{{ url('seeDetailReservation', $reservation->IDPesanan) }}" class="btn btn-sm">See
+                                details</a>
+                        </div>
+                    @endforeach
+                @endif
             </div>
         </div>
-
         <div class="content d-flex align-items-start justify-content-between">
             <div class="form-section" style="flex: 1;">
                 <h1><strong>Hello, {{ $user->NamaDepan }}</strong></h1>
@@ -223,33 +313,53 @@
                             <h6>{{ $user->NamaBelakang }}</h6>
                         </div>
                     </div>
-                    <label>Email Address</label>
-                    <h6>{{ $user->Email }}</h6>
-                    <label>Phone Number</label>
-                    <h6>{{ $user->NoTelepon }}</h6>
-                    <label>Country</label>
-                    <h6>{{ $user->Negara }}</h6>
-                    <label>Detail Address</label>
-                    <h6>{{ $user->Alamat }}</h6>
-                    <label>Username</label>
-                    <h6>{{ $user->Username }}</h6>
-
-                    <div class="row mt-3">
-                        <div class="col-md-3">
-                            <a href="{{ route('editProfile') }}" class="btn edit-btn" role="button">Edit Profile</a>
-                        </div>
-                        <div class="col-md-3">
-                            <button class="btn logout-btn" type="button" data-bs-toggle="modal"
-                                data-bs-target="#logoutModal">Logout</button>
-                        </div>
+                    <div class="col-md-6">
+                        <label class="form-label text-secondary fw-semibold">Last Name</label>
+                        <h6 class="text-dark">{{ $user->NamaBelakang }}</h6>
                     </div>
-                </form>
+                </div>
+                <div class="mt-3">
+                    <label class="form-label text-secondary fw-semibold">Email Address</label>
+                    <h6 class="text-dark">{{ $user->Email }}</h6>
+                </div>
+                <div class="mt-3">
+                    <label class="form-label text-secondary fw-semibold">Phone Number</label>
+                    <h6 class="text-dark">{{ $user->NoTelepon }}</h6>
+                </div>
+                <div class="mt-3">
+                    <label class="form-label text-secondary fw-semibold">Country</label>
+                    <h6 class="text-dark">{{ $user->Negara }}</h6>
+                </div>
+                <div class="mt-3">
+                    <label class="form-label text-secondary fw-semibold">Detail Address</label>
+                    <h6 class="text-dark">{{ $user->Alamat }}</h6>
+                </div>
+                <div class="mt-3">
+                    <label class="form-label text-secondary fw-semibold">Username</label>
+                    <h6 class="text-dark">{{ $user->Username }}</h6>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <a href="{{ route('editProfile') }}" class="btn btn-primary w-100 py-2 fw-bold" role="button">
+                            Edit Profile
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-danger w-100 py-2 fw-bold" type="button" data-bs-toggle="modal"
+                            data-bs-target="#logoutModal">
+                            Logout
+                        </button>
+                    </div>
+                </div>
             </div>
 
+            <!-- Section Gambar Ilustrasi -->
             <div class="image-section text-center">
-                <img src="{{ asset('img/Illustration.png') }}" class="img-fluid" style="max-height: 350px;" />
+                <img src="{{ asset('img/Illustration.png') }}" class="img-fluid rounded" style="max-height: 350px;"
+                    alt="Illustration" />
             </div>
         </div>
+
     </div>
 
     <footer class="footer">
