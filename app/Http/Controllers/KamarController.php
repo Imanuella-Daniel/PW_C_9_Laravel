@@ -12,12 +12,28 @@ class KamarController extends Controller
      *
      * @return \Illuminate\Contracts\View\View
      */
-    public function index()
+    public function accomodationPage()
     {
         $kamar = Kamar::all(); // Ambil semua data dari tabel kamar
-        return view('accomodation', compact('kamar')); // Kirim data ke view
+        return view('accomodation', compact('kamar'));
     }
 
+    public function availableRoomsPage()
+    {
+        $kamar = Kamar::all(); // Ambil semua data dari tabel kamar
+        return view('available_room', compact('kamar'));
+    }
+
+    public function showBookingPage($id) {
+        $kamar = Kamar::find($id); // Gunakan $id, bukan $NoKamar
+        if (!$kamar) {
+            // Tambahkan handling jika data tidak ditemukan
+            return redirect()->back()->with('error', 'Room not found');
+        }
+        return view('room_booking', compact('kamar'));
+    }
+    
+//belum kepake
     /**
      * Show the form for creating a new resource.
      *

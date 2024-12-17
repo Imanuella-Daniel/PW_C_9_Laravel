@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('CSS/navbar.css') }}">
 
     <style>
         html, body {
@@ -24,6 +25,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            background-color: #1965B3;
             flex: 1;
             padding-bottom: 75px; 
         }
@@ -86,78 +88,11 @@
             border-bottom: 2px solid #E0E2E6;
             padding-bottom: 10px; 
             display: inline-block; 
-            width: calc(100% + 120px); 
-            margin-left: -10px;
-            margin-bottom: 0px;
+            width: 100%; /* Ubah agar sesuai dengan card */
+            box-sizing: border-box; /* Pastikan padding tidak menambah lebar */
+            margin-bottom: 10px; /* Tambahkan sedikit jarak dari elemen berikutnya */
         }
 
-        .navbar-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .navbar {
-            display: flex;
-            align-items: center;
-            padding: 10px 40px;
-            border-radius: 12px;
-            background-color: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            position: fixed;
-        }
-
-        .navbar-logo {
-            width: 50px; 
-            height: auto;
-        }
-
-
-        .navbar ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-
-        .navbar ul li {
-            margin: 0 15px;
-        }
-
-        .navbar ul li a {
-            text-decoration: none;
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 20px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .navbar ul li a:hover {
-            color: red;
-            background-color: transparent;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 4rem;
-        }
-      
-        nav a {
-            color: #000;
-            margin: 0 50px;
-            font-family: 'Inika', serif;
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: 500;
-        }
-        nav a.active {
-            color: #3b82f6;
-            border-bottom: 2px solid #3b82f6;
-        }
                 
         .room-details {
             display: flex;
@@ -197,7 +132,7 @@
 
         .discount-price {
             color: #000;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
         }
 
@@ -291,69 +226,40 @@
                 <span class="room-title">Room Available</span>
             </div>
             <div class="rooms-container">
-                <div class="room-card">
-                    <div class="d-flex align-items-start">
-                        <img src="{{ asset('img/kamar1.jpg') }}" alt="Deluxe Double" class="img-fluid">
-                        <div>
-                            <h3>Deluxe Double</h3>
-                            <div class="rating">
-                                <div class="rating-stars">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-half"></i>
+                @foreach ($kamar as $room)
+                    <div class="room-card">
+                        <div class="d-flex align-items-start">
+                            <img src="{{ $room->Gambar }}" alt="{{ $room->TipeKamar }}" class="img-fluid">
+                            <div>
+                                <h3>{{ $room->TipeKamar }}</h3>
+                                <div class="rating">
+                                    <div class="rating-stars">
+                                        @for ($i = 1; $i <= floor($room->Rating); $i++)
+                                            <i class="bi bi-star-fill"></i>
+                                        @endfor
+                                        @if ($room->rating - floor($room->Rating) > 0)
+                                            <i class="bi bi-star-half"></i>
+                                        @endif
+                                    </div>
+                                    <div class="rating-text">{{ $room->Rating }} ({{ $room->reviews }} Reviews)</div>
                                 </div>
-                                <div class="rating-text">4.5 (1200 Reviews)</div>
-                            </div>
-                            <div class="room-details">
-                                <div><i class="bi bi-people-fill"></i> 2 People</div>
-                                <div><i class="fa-solid fa-bed"></i> 1 Master Bed</div>
-                                <div><i class="fa-solid fa-bath"></i> 1 Bathroom</div>
+                                <div class="room-details">
+                                    <div><i class="bi bi-people-fill"></i> {{ $room->Kapasitas }} People</div>
+                                    <div><i class="fa-solid fa-bed"></i> {{ $room->bed }}</div>
+                                    <div><i class="fa-solid fa-bath"></i> {{ $room->bathroom }}</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <h5 style="margin-top: 20px">Room Description</h5>
-                    <p style="margin-top: 0px; font-size: 13px;">
-                        The 40-square-metre Deluxe rooms at Blue Haven Hotel feature elegant decor and a private balcony with views of the pool and gardens. Amenities include a smart LED TV with Netflix, air conditioning, a minibar, coffee & tea-making facilities, an iron, a hairdryer, a laptop-sized safe, and premium pillow-top bedding. Guests also enjoy a private bathroom and free high-speed Wi-Fi.
-                    </p>
-                    <div class="price-container">
-                        <span class="discount-price">Rp. 500.000,00 /night</span>
-                        <button class="availability-btn">Book Now</button>
-                    </div>
-                </div>
-
-                <div class="room-card">
-                    <div class="d-flex align-items-start">
-                        <img src="{{ asset('img/kamar2.jpg') }}" alt="Deluxe Twin" class="img-fluid">
-                        <div>
-                            <h3>Deluxe Twin</h3>
-                            <div class="rating">
-                                <div class="rating-stars">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-half"></i>
-                                </div>
-                                <div class="rating-text">4.5 (1000 Reviews)</div>
-                            </div>
-                            <div class="room-details">
-                                <div><i class="bi bi-people-fill"></i> 2 People</div>
-                                <div><i class="fa-solid fa-bed"></i> 2 Beds</div>
-                                <div><i class="fa-solid fa-bath"></i> 1 Bathroom</div>
-                            </div>
+                        <h5 style="margin-top: 20px">Room Description</h5>
+                        <p style="margin-top: 0px; font-size: 13px;">
+                            {{ $room->Deskripsi }}
+                        </p>
+                        <div class="price-container">
+                            <span class="discount-price">Rp. {{ number_format($room->HargaKamar, 2, ',', '.') }} /night</span>
+                            <a href="{{ route('room_booking', ['id' => $room->NoKamar]) }}" class="availability-btn">Book Now</a>
                         </div>
                     </div>
-                    <h5 style="margin-top: 20px">Room Description</h5>
-                    <p style="margin-top: 0px; font-size: 13px;">
-                        The Deluxe Twin rooms offer comfort and simplicity, featuring two standard beds and modern decor. Each room includes essential amenities such as air conditioning, a TV with Netflix, coffee & tea-making facilities, and a private bathroom. Guests also enjoy complimentary Wi-Fi for a convenient stay.
-                    </p>
-                    <div class="price-container">
-                        <span class="discount-price">Rp. 450.000,00 /night</span>
-                        <button class="availability-btn">Book Now</button>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

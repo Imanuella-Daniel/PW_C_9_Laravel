@@ -54,10 +54,7 @@ Route::get('/accomodation', function () {
     return view('accomodation');
 })->name('accomodation');
 
-Route::get('/available_room', function () {
-    return view('available_room');
-})->name('available_room');
-
+Route::get('/available_room', [kamarController::class, 'availableRoomsPage'])->name('available_rooms');
 
 Route::get('/special_offers', function () {
     return view('special_offers');
@@ -116,4 +113,6 @@ Route::prefix('kamar')->name('kamar.')->group(function () {
     Route::delete('/{kamar}', [KamarController::class, 'destroy'])->name('destroy');
 });
 
-Route::get('/accomodation', [KamarController::class, 'index'])->name('accomodation');
+Route::get('/accomodation', [KamarController::class, 'accomodationPage'])->name('accomodation');
+Route::get('/available_room', [KamarController::class, 'availableRoomsPage'])->name('available_room');
+Route::get('/room_booking/{id}', [KamarController::class, 'showBookingPage'])->name('room_booking');

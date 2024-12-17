@@ -388,12 +388,12 @@
                 <form action="{{ url('/available_room') }}" method="GET" style="display: flex; align-items: center; justify-content: flex-start; gap: 12px;">
                     <div>
                         <label for="checkin" style="display: block; font-size: 13px; color: #9A9A9A; text-align: left; margin-bottom: 5px;">Check-in date</label>
-                        <input type="date" id="checkin" name="checkin" style="width: 200px; height: 40px; border-radius: 10px; border: 1px solid #ccc;">
+                        <input type="date" id="checkin" name="checkin" style="width: 200px; height: 40px; border-radius: 10px; border: 1px solid #ccc;" min="">
                     </div>
-                    
+
                     <div>
                         <label for="checkout" style="display: block; font-size: 13px; color: #9A9A9A; text-align: left; margin-bottom: 5px;">Check-out date</label>
-                        <input type="date" id="checkout" name="checkout" style="width: 200px; height: 40px; border-radius: 10px; border: 1px solid #ccc;">
+                        <input type="date" id="checkout" name="checkout" style="width: 200px; height: 40px; border-radius: 10px; border: 1px solid #ccc;" min="">
                     </div>
                     
                     <div>
@@ -463,4 +463,24 @@
         </div>
     </footer>
 </body>
+
+<script>
+    const checkinInput = document.getElementById('checkin');
+    const checkoutInput = document.getElementById('checkout');
+
+    const today = new Date();
+    const formattedToday = today.toISOString().split('T')[0];
+    checkinInput.setAttribute('min', formattedToday);
+
+    checkinInput.addEventListener('change', function () {
+        const checkinDate = new Date(checkinInput.value);
+        const minCheckoutDate = new Date(checkinDate);
+        minCheckoutDate.setDate(checkinDate.getDate() + 1);
+        const formattedMinCheckout = minCheckoutDate.toISOString().split('T')[0];
+        
+        checkoutInput.setAttribute('min', formattedMinCheckout);
+    });
+
+    checkoutInput.setAttribute('min', new Date(today.getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]);
+</script>
 </html>

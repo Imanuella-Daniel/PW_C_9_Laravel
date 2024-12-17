@@ -5,84 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blue Haven Hotel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('CSS/navbar.css') }}">
     <style>
-        body {
-            font-family: 'Inika', serif;
+        html, body {
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #1965B3;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 4rem;
-        }
-        nav ul {
-            display: flex;
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav a {
-            color: #4b5563;
-            text-decoration: none;
-            font-family: 'Inika', serif;
-            font-size: 0.875rem;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-        }
-        nav a.active {
-            color: #3b82f6;
-            border-bottom: 2px solid #3b82f6;
-        }
-
-        .navbar {
-            display: flex;
-            align-items: center;
-            padding: 10px 40px;
-            border-radius: 12px;
-            background-color: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            position: fixed;
-        }
-
-        .navbar-logo {
-            width: 50px; 
-            height: auto;
-        }
-
-        .navbar ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .navbar ul li {
-            margin: 0 15px;
-        }
-
-        .navbar ul li a {
-            text-decoration: none;
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 20px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .navbar-container {
-            position: absolute;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .navbar ul li a:hover {
-            color: red;
         }
 
         .form-control {
@@ -106,8 +42,6 @@
             padding: 15px;
             margin: 10px;
         }
-
-       
 
         .container-fluid.bg-primary {
             margin-top: 20px;
@@ -209,179 +143,176 @@
     </style>
 </head>
 <body>
-
-    <div class="navbar-container">
-        <nav class="navbar">
-            <ul>
-              <li><a href="{{ route('home_page') }}">Home</a></li>
-              <li><a href="{{ route('view_detail') }}">Accommodation</a></li>
-            </ul>
-            <img src="{{ asset('img/BLUE.png') }}" alt="Logo Hotel" class="navbar-logo">
-            <ul>
-              <li><a href="#">Special Offers</a></li>
-              <li><a href="#">Profile</a></li>
-            </ul>
-        </nav>
-    </div>
-
-    <div class="container-fluid py-5">
-        <div class="container mt-4">
-            <h1 class="text-white mb-4">Secure your reservation</h1>
-
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="card mb-4">
-                            <h4 class="card-header text-left fw-bold">Customer Profile</h4>
-                            <div class="card-body">
-                            <form id="bookingForm">
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="firstName" class="form-label">First name</label>
-                                        <input type="text" class="form-control" id="firstName" placeholder="Enter First name" required>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="lastName" class="form-label">Last name</label>
-                                        <input type="text" class="form-control" id="lastName" placeholder="Enter Last name" required>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="userId" class="form-label">User ID</label>
-                                    <input type="number" class="form-control" id="userId" placeholder="Enter User ID " required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="userId" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Enter Email " required>
-                                </div>
-                   
-
-
-                                <div class="mb-3">
-  <label for="phone" class="form-label">Phone Number</label>
-  <div class="input-group">
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-        Pilih Negara
-      </button>
-      <ul class="dropdown-menu dropdown-menu-secondary" aria-labelledby="dropdownMenuButton" style="min-width: 80px;">
-        <li>
-          <a class="dropdown-item" href="#" data-code="+62" onclick="setCountryCode(this)">
-            <img src="{{ asset('img/indo.png') }}" alt="Indonesia" style="width: 20px; height: 20px;"> Indonesia
-          </a>
-        </li>
-        <li>
-          <a class="dropdown-item" href="#" data-code="+81" onclick="setCountryCode(this)">
-            <img src="{{ asset('img/jepang.png') }}" alt="Jepang" style="width: 20px; height: 20px;"> Jepang
-          </a>
-        </li>
-        <li>
-          <a class="dropdown-item" href="#" data-code="+82" onclick="setCountryCode(this)">
-            <img src="{{ asset('img/korea.png') }}" alt="Korea" style="width: 20px; height: 20px;"> Korea
-          </a>
-        </li>
-      </ul>
-    </div>
-
-    <input type="tel" class="form-control" id="phone" value="+62" required>
+  <div class="navbar-container">
+      <nav class="navbar">
+          <ul>
+              <li><a href="{{ route('home_page') }}" class="{{ request()->routeIs('home_page') ? 'active' : '' }}">Home</a></li>
+              <li><a href="{{ route('accomodation') }}" class="{{ request()->routeIs('accomodation') ? 'active' : '' }}">Accommodation</a></li>
+          </ul>
+          <img src="{{ asset('img/BLUE.png') }}" alt="Logo Hotel" class="navbar-logo">
+          <ul>
+              <li><a href="{{ route('special_offers') }}" class="{{ request()->routeIs('special_offers') ? 'active' : '' }}">Special Offers</a></li>
+              <li><a href="{{ route('profile') }}" class="{{ request()->routeIs('profile') ? 'active' : '' }}">Profile</a></li>
+          </ul>
+      </nav>
   </div>
-</div>
 
-                                
-                           
-                        </div>
+  <div class="container-fluid py-5">
+      <div class="container mt-4">
+          <h1 class="text-white mb-4 fw-bold">Secure your reservation</h1>
+
+          <div class="row">
+              <div class="col-md-8">
+                  <div class="card mb-4">
+                    <h4 class="card-header text-left fw-bold">Customer Profile</h4>
+                    <div class="card-body">
+                      <form id="bookingForm">
+                          <div class="row">
+                              <div class="col-md-6 mb-3">
+                                  <label for="firstName" class="form-label">First name</label>
+                                  <input type="text" class="form-control" id="firstName" placeholder="Enter First name" required>
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                  <label for="lastName" class="form-label">Last name</label>
+                                  <input type="text" class="form-control" id="lastName" placeholder="Enter Last name" required>
+                              </div>
+                          </div>
+                          
+                          <div class="mb-3">
+                              <label for="userId" class="form-label">User ID</label>
+                              <input type="number" class="form-control" id="userId" placeholder="Enter User ID " required>
+                          </div>
+
+                          <div class="mb-3">
+                              <label for="userId" class="form-label">Email</label>
+                              <input type="email" class="form-control" id="email" placeholder="Enter Email " required>
+                          </div>
+              
+                          <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <div class="input-group">
+                              <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Pilih Negara
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-secondary" aria-labelledby="dropdownMenuButton" style="min-width: 80px;">
+                                  <li>
+                                    <a class="dropdown-item" href="#" data-code="+62" onclick="setCountryCode(this)">
+                                      <img src="{{ asset('img/indo.png') }}" alt="Indonesia" style="width: 20px; height: 20px;"> Indonesia
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#" data-code="+81" onclick="setCountryCode(this)">
+                                      <img src="{{ asset('img/jepang.png') }}" alt="Jepang" style="width: 20px; height: 20px;"> Jepang
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#" data-code="+82" onclick="setCountryCode(this)">
+                                      <img src="{{ asset('img/korea.png') }}" alt="Korea" style="width: 20px; height: 20px;"> Korea
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
+
+                              <input type="tel" class="form-control" id="phone" value="+62" required>
+                            </div>
+                          </div>  
                     </div>
+                  </div>
 
-                    <div class="card mb-4">
-  <h4 class="card-header text-left fw-bold">
-    <span class="amenity-icon" aria-label="Door">🚪</span> Room Detail
-  </h4>
-  <div class="card-body">
-    <h6 class="fw-bold">Room Description</h6>
-    <p>{{ $roomDetails['description'] }}</p>
-    <h3>Offered Amenities</h3>
-    <div class="row">
-      <div class="col-md-4">
-        <ul class="list-unstyled">
-          <li class="amenity">
-            <span class="amenity-icon" aria-label="Television">📺</span>
-            <span>Television with Netflix</span>
-          </li>
-          <li class="amenity">
-            <span class="amenity-icon" aria-label="Internet">📡</span>
-            <span>Free Wireless Internet</span>
-          </li>
-        </ul>
-      </div>
-      <div class="col-md-4">
-        <ul class="list-unstyled">
-          <li class="amenity">
-            <span class="amenity-icon" aria-label="Air Conditioner">❄️</span>
-            <span>Air Conditioner</span>
-          </li>
-          <li class="amenity">
-            <span class="amenity-icon" aria-label="Bathroom">🛁</span>
-            <span>Bathroom</span>
-          </li>
-        </ul>
-      </div>
-      <div class="col-md-4">
-  <ul class="list-unstyled">
-    <li class="amenity">
-      <span class="amenity-icon" aria-label="Number of rooms"></span>
-      <span>Number of rooms</span>
-    </li>
-    <li class="amenity">
-      <span class="amenity-icon" aria-label="Bathroom"></span>
-      <div class="input-group mb-3" style="max-width: 120px;">
-        <button class="btn btn-pink" type="button" id="decrease">-</button>
-        <input type="text" class="form-control text-center" value="1" id="roomNumber" readonly>
-        <button class="btn btn-pink" type="button" id="increase">+</button>
-      </div>
-    </li>
-  </ul>
-</div>
-<div class="room-check-form">
-    <form>
-        <div class="form-group">
-            <label for="checkin">Check-in date</label>
-            <input type="date" id="checkin" name="checkin">
-        </div>
-        
-        <div class="form-group">
-            <label for="checkout">Check-out date</label>
-            <input type="date" id="checkout" name="checkout">
-        </div>
-        
-        <div class="form-group">
-            <label for="person">Person</label>
-            <select id="person" name="person">
-                <option value="1">1 Adult</option>
-                <option value="2">2 Adults</option>
-            </select>
-        </div>
-    </form>
-</div>
-    </div>
+                  <div class="card mb-4">
+                    <h4 class="card-header text-left fw-bold">
+                      <span class="amenity-icon" aria-label="Door">🚪</span> Room Detail
+                    </h4>
+                    <div class="card-body">
+                      <h6 class="fw-bold">Room Description</h6>
+                      <p>{{ $kamar->Deskripsi }}</p>
+                      <h3>Offered Amenities</h3>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <ul class="list-unstyled">
+                            <li class="amenity">
+                              <span class="amenity-icon" aria-label="Television">📺</span>
+                              <span>Television with Netflix</span>
+                            </li>
+                            <li class="amenity">
+                              <span class="amenity-icon" aria-label="Internet">📡</span>
+                              <span>Free Wireless Internet</span>
+                            </li>
+                          </ul>
+                        </div>
 
-  </div>
-</div>
+                        <div class="col-md-4">
+                          <ul class="list-unstyled">
+                            <li class="amenity">
+                              <span class="amenity-icon" aria-label="Air Conditioner">❄️</span>
+                              <span>Air Conditioner</span>
+                            </li>
+                            <li class="amenity">
+                              <span class="amenity-icon" aria-label="Bathroom">🛁</span>
+                              <span>Bathroom</span>
+                            </li>
+                          </ul>
+                        </div>
 
+                        <div class="col-md-4">
+                          <ul class="list-unstyled">
+                            <li class="amenity">
+                              <span class="amenity-icon" aria-label="Number of rooms"></span>
+                              <span>Number of rooms</span>
+                            </li>
+                            <li class="amenity">
+                              <span class="amenity-icon" aria-label="Bathroom"></span>
+                              <div class="input-group mb-3" style="max-width: 120px;">
+                                <button class="btn btn-pink" type="button" id="decrease">-</button>
+                                <input type="text" class="form-control text-center" value="1" id="roomNumber" readonly>
+                                <button class="btn btn-pink" type="button" id="increase">+</button>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
 
-                    <div class="card">    
+                        <div class="room-check-form">
+                          <form>
+                              <div class="form-group">
+                                  <label for="checkin">Check-in date</label>
+                                  <input type="date" id="checkin" name="checkin">
+                              </div>
+                              
+                              <div class="form-group">
+                                  <label for="checkout">Check-out date</label>
+                                  <input type="date" id="checkout" name="checkout">
+                              </div>
+                              
+                              <div class="form-group">
+                                  <label for="person">Person</label>
+                                  <select id="person" name="person">
+                                      <option value="1">1 Adult</option>
+                                      <option value="2">2 Adults</option>
+                                  </select>
+                              </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card">    
                     <h4 class="card-header text-left fw-bold">Payment options</h4>
-                            <div class="card-body">
-                            <ul class="nav nav-tabs mb-3" id="paymentTabs" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="bank-transfer-tab" data-bs-toggle="tab" data-bs-target="#bank-transfer" type="button" role="tab">Bank Transfer</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="e-money-tab" data-bs-toggle="tab" data-bs-target="#e-money" type="button" role="tab">E-money</button>
-                                </li>
-                            </ul>
+                        <div class="card-body">
+                          <ul class="nav nav-tabs mb-3" id="paymentTabs" role="tablist">
+                              <li class="nav-item" role="presentation">
+                                  <button class="nav-link active" id="bank-transfer-tab" data-bs-toggle="tab" data-bs-target="#bank-transfer" type="button" role="tab">Bank Transfer</button>
+                              </li>
+                              <li class="nav-item" role="presentation">
+                                  <button class="nav-link" id="e-money-tab" data-bs-toggle="tab" data-bs-target="#e-money" type="button" role="tab">E-money</button>
+                              </li>
+                          </ul>
 
-                            <div class="tab-content" id="paymentTabsContent">
-                                <div class="tab-pane fade show active" id="bank-transfer" role="tabpanel">
-                                    <div class="row mb-3">
-                                        <div class="col-8 d-flex align-items-center">   
+                          <div class="tab-content" id="paymentTabsContent">
+                              <div class="tab-pane fade show active" id="bank-transfer" role="tabpanel">
+                                  <div class="row mb-3">
+                                      <div class="col-8 d-flex align-items-center">   
                                         @foreach(['BCA', 'Mandiri', 'BNI', 'BRI'] as $bank)
                                             <div class="me-3">
                                                 <button class="btn btn-outline-secondary d-flex flex-column align-items-center justify-content-center" style="border: none; padding: 0;">
@@ -390,15 +321,16 @@
                                                 </button>
                                             </div>
                                         @endforeach
-                                    </div>
+                                      </div>
                                     <div class="col-4 d-flex align-items-center">
-                                <label for="cardNumber" class="form-label">Card Number</label>
-                                <input type="tel" class="form-control" id="cardNumber" placeholder="Enter Card Number" required>
-                            </div>
-                                </div>
-                                </div>
-                                <div class="tab-pane fade" id="e-money" role="tabpanel">
-                                    <div class="row mb-3">
+                                        <label for="cardNumber" class="form-label">Card Number</label>
+                                        <input type="tel" class="form-control" id="cardNumber" placeholder="Enter Card Number" required>
+                                    </div>
+                                  </div>
+                              </div>
+
+                              <div class="tab-pane fade" id="e-money" role="tabpanel">
+                                  <div class="row mb-3">
                                     <div class="col-8 d-flex align-items-center">
                                         @foreach(['OVO', 'DANA', 'Gopay', 'ShopeePay'] as $money)
                                             <div class="me-3">
@@ -410,46 +342,61 @@
                                         @endforeach
                                     </div>
                                     <div class="col-4 d-flex align-items-center">
-                                <label for="cardNumber" class="form-label">Card Phone Number</label>
-                                <input type="tel" class="form-control" id="cardNumber" placeholder="Enter Phone Number" required>
-                            </div>
+                                        <label for="cardNumber" class="form-label">Card Phone Number</label>
+                                        <input type="tel" class="form-control" id="cardNumber" placeholder="Enter Phone Number" required>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
 
-                <div class="col-md-4">
-                    <div class="booking-card">
-                        <img src="{{ asset('img/kamar1.jpg') }}" class="card-img-top" alt="Deluxe Double Room">
-                        <div class="card-body">
-                        <h2 class="fw-bold">{{ $roomDetails['name'] }}</h2>
-                            <div class="mb-2">
-                                <span class="text-warning">★★★★☆</span>
-                                <small>4.5 (1200 Reviews)</small>
-                            </div>
-                            <p>
-                                Check in: Sunday, October 13, 2024<br>
-                                Check out: Monday, October 14, 2024<br>
-                                1 night stay
-                            </p>
-                            
-                            <h3 class="mb-3">{{ $roomDetails['price'] }}<small>/ night</small></h3>
-                            @if($bank != null)
-                              <button class="btn btn-pink w-100" data-bs-toggle="modal" data-bs-target="#paymentBank">Confirm Booking</button>
-                            @else
-                              <button class="btn btn-pink w-100" data-bs-toggle="modal" data-bs-target="#paymentWallet">Confirm Booking</button>
-                            @endif       
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </form>
+              <div class="col-md-4">
+                  <div class="booking-card">
+                      <img src="{{ asset('img/kamar1.jpg') }}" class="card-img-top" alt="Deluxe Double Room">
+                      <div class="card-body">
+                        <h2 class="fw-bold">{{ $kamar->TipeKamar }}</h2>
+                        <div class="d-flex align-items-center mb-2">
+                          <div class="stars text-warning">
+                              @for ($i = 0; $i < floor($kamar->Rating); $i++)
+                                  <i class="bi bi-star-fill"></i>
+                              @endfor
 
-    <footer class="footer">
+                              @if ($kamar->Rating - floor($kamar->Rating) >= 0.5)
+                                  <i class="bi bi-star-half"></i>
+                              @endif
+
+                              @for ($i = ceil($kamar->Rating); $i < 5; $i++)
+                                  <i class="bi bi-star"></i>
+                              @endfor
+                          </div>
+                          <span class="ml-2">{{ $kamar->Rating }} ({{ $kamar->reviews }} Reviews)</span>
+                      </div>
+                          <!-- <div class="mb-2">
+                              <span class="text-warning">★★★★☆</span>
+                              <small>4.5 (1200 Reviews)</small>
+                          </div> -->
+                      <p>
+                          Check in: Sunday, October 13, 2024<br>
+                          Check out: Monday, October 14, 2024<br>
+                          1 night stay
+                      </p>
+                      
+                      <h3 class="mb-3 fw-bold">{{ $kamar->HargaKamar }}<small>/ night</small></h3>
+                      @if($bank != null)
+                        <button class="btn btn-pink w-100" data-bs-toggle="modal" data-bs-target="#paymentBank">Confirm Booking</button>
+                      @else
+                        <button class="btn btn-pink w-100" data-bs-toggle="modal" data-bs-target="#paymentWallet">Confirm Booking</button>
+                      @endif       
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <footer class="footer">
         <div class="container">
             <span>© 2023 Blue Haven Hotel. All rights reserved.</span>
         </div>
@@ -619,7 +566,6 @@
 
  
 <script>
-      // Handle OK button on Payment Modal
       document.getElementById('paymentOkButton').addEventListener('click', function () {
         var paymentBank = new bootstrap.Modal(document.getElementById('paymentBank'));
         paymentBank.hide();
@@ -628,7 +574,6 @@
         successModal.show();
       });
 
-      // Handle OK button on Success Modal
       document.getElementById('successOkButton').addEventListener('click', function () {
         var successModal = new bootstrap.Modal(document.getElementById('successModal'));
         successModal.hide();
