@@ -132,7 +132,7 @@ body {
 }
 
 .btn-active {
-    background-color: #F72585; /* Warna background biru */
-    color: white; /* Warna teks putih */
-    border-color: #F72585; /* Border sesuai dengan background */
+    background-color: #F72585;
+    color: white;
+    border-color: #F72585;
 }
