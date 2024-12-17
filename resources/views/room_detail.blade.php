@@ -251,7 +251,7 @@
                 </div>
                 <h6 class="fw-bold">Room Description</h6>
                 <p>{{ $roomDetails['description'] }}</p>
-                <h3>Offered Amenities</h3>
+                <h6 class="fw-bold">Fasility</h6>
                 <div class="amenities">
                     @foreach ($roomDetails['facilities'] as $amenity)
                         <div class="amenity">{{ $amenity }}</div>

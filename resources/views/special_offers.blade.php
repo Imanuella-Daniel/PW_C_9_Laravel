@@ -6,16 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Special Offers - Hotel Blue Haven</title>
 
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@300;400;600&display=swap"
         rel="stylesheet">
 
-    <!-- Custom CSS -->
     <style>
-        /* Global Styles */
         body {
             font-family: 'Poppins', sans-serif;
             background: url("img/lobby.jpg") center/cover fixed no-repeat;
@@ -193,8 +189,6 @@
         </div>
     </div>
 
-
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
