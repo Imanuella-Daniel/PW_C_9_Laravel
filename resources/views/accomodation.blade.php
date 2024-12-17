@@ -311,10 +311,116 @@
                             </div>
                         </div>
                     @endforeach
+                    <h4 class="room-title">Facility</h4>
+                    <div class="col-md-12 mb-4">
+                        <div
+                            class="room-card d-flex justify-content-between align-items-center p-3 shadow position-relative">
+                            <span class="badge badge-success position-absolute" style="top: 10px; left: 10px;">10%
+                                off</span>
+                            <img src="{{ asset('img/ruang pertemuan.jpg') }}" alt="Honeymoon Package"
+                                class="img-fluid">
+                            <div class="room-info">
+                                <h4>Meeting Room</h4>
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="stars text-warning">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-half"></i>
+                                    </div>
+                                    <span class="ml-2">4.5 (600 Reviews)</span>
+                                </div>
+                                <div class="room-details">
+                                    <div><i class="bi bi-people-fill"></i></i> 14 People</div>
+                                    <div><i class="fa-solid fa-toilet"></i></i></i> 1 Bathroom</div>
+                                </div>
+                                <p class="mb-0">This meeting room can accommodate up to 14 people, making</p>
+                                <p class="mb-0">it ideal for business meetings, strategic sessions....</p>
+                                <a href="{{ route('meeting') }}" class="btn btn-primary availability-btn">See
+                                    availability</a>
+                            </div>
+                            <div class="room-price text-right">
+                                <h4 class="small-red" style="font-size: 12px; color: red;"><del>Rp. 1,000,000.00</del>
+                                </h4>
+                                <h4>Rp. 900,000.00</h4>
+                                <small>Includes taxes</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mb-4">
+                        <div
+                            class="room-card d-flex justify-content-between align-items-center p-3 shadow position-relative">
+                            <span class="badge badge-success position-absolute" style="top: 10px; left: 10px;">30%
+                                off</span>
+                            <img src="{{ asset('img/bed.jpg') }}" alt="Honeymoon Package" class="img-fluid">
+                            <div class="room-info">
+                                <h4>Honeymoon</h4>
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="stars text-warning">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-half"></i>
+                                    </div>
+                                    <span class="ml-2">5.0 (1200 Reviews)</span>
+                                </div>
+                                <div class="room-details">
+                                    <div><i class="bi bi-people-fill"></i></i> 2 People</div>
+                                    <div><i class="fa-solid fa-bed"></i> 1 Exclusive bed</div>
+                                    <div><i class="bi bi-shower"></i></i> 1 Bathroom</div>
+                                </div>
+                                <p class="mb-0">This luxurious room offers a private pool and intimate</p>
+                                <p class="mb-0">experience, perfect for couples looking to celebrate special ....</p>
+                                <a href="#" class="btn btn-primary availability-btn">See availability</a>
+                            </div>
+                            <div class="room-price text-right">
+                                <h4 class="small-red" style="font-size: 12px; color: red;"><del>Rp. 1,000,000.00</del>
+                                </h4>
+                                <h4>Rp. 700,000.00</h4>
+                                <small>Includes taxes</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mb-4">
+                        <div
+                            class="room-card d-flex justify-content-between align-items-center p-3 shadow position-relative">
+                            <span class="badge badge-success position-absolute" style="top: 10px; left: 10px;">30%
+                                off</span>
+                            <img src="{{ asset('img/dining.jpg') }}" alt="Honeymoon Package" class="img-fluid">
+                            <div class="room-info">
+                                <h4>Romantic Dining</h4>
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="stars text-warning">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-half"></i>
+                                    </div>
+                                    <span class="ml-2">4.7 (950 Reviews)</span>
+                                </div>
+                                <div class="room-details">
+                                    <div><i class="bi bi-people-fill"></i></i> 2 People</div>
+                                </div>
+                                <p class="mb-0">Enjoy an intimate and elegant dining experience, perfect for</p>
+                                <p class="mb-0">couples celebrating special moments. Guests will be treated....</p>
+                                <a href="#" class="btn btn-primary availability-btn">See availability</a>
+                            </div>
+                            <div class="room-price text-right">
+                                <h4 class="small-red" style="font-size: 12px; color: red;"><del>Rp. 1,000,000.00</del>
+                                </h4>
+                                <h4>Rp. 700,000.00</h4>
+                                <small>Includes taxes</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-
 
         <footer class="footer">
             <div class="container text-center">
