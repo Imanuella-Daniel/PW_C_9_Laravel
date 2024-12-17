@@ -13,7 +13,6 @@
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="{{ asset('CSS/navbar.css') }}">
 
         <style>
             body {
@@ -130,6 +129,8 @@
                 margin-top: 15px;
             }
 
+
+
             .badge-custom {
                 position: absolute;
                 top: 20px;
@@ -140,6 +141,59 @@
                 border-radius: 5px;
                 font-size: 14px;
             }
+
+            .navbar-container {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+
+            .navbar {
+                font-size: 1.3rem;
+                justify-content: space-between;
+                color: #000;
+                margin: 0 50px;
+                font-weight: 500;
+                font-family: 'Lora', serif;
+                display: flex;
+                align-items: center;
+                padding: 10px 40px;
+                border-radius: 12px;
+                background-color: rgba(255, 255, 255, 0.8);
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                position: fixed;
+            }
+
+            .navbar-logo {
+                width: 50px;
+                height: auto;
+            }
+
+            .navbar ul {
+                display: flex;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .navbar ul li {
+                margin: 0 15px;
+            }
+
+            .navbar ul li a {
+                text-decoration: none;
+                color: #000;
+                padding: 10px 20px;
+                border-radius: 20px;
+                transition: background-color 0.3s, color 0.3s;
+            }
+
+            .navbar ul li a:hover {
+                color: #FF4081;
+            }
+
+
 
             .footer {
                 background-color: #1965B3;
@@ -206,19 +260,24 @@
     </head>
 
     <body>
-    <div class="navbar-container">
-        <nav class="navbar">
-            <ul>
-                <li><a href="{{ route('home_page') }}" class="{{ request()->routeIs('home_page') ? 'active' : '' }}">Home</a></li>
-                <li><a href="{{ route('accomodation') }}" class="{{ request()->routeIs('accomodation') ? 'active' : '' }}">Accommodation</a></li>
-            </ul>
-            <img src="{{ asset('img/BLUE.png') }}" alt="Logo Hotel" class="navbar-logo">
-            <ul>
-                <li><a href="{{ route('special_offers') }}" class="{{ request()->routeIs('special_offers') ? 'active' : '' }}">Special Offers</a></li>
-                <li><a href="{{ route('profile') }}" class="{{ request()->routeIs('profile') ? 'active' : '' }}">Profile</a></li>
-            </ul>
-        </nav>
-    </div>
+        <div class="navbar-container">
+            <nav class="navbar">
+                <ul class="navbar-links">
+                    <li><a href="{{ route('home_page') }}">Home</a></li>
+                    <li><a href="{{ route('accomodation') }}">Accommodation</a></li>
+                </ul>
+
+                <a href="{{ route('home_page') }}" class="navbar-logo-container">
+                    <img src="{{ asset('img/BLUE.png') }}" alt="Blue Haven Hotel Logo" class="navbar-logo">
+                </a>
+
+                <ul class="navbar-links">
+                    <li><a href="{{ route('special_offers') }}">Special Offers</a></li>
+                    <li><a href="{{ route('profile') }}">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+
 
         <div class="banner">
             <div class="banner-content">

@@ -13,7 +13,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('CSS/navbar.css') }}">
 
     <style>
         body {
@@ -22,7 +21,8 @@
             padding: 0;
             overflow-x: hidden;
         }
-        
+
+
         .logo {
             margin: 0 20px;
         }
@@ -415,8 +415,8 @@
     <div class="navbar-container">
         <nav class="navbar">
             <ul>
-                <li><a href="{{ route('home_page') }}" class="{{ request()->routeIs('home_page') ? 'active' : '' }}">Home</a></li>
-                <li><a href="{{ route('accomodation') }}" class="{{ request()->routeIs('accomodation') ? 'active' : '' }}">Accommodation</a></li>
+                <li><a href="{{ route('home_page') }}">Home</a></li>
+                <li><a href="{{ route('accomodation') }}">Accommodation</a></li>
             </ul>
 
             <a href="{{ route('home_page') }}" class="navbar-logo-container">
@@ -424,8 +424,8 @@
             </a>
 
             <ul>
-                <li><a href="{{ route('special_offers') }}" class="{{ request()->routeIs('special_offers') ? 'active' : '' }}">Special Offers</a></li>
-                <li><a href="{{ route('profile') }}" class="{{ request()->routeIs('profile') ? 'active' : '' }}">Profile</a></li>
+                <li><a href="{{ route('special_offers') }}">Special Offers</a></li>
+                <li><a href="{{ route('profile') }}">Profile</a></li>
             </ul>
         </nav>
     </div>
@@ -477,13 +477,19 @@
                 <form method="GET" action="{{ route('available_room') }}"
                     style="display: flex; align-items: center; justify-content: flex-start; gap: 12px;">
                     <div>
-                        <label for="checkin" style="display: block; font-size: 13px; color: #9A9A9A; text-align: left; margin-bottom: 5px;">Check-in date</label>
-                        <input type="date" id="checkin" name="checkin" style="width: 200px; height: 40px; border-radius: 10px; border: 1px solid #ccc;" min="">
+                        <label for="TanggalCheckIn"
+                            style="display: block; font-size: 13px; color: #9A9A9A; text-align: left; margin-bottom: 5px;">
+                            Check-in date
+                        </label>
+                        <input type="date" id="TanggalCheckIn" name="TanggalCheckIn" required>
                     </div>
 
                     <div>
-                        <label for="checkout" style="display: block; font-size: 13px; color: #9A9A9A; text-align: left; margin-bottom: 5px;">Check-out date</label>
-                        <input type="date" id="checkout" name="checkout" style="width: 200px; height: 40px; border-radius: 10px; border: 1px solid #ccc;" min="">
+                        <label for="TanggalCheckOut"
+                            style="display: block; font-size: 13px; color: #9A9A9A; text-align: left; margin-bottom: 5px;">
+                            Check-out date
+                        </label>
+                        <input type="date" id="TanggalCheckOut" name="TanggalCheckOut" required>
                     </div>
 
                     <div>
@@ -561,24 +567,5 @@
         </div>
     </footer>
 </body>
-<script>
-    const checkinInput = document.getElementById('checkin');
-    const checkoutInput = document.getElementById('checkout');
 
-    const today = new Date();
-    const formattedToday = today.toISOString().split('T')[0];
-    checkinInput.setAttribute('min', formattedToday);
-
-    checkinInput.addEventListener('change', function () {
-        const checkinDate = new Date(checkinInput.value);
-        const minCheckoutDate = new Date(checkinDate);
-        minCheckoutDate.setDate(checkinDate.getDate() + 1);
-        const formattedMinCheckout = minCheckoutDate.toISOString().split('T')[0];
-        
-        checkoutInput.setAttribute('min', formattedMinCheckout);
-    });
-
-    checkoutInput.setAttribute('min', new Date(today.getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]);
-</script>
 </html>
-

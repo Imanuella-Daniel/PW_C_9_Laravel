@@ -13,11 +13,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('CSS/navbar.css') }}">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
 
     <style>
         body {
@@ -27,11 +25,13 @@
             background-color: #1965B3;
         }
 
+
         h1,
         h5 {
             font-family: 'Playfair Display', serif;
         }
-        
+
+
         .logo {
             margin: 0 20px;
         }
@@ -39,8 +39,8 @@
         .logo img {
             height: 50px;
             width: auto;
-            max-height: 100%;
-        }
+            max-height: 100%;
+        }
 
         .container-fluid {
             margin-top: 100px;
@@ -101,6 +101,11 @@
             color: #333;
         }
 
+        .navbar-logo {
+            width: 50px;
+            height: auto;
+        }
+
         .form-section p {
             font-size: 12px;
             color: #999;
@@ -113,13 +118,9 @@
         }
 
         .edit-btn,
+        .logout-btn,
         .btn-sm {
             background-color: #F72585;
-            color: #fff;
-        }
-
-        .logout-btn{
-            background-color:rgb(227, 18, 18);
             color: #fff;
         }
 
@@ -247,8 +248,8 @@
     <div class="navbar-container">
         <nav class="navbar">
             <ul>
-                <li><a href="{{ route('home_page') }}" class="{{ request()->routeIs('home_page') ? 'active' : '' }}">Home</a></li>
-                <li><a href="{{ route('accomodation') }}" class="{{ request()->routeIs('accomodation') ? 'active' : '' }}">Accommodation</a></li>
+                <li><a href="{{ route('home_page') }}">Home</a></li>
+                <li><a href="{{ route('accomodation') }}">Accommodation</a></li>
             </ul>
 
             <a href="{{ route('home_page') }}" class="navbar-logo-container">
@@ -256,12 +257,12 @@
             </a>
 
             <ul>
-                <li><a href="{{ route('special_offers') }}" class="{{ request()->routeIs('special_offers') ? 'active' : '' }}">Special Offers</a></li>
-                <li><a href="{{ route('profile') }}" class="{{ request()->routeIs('profile') ? 'active' : '' }}">Profile</a></li>
+                <li><a href="{{ route('special_offers') }}">Special Offers</a></li>
+                <li><a href="{{ route('profile') }}">Profile</a></li>
             </ul>
         </nav>
     </div>
-    
+
     <div class="container-fluid">
         <div class="sidebar-wrapper">
             <div class="sidebar">
@@ -298,20 +299,15 @@
                 @endif
             </div>
         </div>
-        <div class="content d-flex align-items-start justify-content-between">
-            <div class="form-section" style="flex: 1;">
-                <h1><strong>Hello, {{ $user->NamaDepan }}</strong></h1>
-                <p>User Id: {{ $user->IDUser }}</p>
-                <form>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <label>First name</label>
-                            <h6>{{ $user->NamaDepan }}</h6>
-                        </div>
-                        <div class="col-md-6">
-                            <label>Last name</label>
-                            <h6>{{ $user->NamaBelakang }}</h6>
-                        </div>
+
+        <div class="content d-flex align-items-start justify-content-between p-5 bg-light rounded shadow">
+            <div class="form-section pe-5" style="flex: 1;">
+                <h1 class="fw-bold text-primary mb-4">Hello, {{ $user->NamaDepan }}</h1>
+                <p class="text-muted">User ID: {{ $user->id }}</p>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label text-secondary fw-semibold">First Name</label>
+                        <h6 class="text-dark">{{ $user->NamaDepan }}</h6>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label text-secondary fw-semibold">Last Name</label>

@@ -6,23 +6,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blue Haven Hotel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('CSS/navbar.css') }}">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap"
+        rel="stylesheet">
     <style>
-        html, body {
-            font-family: 'Inter', sans-serif;
+        body {
+            font-family: 'Inika', serif;
             margin: 0;
             padding: 0;
             background-color: #1965B3;
         }
-        
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav a {
+            color: #4b5563;
+            text-decoration: none;
+            font-family: 'Inika', serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+        }
+
+        nav a.active {
+            color: #3b82f6;
+            border-bottom: 2px solid #3b82f6;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            padding: 10px 40px;
+            border-radius: 12px;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            position: fixed;
+        }
+
+        .navbar-logo {
+            width: 50px;
+            height: auto;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .navbar-container {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar ul li a:hover {
+            color: red;
+        }
+
         .form-control {
             padding: 8px;
             font-size: 14px;
@@ -330,14 +397,13 @@
                                                 placeholder="Enter Phone Number" required>
 
                                         </div>
-
                                     </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-md-4">
                     <div class="booking-card">
                         <img src="{{ asset('storage/' . ($roomDetails['images'] ?? 'default.jpg')) }}"
@@ -503,7 +569,7 @@
                 </div>
             </div>
         </div>
-        
+
         <script>
             document.getElementById('paymentOkButton').addEventListener('click', function() {
                 var paymentBank = new bootstrap.Modal(document.getElementById('paymentBank'));
@@ -576,4 +642,5 @@
             }
         </script>
 </body>
+
 </html>
