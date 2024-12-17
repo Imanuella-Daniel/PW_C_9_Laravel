@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PemesananKamar;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,12 +15,26 @@ class UserController extends Controller
         $users = User::all();
         return view('users.index', compact('users'));
     }
-    public function profile()
+    public function showProfile()
     {
-        $user = Auth::user();
-        return view('profile', compact('user'));
+        $user = auth()->user();
+        $pemesananKamar = $user->transaksi->flatMap(function ($transaksi) {
+            return $transaksi->pemesananKamar;
+        });
+
+        return view('profile', compact('user', 'pemesananKamar'));
     }
 
+    public function seeDetailReservation($id)
+    {
+        $pemesananKamar = PemesananKamar::with(['transaksi.user', 'kamar'])->find($id);
+        if (!$pemesananKamar) {
+            abort(404, 'Reservation not found');
+        }
+        $user = $pemesananKamar->transaksi->user;
+        $room = $pemesananKamar->kamar;
+        return view('seeDetailReservation', compact('user', 'pemesananKamar', 'room'));
+    }
 
     public function editProfile()
     {
@@ -48,13 +63,10 @@ class UserController extends Controller
             $validated['Password'] = bcrypt($request->Password);
         }
 
-
-        //$user->update($validated);
+        $user->update($validated);
 
         return redirect()->route('profile')->with('success', 'Profile updated successfully');
     }
-
-
 
 
     public function show($id)
@@ -65,6 +77,8 @@ class UserController extends Controller
         }
         return view('users.show', compact('user'));
     }
+
+
 
     public function update(Request $request, $id)
     {

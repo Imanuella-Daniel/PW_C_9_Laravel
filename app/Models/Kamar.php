@@ -14,14 +14,26 @@ class Kamar extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'NoKamar',
         'TipeKamar',
         'Kapasitas',
         'JumlahKamar',
-        'HargaKamar'
+        'HargaKamar',
+        'Desc',
+        'Facility',
+        'Status',
+        'photo',
+        'Rating'
     ];
 
-    public function pemesananKamar()
+    public function reservations()
+    {
+        return $this->hasMany(PemesananKamar::class, 'NoKamar', 'NoKamar');
+    }
+
+    public function pemesanankamar()
     {
         return $this->hasMany(PemesananKamar::class, 'NoKamar');
     }
+
 }

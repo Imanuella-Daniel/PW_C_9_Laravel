@@ -9,7 +9,7 @@ class PemesananKamar extends Model
 {
     use HasFactory;
 
-    protected $table = 'pemesanan_kamar';
+    protected $table = 'pemesanankamar';
     protected $primaryKey = 'IDPesanan';
     public $timestamps = false;
 
@@ -23,6 +23,11 @@ class PemesananKamar extends Model
         'TanggalCheckIn',
         'TanggalCheckOut'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'IDUser', 'IDUser');
+    }
 
     public function transaksi()
     {
