@@ -18,7 +18,6 @@ Route::get('/available-room', [AdminRoomsController::class, 'showAvailableRooms'
 Route::get('/room/{NoKamar}', [AdminRoomsController::class, 'show'])->name('room.detail');
 Route::get('/booking/{NoKamar}', [TransaksiController::class, 'show'])->name('room_booking');
 Route::post('/transaksi/create', [TransaksiController::class, 'createTransaction'])->name('transaksi.create');
-Route::get('/available-room', [AdminRoomsController::class, 'showAvailableRooms'])->name('available_room');
 Route::get('/accomodation', [AdminRoomsController::class, 'accommodation'])->name('accomodation');
 Route::get('/admin_guest', [AdminGuestController::class, 'index'])->name('admin_guest');
 Route::post('admin_guest', [AdminGuestController::class, 'store'])->name('admin_guest.store');
@@ -49,6 +48,9 @@ Route::get('/payment', function () {
     return view('payment');
 })->name('payment');
 
+Route::get('/seeDetailReservation', function () {
+    return view('seeDetailReservation');
+})->name('seeDetailReservation');
 
 Route::get('/special_offers', function () {
     return view('special_offers');
@@ -64,6 +66,25 @@ Route::get('/index', function () {
 });
 
 $rooms = [];
+
+Route::post('/admin_rooms/add', function (Request $request) use (&$rooms) {
+    return redirect()->route('admin_rooms');
+});
+
+Route::post('/admin_rooms/edit', function (Request $request) use (&$rooms) {
+    return redirect()->route('admin_rooms');
+});
+
+Route::delete('/admin_rooms/delete/{number}', function ($number) use (&$rooms) {
+    $rooms = array_filter($rooms, function ($room) use ($number) {
+        return $room['number'] !== $number;
+    });
+
+    return redirect()->route('admin_rooms')->with('success', 'Room deleted successfully.');
+});
+
+
 Route::get('/detailmeet', function () {
     return view('meeting', compact('roomMeet'));
 })->name('meeting');
+

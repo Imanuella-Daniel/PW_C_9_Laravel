@@ -48,7 +48,6 @@
             padding: 20px;
             margin: 20px;
             flex: 1;
-            /* Allow content to take available space */
             color: black;
             text-align: center;
             z-index: 1;
@@ -142,7 +141,7 @@
                             <input class="form-control" name="Email" type="email" value="" required />
                             <label for="phone">Phone Number</label>
                             <div class="input-group">
-                                <select class="form-select" name="Negara" style="width: 100px; height: 38px;">
+                                <select class="form-select" name="Negara" style="width: 50px; height: 38px;">
                                     <option value="+62" selected>+62</option>
                                     <option value="+1">+1</option>
                                     <option value="+44">+44</option>
