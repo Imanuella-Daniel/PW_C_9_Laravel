@@ -195,7 +195,7 @@ class AdminRoomsController extends Controller
                 asset('img/Junior1.jpg'),
                 asset('img/Junior2.jpg'),
                 asset('img/Junior3.jpg'),
-                asset('img/Junior.jpg')
+                asset('img/Junior4.jpg')
             ],
             'Suite' => [
                 asset('img/Suite1.jpg'),
