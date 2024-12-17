@@ -6,6 +6,10 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminGuestController;
 use App\Http\Controllers\AdminRoomsController;
+use App\Http\Controllers\AdminFacilityController;
+use App\Http\Controllers\FasilitasController;
+use App\Http\Controllers\AccommodationController;
+use App\Http\Controllers\TransaksiFasilitasController;
 
 Route::get('/', function () {
     return view('login');
@@ -90,3 +94,19 @@ Route::get('/detailmeet', function () {
     return view('meeting', compact('roomMeet'));
 })->name('meeting');
 
+Route::prefix('fasilitas')->name('fasilitas.')->group(function () {
+    Route::get('/', [FasilitasController::class, 'index'])->name('index'); 
+    Route::get('/create', [FasilitasController::class, 'create'])->name('create');
+    Route::post('/', [FasilitasController::class, 'store'])->name('store');
+    Route::get('/{fasilitas}/edit', [FasilitasController::class, 'edit'])->name('edit');
+    Route::put('/{fasilitas}', [FasilitasController::class, 'update'])->name('update');
+    Route::delete('/{fasilitas}', [FasilitasController::class, 'destroy'])->name('destroy');
+});
+
+Route::get('/accomodation', [AccommodationController::class, 'index'])->name('accomodation');
+Route::get('/facility_details/{IDFasilitas}', [AdminFacilityController::class, 'show'])->name('facility_details');
+Route::get('/facility-booking/{IDFasilitas}', [TransaksiFasilitasController::class, 'show'])->name('facility_booking');
+Route::post('/transaksi/create', [TransaksiFasilitasController::class, 'createTransaction'])->name('transaksi.create');
+Route::post('/create-facility-transaction', [TransaksiFasilitasController::class, 'createTransaction'])->name('create_facility_transaction');
+Route::get('/facility/{IDFasilitas}', [FasilitasController::class, 'showFacilityDetail'])
+    ->name('facility.facility_detail');

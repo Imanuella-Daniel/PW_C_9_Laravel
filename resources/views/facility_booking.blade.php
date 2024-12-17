@@ -177,13 +177,13 @@
                                     <div class="col-md-6 mb-3">
                                         <label for="firstName" class="form-label">First name</label>
                                         <input type="text" class="form-control" name="firstName"
-                                            placeholder="Enter First name" required>
+                                            placeholder="Enter First name" value="{{ Auth::user()->NamaDepan }}" required>
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label for="lastName" class="form-label">Last name</label>
                                         <input type="text" class="form-control" name="lastName"
-                                            placeholder="Enter Last name" required>
+                                            placeholder="Enter Last name" value="{{ Auth::user()->NamaBelakang }}" required>
                                     </div>
                                 </div>
                                 <div class="mb-3">
@@ -193,44 +193,18 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" name="email" placeholder="Enter Email "
+                                    <input type="email" class="form-control" name="email" placeholder="Enter Email " value="{{ Auth::user()->Email }}"
                                         required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="phone" class="form-label">Phone Number</label>
                                     <div class="input-group">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                                Pilih Negara
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-secondary"
-                                                aria-labelledby="dropdownMenuButton" style="min-width: 80px;">
-                                                <li>
-                                                    <a class="dropdown-item" href="#" data-code="+62"
-                                                        onclick="setCountryCode(this)">
-                                                        <img src="{{ asset('img/indo.png') }}" alt="Indonesia"
-                                                            style="width: 20px; height: 20px;"> Indonesia
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#" data-code="+81"
-                                                        onclick="setCountryCode(this)">
-                                                        <img src="{{ asset('img/jepang.png') }}" alt="Jepang"
-                                                            style="width: 20px; height: 20px;"> Jepang
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#" data-code="+82"
-                                                        onclick="setCountryCode(this)">
-                                                        <img src="{{ asset('img/korea.png') }}" alt="Korea"
-                                                            style="width: 20px; height: 20px;"> Korea
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <input type="tel" class="form-control" name="phone" value="+62"
-                                            required>
+                                        <select class="form-select" name="Negara" style="width: 50px; height: 38px;">
+                                            <option value="+62" selected>+62</option>
+                                            <option value="+1">+1</option>
+                                            <option value="+44">+44</option>
+                                        </select>
+                                        <input type="tel" class="form-control" name="phone"  value="{{ Auth::user()->NoTelepon }}"required>
                                     </div>
                                 </div>
                         </div>
@@ -370,6 +344,46 @@
     </div>
     <footer class="footer">
         <p>&copy; 2021 Blue Haven Hotel. All rights reserved.</p>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('confirmBookingButton').addEventListener('click', function (event) {
+                    event.preventDefault();
+
+                    const paymentOption = document.getElementById('payment_option').value;
+
+                    if (!paymentOption) {
+                        alert('Please select a payment method.');
+                        return;
+                    }
+
+                    if (paymentOption === 'bank_transfer') {
+                        const bankModal = new bootstrap.Modal(document.getElementById('paymentBank'));
+                        bankModal.show();
+                    } else if (paymentOption === 'e_money') {
+                        const walletModal = new bootstrap.Modal(document.getElementById('paymentWallet'));
+                        walletModal.show();
+                    }
+                });
+
+                const bankOkButton = document.querySelector('#paymentBank .btn-ok');
+                const walletOkButton = document.querySelector('#paymentWallet .btn-ok');
+
+                bankOkButton.addEventListener('click', showSuccessModal);
+                walletOkButton.addEventListener('click', showSuccessModal);
+
+                function showSuccessModal() {
+                    const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                    successModal.show();
+                }
+
+                document.getElementById('successOkButton').addEventListener('click', function () {
+                    document.querySelector('form').submit();
+                });
+            });
+
+        </script>
+
+
         <div class="modal fade" id="paymentBank" tabindex="-1" aria-labelledby="paymentBankLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -442,7 +456,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-ok" id="paymentOkButton">OK</button>
+                        <button type="button" class="btn btn-ok" id="submitBookingBank">OK</button>
                     </div>
                 </div>
             </div>
@@ -476,22 +490,20 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-ok" id="paymentOkButton">OK</button>
+                        <button type="button" class="btn btn-ok" id="submitBookingWallet">OK</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="successModal" aria-labelledby="successModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="successModalLabel">Payment</h5>
+                        <h5 class="modal-title" id="successModalLabel">Payment Success</h5>
                     </div>
                     <div class="modal-body text-center">
-                        <img src="{{ asset('img\hugeicons_payment-success-02.png') }}" alt="Payment Success"
-                            class="success-icon">
+                        <img src="{{ asset('img/hugeicons_payment-success-02.png') }}" alt="Payment Success" class="success-icon">
                         <h3>Payment Success</h3>
                     </div>
                     <div class="modal-footer">
@@ -500,6 +512,7 @@
                 </div>
             </div>
         </div>
+
 
         <script>
             document.getElementById('paymentOkButton').addEventListener('click', function() {
@@ -516,8 +529,8 @@
                 window.location.href = "{{ route('home_page') }}";
             });
         </script>
+
         <script>
-            // Fungsi untuk format tanggal menjadi format Indonesia (dd MMMM yyyy)
             function formatDate(date) {
                 return new Date(date).toLocaleDateString('id-ID', {
                     year: 'numeric',
@@ -536,18 +549,34 @@
             });
         </script>
         <script>
-            function setPaymentOption(option) {
+            function setPaymentOption(option, selectedButton) {
                 document.getElementById('payment_option').value = option;
+
+                const allButtons = document.querySelectorAll('.payment-btn');
+                allButtons.forEach(button => {
+                    button.classList.remove('btn-active');
+                });
+
+                selectedButton.classList.add('btn-active');
                 if (option === 'bank_transfer') {
-                    document.getElementById('NoKartu').disabled = false;
-                    document.getElementById('NoKartuPhone').disabled = true;
+                    document.getElementById('NoKartuBank').readOnly = false;
+                    document.getElementById('NoKartuBank').required = true;
+                    document.getElementById('NoKartuPhone').readOnly = true;
+                    document.getElementById('NoKartuPhone').required = false;
+                    document.getElementById('NoKartuPhone').value = ''; 
                 } else if (option === 'e_money') {
-                    document.getElementById('NoKartu').disabled = true;
-                    document.getElementById('NoKartuPhone').disabled = false;
+                    document.getElementById('NoKartuBank').readOnly = true;
+                    document.getElementById('NoKartuBank').required = false;
+                    document.getElementById('NoKartuBank').value = '';
+                    document.getElementById('NoKartuPhone').readOnly = false;
+                    document.getElementById('NoKartuPhone').required = true;
                 }
+
             }
         </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        
         <script>
             document.getElementById('checkin').addEventListener('change', calculateTotalPrice);
             document.getElementById('checkout').addEventListener('change', calculateTotalPrice);

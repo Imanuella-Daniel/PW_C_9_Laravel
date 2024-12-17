@@ -183,8 +183,8 @@
             <!-- Booking Card -->
             <div class="booking-card">
                 <div style="display: flex; align-items: center;">
-                    <div class="price">{{ $facilityDetails->price }}</div>
-                    <p class="mb-4" style="margin: 1px;">/ Night</p>
+                    <div class="price fw-bold mb-3">{{ $facilityDetails->price }}</div>
+                    <p class="text-muted ms-2">/ Night</p>
                 </div>
                 <a href="{{ route('facility_booking', ['IDFasilitas' => $facilityDetails->IDFasilitas]) }}" class="btn btn-pink w-100">Book Now</a>
             </div>
