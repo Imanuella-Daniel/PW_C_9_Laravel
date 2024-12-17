@@ -52,10 +52,16 @@
             font-size: 36px;
         }
 
+        h1 {
+            margin-top: 50px;
+        }
+
         .offers-container {
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin-top: 20px;
+            padding-top: 30px;
         }
 
         .offer-row {
@@ -153,8 +159,6 @@
     <div class="container py-5">
         <h1 class="text-center mb-4">Special Offers</h1>
         <div class="row g-4">
-
-            <!-- Card 1 -->
             <div class="col-md-6">
                 <div class="card h-100">
                     <img src="img/ruang pertemuan.jpg" alt="Meeting Room" class="card-img-top rounded-top"
