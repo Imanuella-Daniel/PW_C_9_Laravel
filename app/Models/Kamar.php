@@ -30,4 +30,10 @@ class Kamar extends Model
     {
         return $this->hasMany(PemesananKamar::class, 'NoKamar', 'NoKamar');
     }
+
+    public function pemesanankamar()
+    {
+        return $this->hasMany(PemesananKamar::class, 'NoKamar');
+    }
+
 }

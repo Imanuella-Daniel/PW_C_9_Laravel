@@ -486,6 +486,7 @@
         </div>
     </footer>
 </body>
+
 <script>
     const checkinInput = document.getElementById('checkin');
     const checkoutInput = document.getElementById('checkout');

@@ -177,10 +177,10 @@
             </div>
 
             <div class="booking-card">
-                <div style="display: flex; align-items: center;">
-                    <div class="price">{{ $roomDetails['price'] }}</div>
-                    <p class="mb-4" style="margin: 1px;">/ Night</p>
-                </div>
+                    <div class="d-flex align-items-baseline">
+                        <h3 class="fw-bold mb-3" id="price">{{ $roomDetails['price'] }}</h3>
+                        <span class="text-muted ms-2">/ night</span>
+                    </div>
                 <a href="{{ route('room_booking', ['NoKamar' => $roomDetails['NoKamar']]) }}"
                     class="btn btn-pink w-100">Book Now</a>
             </div>

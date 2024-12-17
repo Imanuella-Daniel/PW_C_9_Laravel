@@ -9,10 +9,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('CSS/navbar.css') }}">
 
     <style>
         body {
@@ -20,75 +20,6 @@
             margin: 0;
             padding: 0;
             background-color: #1965B3;
-        }
-
-
-        .navbar-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .navbar {
-            display: flex;
-            align-items: center;
-            padding: 10px 40px;
-            border-radius: 12px;
-            background-color: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            position: fixed;
-        }
-
-        .navbar-logo {
-            width: 50px;
-            height: auto;
-        }
-
-
-        .navbar ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .navbar ul li {
-            margin: 0 15px;
-        }
-
-        .navbar ul li a {
-            text-decoration: none;
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 20px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .navbar ul li a:hover {
-            color: red;
-            background-color: transparent;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 4rem;
-        }
-
-        nav a {
-            color: #000;
-            margin: 0 50px;
-            font-family: 'Inika', serif;
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: 500;
-        }
-
-        nav a.active {
-            color: #3b82f6;
-            border-bottom: 2px solid #3b82f6;
         }
 
         .logo {
@@ -163,20 +94,23 @@
     <div class="navbar-container">
         <nav class="navbar">
             <ul>
-                <li><a href="{{ route('home_page') }}">Home</a></li>
-                <li><a href="{{ route('accomodation') }}">Accommodation</a></li>
+                <li><a href="{{ route('home_page') }}" class="{{ request()->routeIs('home_page') ? 'active' : '' }}">Home</a></li>
+                <li><a href="{{ route('accomodation') }}" class="{{ request()->routeIs('accomodation') ? 'active' : '' }}">Accommodation</a></li>
             </ul>
-            <img src="{{ asset('img/BLUE.png') }}" alt="Logo Hotel" class="navbar-logo">
+
+            <a href="{{ route('home_page') }}" class="navbar-logo-container">
+                <img src="{{ asset('img/BLUE.png') }}" alt="Blue Haven Hotel Logo" class="navbar-logo">
+            </a>
+
             <ul>
-                <li><a href="{{ route('special_offers') }}">Special Offers</a></li>
-                <li><a href="{{ route('profile') }}">Profile</a></li>
+                <li><a href="{{ route('special_offers') }}" class="{{ request()->routeIs('special_offers') ? 'active' : '' }}">Special Offers</a></li>
+                <li><a href="{{ route('profile') }}" class="{{ request()->routeIs('profile') ? 'active' : '' }}">Profile</a></li>
             </ul>
         </nav>
     </div>
 
     <div class="container-fluid">
         <div class="row">
-            <!-- Kolom Profil Pelanggan -->
             <div class="col-md-8">
                 <div class="card mb-4">
                     <h4 class="card-header text-left fw-bold">
@@ -199,15 +133,15 @@
                     </div>
                 </div>
 
-                <!-- Detail Kamar -->
                 <div class="card mb-4">
                     <h4 class="card-header text-left fw-bold">
                         <i class="bi bi-door-open-fill"></i>
                         <span style="ms-5">Room Detail</span>
                     </h4>
                     <div class="card-body">
+                        <h5 class="fw-bold">{{ $room->TipeKamar }}</h5>
                         <h6 class="fw-bold">Room Description</h6>
-                        <p>{{ $room->desc }}</p>
+                        <p>{{ $room->Desc }}</p>
                         <h6 class="fw-bold">Offered Amenities</h6>
                         <div class="row">
                             <div class="col-md-6">
@@ -244,15 +178,13 @@
                 </div>
             </div>
 
-            <!-- Kolom Foto Kamar -->
             <div class="col-md-4">
                 <div class="card mb-4 p-3">
                     <img src="{{ asset('storage/' . $room->photo) }}" alt="{{ $room->TipeKamar }}" class="img-fluid">
                     <p class="mt-3 mb-1"><strong>{{ $room->name }}</strong></p>
                     <p class="mb-1">Check-in: <strong>{{ $pemesananKamar->TanggalCheckIn }}</strong></p>
                     <p class="mb-1">Check-out: <strong>{{ $pemesananKamar->TanggalCheckOut }}</strong></p>
-                    <p class="mb-1">{{ $pemesananKamar->JumlahDewasa }} adult(s), {{ $pemesananKamar->JumlahAnak }}
-                        child(ren)</p>
+                    <p class="mb-1">{{ $pemesananKamar->JumlahDewasa }} Orang</p>
                 </div>
             </div>
         </div>
