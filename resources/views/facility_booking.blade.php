@@ -5,142 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blue Haven Hotel</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('CSS/navbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('CSS/room_booking.css') }}">
+
     <style>
-        body {
-            font-family: 'Inter', serif;
-            margin: 0;
-            padding: 0;
-            background-color: #1965B3;
-        }
-
-        .form-control {
-            padding: 8px;
-            font-size: 14px;
-            font-family: 'Inika', serif;
-        }
-
-        .booking-card {
-            background-color: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-            height: fit-content;
-            max-width: fit-content;
-        }
-
-        .card-body {
-            padding: 15px;
-            margin: 10px;
-        }
-
-        .container-fluid.bg-primary {
-            margin-top: 20px;
-        }
-
-        .modal-header {
-            background-color: #f0f4ff;
-            border-bottom: none;
-        }
-
-        .modal-title {
-            font-weight: bold;
-        }
-
-        .total-payment {
-            color: #007bff;
-            font-size: 1.25rem;
-        }
-
-        .virtual-account {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #007bff;
-        }
-
-        .payment-instructions {
-            color: red;
-            font-size: 0.9rem;
-        }
-
-        .transfer-instructions {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 5px;
-        }
-
-        .btn-ok {
-            background-color: #ff007f;
-            color: white;
-        }
-
-        .success-icon {
-            width: 100px;
-            margin-bottom: 20px;
-        }
-
-        .btn-pink {
-            background-color: #ff007f;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-family: 'Inika', serif;
-        }
-
-        .room-check-form {
-            display: flex;
-            border-radius: 10px;
-            margin: 20px auto;
-        }
-
-        .room-check-form .form-group {
-            flex-direction: column;
-            margin-right: 15px;
-        }
-
-        .room-check-form label {
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-
-        .room-check-form input,
-        .room-check-form select {
-            padding: 8px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            width: 200px;
-            height: 40px;
-            font-size: 14px;
-            color: #555;
-        }
-
-        .room-check-form select {
-            width: 220px;
-        }
-
-        .btn-pink:hover {
-            background-color: #e6006f;
-        }
-
-        .text-warning {
-            color: #FFD700;
-        }
-
-        .bg-primary {
-            background-color: #1965B3;
-        }
-
-        .footer {
-            background-color: #1965B3;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            position: relative;
-        }
+        
     </style>
 </head>
 
@@ -222,7 +93,7 @@
                                 <div class="room-check-form">
                                     <div class="form-group">
                                         <label for="checkin">Check-in date</label>
-                                        <input type="date" name="checkin" id="checkin" required>
+                                        <input type="date" name="bookingDate" id="checkin" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="checkout">Check-out date</label>
@@ -240,8 +111,7 @@
                     <div class="card">
                         <h4 class="card-header text-left fw-bold">Payment options</h4>
                         <div class="card-body">
-                            <div class="mb-3">
-                            </div>
+                            <div class="mb-3"></div>
                             <input type="hidden" name="payment_option" id="payment_option" value="">
                             <input type="hidden" name="IDUser" value="{{ Auth::user()->IDUser }}">
 
@@ -257,27 +127,26 @@
                                         onclick="setPaymentOption('e_money')">E-money</button>
                                 </li>
                             </ul>
+                            
                             <div class="tab-content" id="paymentTabsContent">
-                                <div class="tab-pane fade " id="bank-transfer" role="tabpanel">
+                                <div class="tab-pane fade show active" id="bank-transfer" role="tabpanel">
                                     <div class="row mb-3">
                                         <div class="col-8 d-flex align-items-center">
                                             @foreach (['BCA', 'Mandiri', 'BNI', 'BRI'] as $bank)
                                                 <div class="me-3">
-                                                    <button
-                                                        class="btn btn-outline-secondary d-flex flex-column align-items-center justify-content-center"
-                                                        style="border: none; padding: 0;">
-                                                        <img src="{{ asset('img/' . strtolower($bank) . '.png') }}"
-                                                            alt="{{ $bank }}">
+                                                    <button class="btn btn-outline-secondary payment-btn d-flex flex-column align-items-center justify-content-center"
+                                                        style="border: none; padding: 0;"
+                                                        onclick="setPaymentOption('bank_transfer', this)">
+                                                        <img src="{{ asset('img/' . strtolower($bank) . '.png') }}" alt="{{ $bank }}">
                                                         <span class="text-muted">{{ $bank }}</span>
                                                     </button>
+
                                                 </div>
                                             @endforeach
                                         </div>
                                         <div class="col-4 d-flex align-items-center">
                                             <label for="NoKartu" class="form-label">Card Number</label>
-                                            <input type="tel" class="form-control" id="NoKartu" name="NoKartu"
-                                                placeholder="Enter Card Number" required>
-
+                                            <input type="tel" class="form-control" id="NoKartuBank" name="NoKartu" placeholder="Enter Card Number" required>
                                         </div>
                                     </div>
                                 </div>
@@ -286,21 +155,19 @@
                                         <div class="col-8 d-flex align-items-center">
                                             @foreach (['OVO', 'DANA', 'Gopay', 'ShopeePay'] as $money)
                                                 <div class="me-3">
-                                                    <button
-                                                        class="btn btn-outline-secondary d-flex flex-column align-items-center justify-content-center"
-                                                        style="border: none; padding: 0;">
-                                                        <img src="{{ asset('img/' . strtolower($money) . '.png') }}"
-                                                            alt="{{ $money }}">
+                                                    <button class="btn btn-outline-secondary payment-btn d-flex flex-column align-items-center justify-content-center"
+                                                        style="border: none; padding: 0;"
+                                                        onclick="setPaymentOption('e_money', this)">
+                                                        <img src="{{ asset('img/' . strtolower($money) . '.png') }}" alt="{{ $money }}">
                                                         <span class="text-muted">{{ $money }}</span>
                                                     </button>
+
                                                 </div>
                                             @endforeach
                                         </div>
                                         <div class="col-4 d-flex align-items-center">
                                             <label for="NoKartu" class="form-label">Card Phone Number</label>
-                                            <input type="tel" class="form-control" id="NoKartu" name="NoKartu"
-                                                placeholder="Enter Phone Number" required>
-
+                                            <input type="tel" class="form-control" id="NoKartuPhone" name="NoKartu" placeholder="Enter Phone Number" required>
                                         </div>
                                     </div>
                                 </div>
@@ -344,6 +211,7 @@
     </div>
     <footer class="footer">
         <p>&copy; 2021 Blue Haven Hotel. All rights reserved.</p>
+        </footer>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('confirmBookingButton').addEventListener('click', function (event) {
