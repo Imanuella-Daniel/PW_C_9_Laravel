@@ -5,90 +5,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>seeDetailReservation</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Merriweather:wght@400;700&display=swap"
+        rel="stylesheet">
 
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #1965B3;
+            color: #333;
         }
+
+
+        h3,
+        h4,
+        h5 {
+            font-family: 'Lora', serif;
+            color: black;
+            font-weight: 700;
+        }
+
+
+        p,
+        label {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
 
 
         .navbar-container {
             width: 100%;
             display: flex;
             justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .navbar {
             display: flex;
+            justify-content: space-between;
             align-items: center;
             padding: 10px 40px;
-            border-radius: 12px;
-            background-color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.95);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            position: fixed;
+            border-radius: 12px;
+            font-family: 'Lora', serif;
+            font-weight: 500;
         }
 
         .navbar-logo {
             width: 50px;
-            height: auto;
         }
-
 
         .navbar ul {
-            display: flex;
             list-style: none;
-            margin: 0;
             padding: 0;
-        }
-
-        .navbar ul li {
-            margin: 0 15px;
+            display: flex;
+            margin: 0;
         }
 
         .navbar ul li a {
             text-decoration: none;
             color: #000;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 20px;
-            transition: background-color 0.3s, color 0.3s;
+            transition: color 0.3s ease, background-color 0.3s ease;
         }
 
         .navbar ul li a:hover {
-            color: red;
-            background-color: transparent;
+            color: #FF4081;
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 4rem;
-        }
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+            }
 
-        nav a {
-            color: #000;
-            margin: 0 50px;
-            font-family: 'Inika', serif;
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: 500;
-        }
+            .navbar ul {
+                flex-direction: column;
+                text-align: center;
+                width: 100%;
+            }
 
-        nav a.active {
-            color: #3b82f6;
-            border-bottom: 2px solid #3b82f6;
+            .navbar ul li {
+                margin: 8px 0;
+            }
+
+            .navbar-logo {
+                margin-bottom: 10px;
+            }
         }
 
         .logo {
@@ -137,12 +154,6 @@
             margin-right: 3px;
         }
 
-        h4,
-        h5,
-        p,
-        label {
-            font-family: 'Inter', sans-serif;
-        }
 
         h4 {
             font-weight: 600;
@@ -166,7 +177,11 @@
                 <li><a href="{{ route('home_page') }}">Home</a></li>
                 <li><a href="{{ route('accomodation') }}">Accommodation</a></li>
             </ul>
-            <img src="{{ asset('img/BLUE.png') }}" alt="Logo Hotel" class="navbar-logo">
+
+            <a href="{{ route('home_page') }}">
+                <img src="{{ asset('img/BLUE.png') }}" alt="Blue Haven Hotel Logo" class="navbar-logo">
+            </a>
+
             <ul>
                 <li><a href="{{ route('special_offers') }}">Special Offers</a></li>
                 <li><a href="{{ route('profile') }}">Profile</a></li>
@@ -194,8 +209,16 @@
                                 <h5>{{ $user->NamaBelakang }}</h5>
                             </div>
                         </div>
-                        <label>User ID</label>
-                        <h5>{{ $user->IDUser }}</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Phone Number</label>
+                                <h5>{{ $user->NoTelepon }}</h5>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Kode Transaksi</label>
+                                <h5>{{ $pemesananKamar->transaksi->NoTransaksi }}</h5>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -206,31 +229,21 @@
                         <span style="ms-5">Room Detail</span>
                     </h4>
                     <div class="card-body">
-                        <h6 class="fw-bold">Room Description</h6>
-                        <p>{{ $room->desc }}</p>
-                        <h6 class="fw-bold">Offered Amenities</h6>
+                        <h5 class="fw-bold">Room Description</h5>
+                        <p>{{ $room->Desc }}</p>
+                        <h5 class="fw-bold">Facility</h5>
+                        @php
+                            $facilities = is_string($room->Facility) ? explode(',', $room->Facility) : [];
+                        @endphp
+
                         <div class="row">
                             <div class="col-md-6">
                                 <ul class="list-unstyled">
-                                    @if (isset($room->amenities_left) && $room->amenities_left->isNotEmpty())
-                                        @foreach ($room->amenities_left as $amenity)
+                                    @if (!empty($facilities))
+                                        @foreach ($facilities as $amenity)
                                             <li class="amenity">
-                                                <span class="amenity-icon">{{ $amenity->icon }}</span>
-                                                {{ $amenity->name }}
-                                            </li>
-                                        @endforeach
-                                    @else
-                                        <li>No amenities available</li>
-                                    @endif
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <ul class="list-unstyled">
-                                    @if (isset($room->amenities_right) && $room->amenities_right->isNotEmpty())
-                                        @foreach ($room->amenities_right as $amenity)
-                                            <li class="amenity">
-                                                <span class="amenity-icon">{{ $amenity->icon }}</span>
-                                                {{ $amenity->name }}
+                                                <span class="amenity-icon">✔️</span>
+                                                {{ trim($amenity) }}
                                             </li>
                                         @endforeach
                                     @else
@@ -239,27 +252,25 @@
                                 </ul>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
 
-            <!-- Kolom Foto Kamar -->
             <div class="col-md-4">
                 <div class="card mb-4 p-3">
                     <img src="{{ asset('storage/' . $room->photo) }}" alt="{{ $room->TipeKamar }}" class="img-fluid">
-                    <p class="mt-3 mb-1"><strong>{{ $room->name }}</strong></p>
-                    <p class="mb-1">Check-in: <strong>{{ $pemesananKamar->TanggalCheckIn }}</strong></p>
-                    <p class="mb-1">Check-out: <strong>{{ $pemesananKamar->TanggalCheckOut }}</strong></p>
-                    <p class="mb-1">{{ $pemesananKamar->JumlahDewasa }} adult(s), {{ $pemesananKamar->JumlahAnak }}
-                        child(ren)</p>
+                    <h3 class="mt-3 mb-1"><strong>{{ $room->TipeKamar }}</strong></h3>
+                    <h5 class="mb-1">Check-in: <strong>{{ $pemesananKamar->TanggalCheckIn }}</strong></h5>
+                    <h5 class="mb-1">Check-out: <strong>{{ $pemesananKamar->TanggalCheckOut }}</strong></h5>
+                    <h5 class="mb-1">{{ $pemesananKamar->JumlahDewasa }} adult(s), {{ $pemesananKamar->JumlahAnak }}
+                        child(ren)</h5>
+
                 </div>
             </div>
         </div>
     </div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
