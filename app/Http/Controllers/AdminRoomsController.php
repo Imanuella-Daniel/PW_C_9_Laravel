@@ -177,29 +177,32 @@ class AdminRoomsController extends Controller
     {
         $images = [
             'Standard' => [
-                asset('img/1.jpg'),
-                asset('img/2.jpg'),
-                asset('img/bar.jpg')
+                asset('img/standar1.jpg'),
+                asset('img/standar2.jpg'),
+                asset('img/standar3.jpg')
+
             ],
             'Deluxe' => [
-                asset('img/kamar2.jpg'),
-                asset('img/kamar2.jpg'),
-                asset('img/kamar2.jpg')
+                asset('img/Deluxe1.jpg'),
+                asset('img/Deluxe2.jpg'),
+                asset('img/Deluxe3.jpg')
             ],
             'Superior' => [
-                asset('img/kamar2.jpg'),
-                asset('img/kamar2.jpg'),
-                asset('img/kamar2.jpg')
+                asset('img/Superior1.jpg'),
+                asset('img/Superior2.jpg'),
+                asset('img/Superior3.jpg')
             ],
             'Junior Suite' => [
-                asset('img/kamar2.jpg'),
-                asset('img/kamar2.jpg'),
-                asset('img/kamar2.jpg')
+                asset('img/Junior1.jpg'),
+                asset('img/Junior2.jpg'),
+                asset('img/Junior3.jpg'),
+                asset('img/Junior4.jpg')
             ],
             'Suite' => [
-                asset('img/kamar2.jpg'),
-                asset('img/kamar2.jpg'),
-                asset('img/kamar2.jpg')
+                asset('img/Suite1.jpg'),
+                asset('img/Suite2.jpg'),
+                asset('img/Suite3.jpg'),
+                asset('img/Suite4.jpg')
             ]
         ];
 

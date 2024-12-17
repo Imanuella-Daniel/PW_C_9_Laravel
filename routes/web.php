@@ -23,7 +23,7 @@ Route::get('/room/{NoKamar}', [AdminRoomsController::class, 'show'])->name('room
 Route::get('/booking/{NoKamar}', [TransaksiController::class, 'show'])->name('room_booking');
 Route::post('/transaksi/create', [TransaksiController::class, 'createTransaction'])->name('transaksi.create');
 Route::get('/accomodation', [AdminRoomsController::class, 'accommodation'])->name('accomodation');
-Route::get('admin_guest', [AdminGuestController::class, 'index'])->name('admin_guest');
+Route::get('/admin_guest', [AdminGuestController::class, 'index'])->name('admin_guest');
 Route::post('admin_guest', [AdminGuestController::class, 'store'])->name('admin_guest.store');
 Route::post('/admin_guest/update/{id}', [AdminGuestController::class, 'update'])->name('admin_guest.update');
 Route::delete('/admin_guest/{id}', [AdminGuestController::class, 'destroy'])->name('admin_guest.destroy');
@@ -64,8 +64,6 @@ Route::get('/detail', function () {
 
     return view('view_detail');
 })->name('view_detail');
-
-
 
 Route::get('/index', function () {
     return view('index');
