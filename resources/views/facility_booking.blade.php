@@ -209,9 +209,11 @@
         </div>
     </div>
     </div>
-    <footer class="footer">
-        <p>&copy; 2021 Blue Haven Hotel. All rights reserved.</p>
-        </footer>
+</body>
+
+<footer class="footer">
+    <p>&copy; 2021 Blue Haven Hotel. All rights reserved.</p>
+</footer>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('confirmBookingButton').addEventListener('click', function (event) {
@@ -469,6 +471,5 @@
                 }
             }
         </script>
-</body>
 
 </html>

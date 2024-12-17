@@ -211,46 +211,47 @@
         </div>
     </div>
     </div>
-    <footer class="footer">
-        <p>&copy; 2021 Blue Haven Hotel. All rights reserved.</p>
+</body>
 
+<footer class="footer">
+    <p>&copy; 2021 Blue Haven Hotel. All rights reserved.</p>
+</footer>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('confirmBookingButton').addEventListener('click', function (event) {
-        event.preventDefault();
+            document.getElementById('confirmBookingButton').addEventListener('click', function (event) {
+                event.preventDefault();
 
-        const paymentOption = document.getElementById('payment_option').value;
+                const paymentOption = document.getElementById('payment_option').value;
 
-        if (!paymentOption) {
-            alert('Please select a payment method.');
-            return;
-        }
+                if (!paymentOption) {
+                    alert('Please select a payment method.');
+                    return;
+                }
 
-        if (paymentOption === 'bank_transfer') {
-            const bankModal = new bootstrap.Modal(document.getElementById('paymentBank'));
-            bankModal.show();
-        } else if (paymentOption === 'e_money') {
-            const walletModal = new bootstrap.Modal(document.getElementById('paymentWallet'));
-            walletModal.show();
-        }
-    });
+                if (paymentOption === 'bank_transfer') {
+                    const bankModal = new bootstrap.Modal(document.getElementById('paymentBank'));
+                    bankModal.show();
+                } else if (paymentOption === 'e_money') {
+                    const walletModal = new bootstrap.Modal(document.getElementById('paymentWallet'));
+                    walletModal.show();
+                }
+            });
 
-    const bankOkButton = document.querySelector('#paymentBank .btn-ok');
-    const walletOkButton = document.querySelector('#paymentWallet .btn-ok');
+            const bankOkButton = document.querySelector('#paymentBank .btn-ok');
+            const walletOkButton = document.querySelector('#paymentWallet .btn-ok');
 
-    bankOkButton.addEventListener('click', showSuccessModal);
-    walletOkButton.addEventListener('click', showSuccessModal);
+            bankOkButton.addEventListener('click', showSuccessModal);
+            walletOkButton.addEventListener('click', showSuccessModal);
 
-    function showSuccessModal() {
-        const successModal = new bootstrap.Modal(document.getElementById('successModal'));
-        successModal.show();
-    }
+            function showSuccessModal() {
+                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
+            }
 
-    document.getElementById('successOkButton').addEventListener('click', function () {
-        document.querySelector('form').submit();
-    });
-});
-
+            document.getElementById('successOkButton').addEventListener('click', function () {
+                document.querySelector('form').submit();
+            });
+        });
         </script>
 
 
@@ -471,6 +472,5 @@
                 }
             }
         </script>
-</body>
 
 </html>
