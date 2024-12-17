@@ -163,6 +163,7 @@ class AdminRoomsController extends Controller
         $roomDetails = [
             'NoKamar' => $room->NoKamar,
             'name' => $room->TipeKamar,
+            'status' => $room->Status,
             'description' => $room->Desc,
             'price' => 'Rp. ' . number_format($room->HargaKamar, 0, ',', '.'),
             'facilities' => !is_null($room->Facility) ? explode(',', $room->Facility) : [],

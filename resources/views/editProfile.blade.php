@@ -31,8 +31,8 @@
         .logo img {
             height: 50px;
             width: auto;
-            max-height: 100%;
-        }
+            max-height: 100%;
+        }
 
         .container-fluid {
             margin-top: 0;

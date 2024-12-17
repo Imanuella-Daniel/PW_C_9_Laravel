@@ -16,15 +16,14 @@ class Kamar extends Model
     protected $fillable = [
         'NoKamar',
         'TipeKamar',
-        'HargaKamar',
         'Kapasitas',
         'JumlahKamar',
+        'HargaKamar',
         'Desc',
         'Facility',
         'Status',
-        'photo'
-        'Rating',
-        'Deskripsi',
+        'photo',
+        'Rating'
     ];
 
     public function reservations()

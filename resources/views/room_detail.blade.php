@@ -10,81 +10,14 @@
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('CSS/navbar.css') }}">
+    
     <style>
         body {
             font-family: 'Inter', sans-serif;
             background-color: #1965B3;
             margin: 0;
             padding: 0;
-        }
-
-        .navbar-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .navbar {
-            display: flex;
-            align-items: center;
-            padding: 10px 40px;
-            border-radius: 12px;
-            background-color: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            position: fixed;
-        }
-
-        .navbar-logo {
-            width: 50px;
-            height: auto;
-        }
-
-
-        .navbar ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-
-        .navbar ul li {
-            margin: 0 15px;
-        }
-
-        .navbar ul li a {
-            text-decoration: none;
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 20px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .navbar ul li a:hover {
-            color: red;
-            background-color: transparent;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 4rem;
-        }
-
-        nav a {
-            color: #000;
-            margin: 0 50px;
-            font-family: 'Inika', serif;
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: 500;
-        }
-
-        nav a.active {
-            color: #3b82f6;
-            border-bottom: 2px solid #3b82f6;
         }
 
         .footer {
@@ -113,7 +46,6 @@
             box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
         }
 
-
         .room-images {
             margin-bottom: 1.5rem;
             border-radius: 0.5rem;
@@ -125,16 +57,13 @@
             grid-template-columns: 2fr 1fr;
             gap: 1.5rem;
         }
-
         .card {
             background-color: white;
             border-radius: 0.5rem;
             box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
             padding: 1.5rem;
         }
-
         .card-title {
-            font-family: 'Inika', serif;
             font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 1rem;
@@ -142,33 +71,24 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .availability-badge {
-            font-family: 'Inika', serif;
-            background-color: #219653;
+            background-color:rgb(33, 150, 83);
             color: white;
-            font-size: 1.5rem;
+            font-size: 1rem;
             font-weight: 500;
             padding: 0.25rem 0.75rem;
             border-radius: 6px;
         }
-
-        .Facility {
+        .amenities {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
-        }
-
-        .amenity {
-            display: flex;
-            align-items: center;
         }
 
         .amenity-icon {
             margin-right: 0.5rem;
             color: #9ca3af;
         }
-
         .booking-card {
             background-color: white;
             border-radius: 0.5rem;
@@ -177,24 +97,21 @@
             height: fit-content;
             max-width: fit-content;
         }
-
         .price {
-            font-family: 'Inika', serif;
-            font-size: 1.5rem;
+            font-size: 1.5rem; 
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
-
+       
 
         .btn-pink {
-            font-family: 'Inika', serif;
             background-color: #ff007f;
             color: white;
             border: none;
             padding: 10px;
             border-radius: 8px;
-
+            
             font-size: 16px;
         }
 
@@ -251,7 +168,7 @@
                 </div>
                 <h6 class="fw-bold">Room Description</h6>
                 <p>{{ $roomDetails['description'] }}</p>
-                <h3>Offered Amenities</h3>
+                <h6 class="fw-bold">Offered Amenities</h6>
                 <div class="amenities">
                     @foreach ($roomDetails['facilities'] as $amenity)
                         <div class="amenity">{{ $amenity }}</div>

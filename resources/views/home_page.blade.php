@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atma HotelHotel - Home</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -139,8 +137,7 @@
             font-family: 'Inter', sans-serif;
         }
 
-        .lobby-content h2,
-        p {
+        .lobby-content h2, p {
             font-weight: normal;
             margin-top: 0px;
             margin-bottom: 0px;
@@ -159,8 +156,7 @@
             color: #9A9A9A;
         }
 
-        .room-check-form input,
-        .room-check-form select {
+        .room-check-form input, .room-check-form select {
             padding: 0px;
             margin-bottom: 5px;
             border-radius: 10px;
@@ -301,8 +297,7 @@
             align-items: baseline;
         }
 
-        .price-duration h2,
-        .price-duration span {
+        .price-duration h2, .price-duration span {
             margin: 0;
         }
 
@@ -337,76 +332,6 @@
             position: absolute;
         }
 
-        .navbar-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .navbar {
-            font-size: 1.3rem;
-            justify-content: space-between;
-            color: #000;
-            margin: 0 50px;
-            font-weight: 500;
-            font-family: 'Lora', serif;
-            display: flex;
-            align-items: center;
-            padding: 10px 40px;
-            border-radius: 12px;
-            background-color: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            position: fixed;
-        }
-
-        .navbar-logo {
-            width: 50px;
-            height: auto;
-        }
-
-        .navbar ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .navbar ul li {
-            margin: 0 15px;
-        }
-
-        .navbar ul li a {
-            text-decoration: none;
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 20px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .navbar ul li a:hover {
-            color: #FF4081;
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-            }
-
-            .navbar ul {
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-            }
-
-            .navbar ul li {
-                margin: 10px 0;
-            }
-
-            .navbar-logo {
-                margin: 10px 0;
-            }
-        }
     </style>
 </head>
 

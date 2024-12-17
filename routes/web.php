@@ -90,22 +90,3 @@ Route::get('/detailmeet', function () {
     return view('meeting', compact('roomMeet'));
 })->name('meeting');
 
-
-Route::get('admin_rooms', [AdminRoomsController::class, 'index'])->name('admin_rooms');
-Route::post('admin_rooms', [AdminRoomsController::class, 'store'])->name('admin_rooms.store');
-Route::post('admin_rooms/{id}', [AdminRoomsController::class, 'update'])->name('admin_rooms.update');
-Route::delete('/admin/rooms/{NoKamar}', [AdminRoomsController::class, 'destroy'])->name('admin_rooms.destroy');
-
-
-Route::prefix('kamar')->name('kamar.')->group(function () {
-    Route::get('/', [KamarController::class, 'index'])->name('index');
-    Route::get('/create', [KamarController::class, 'create'])->name('create');
-    Route::post('/', [KamarController::class, 'store'])->name('store');
-    Route::get('/{kamar}/edit', [KamarController::class, 'edit'])->name('edit');
-    Route::put('/{kamar}', [KamarController::class, 'update'])->name('update');
-    Route::delete('/{kamar}', [KamarController::class, 'destroy'])->name('destroy');
-});
-
-Route::get('/accomodation', [KamarController::class, 'accomodationPage'])->name('accomodation');
-Route::get('/available_room', [KamarController::class, 'availableRoomsPage'])->name('available_room');
-Route::get('/room_booking/{id}', [KamarController::class, 'showBookingPage'])->name('room_booking');

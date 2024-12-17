@@ -5,9 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlueHaven Profile</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap"
-        rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
@@ -27,11 +24,6 @@
             background-color: #1965B3;
         }
 
-        h1,
-        h5 {
-            font-family: 'Playfair Display', serif;
-        }
-        
         .logo {
             margin: 0 20px;
         }
@@ -170,76 +162,6 @@
             }
         }
 
-        .navbar-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .navbar {
-            font-size: 1.3rem;
-            justify-content: space-between;
-            color: #000;
-            margin: 0 50px;
-            font-weight: 500;
-            font-family: 'Lora', serif;
-            display: flex;
-            align-items: center;
-            padding: 10px 40px;
-            border-radius: 12px;
-            background-color: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            position: fixed;
-        }
-
-        .navbar-logo {
-            width: 50px;
-            height: auto;
-        }
-
-        .navbar ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .navbar ul li {
-            margin: 0 15px;
-        }
-
-        .navbar ul li a {
-            text-decoration: none;
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 20px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .navbar ul li a:hover {
-            color: #FF4081;
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-            }
-
-            .navbar ul {
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-            }
-
-            .navbar ul li {
-                margin: 10px 0;
-            }
-
-            .navbar-logo {
-                margin: 10px 0;
-            }
-        }
     </style>
 </head>
 
@@ -313,52 +235,34 @@
                             <h6>{{ $user->NamaBelakang }}</h6>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <label class="form-label text-secondary fw-semibold">Last Name</label>
-                        <h6 class="text-dark">{{ $user->NamaBelakang }}</h6>
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <label class="form-label text-secondary fw-semibold">Email Address</label>
-                    <h6 class="text-dark">{{ $user->Email }}</h6>
-                </div>
-                <div class="mt-3">
-                    <label class="form-label text-secondary fw-semibold">Phone Number</label>
-                    <h6 class="text-dark">{{ $user->NoTelepon }}</h6>
-                </div>
-                <div class="mt-3">
-                    <label class="form-label text-secondary fw-semibold">Country</label>
-                    <h6 class="text-dark">{{ $user->Negara }}</h6>
-                </div>
-                <div class="mt-3">
-                    <label class="form-label text-secondary fw-semibold">Detail Address</label>
-                    <h6 class="text-dark">{{ $user->Alamat }}</h6>
-                </div>
-                <div class="mt-3">
-                    <label class="form-label text-secondary fw-semibold">Username</label>
-                    <h6 class="text-dark">{{ $user->Username }}</h6>
-                </div>
-                <div class="row mt-4">
-                    <div class="col-md-6">
-                        <a href="{{ route('editProfile') }}" class="btn btn-primary w-100 py-2 fw-bold" role="button">
-                            Edit Profile
-                        </a>
-                    </div>
-                    <div class="col-md-6">
-                        <button class="btn btn-danger w-100 py-2 fw-bold" type="button" data-bs-toggle="modal"
-                            data-bs-target="#logoutModal">
-                            Logout
+                    <label>Email Address</label>
+                    <h6>{{ $user->Email }}</h6>
+                    <label>Phone Number</label>
+                    <h6>{{ $user->NoTelepon }}</h6>
+                    <label>Country</label>
+                    <h6>{{ $user->Negara }}</h6>
+                    <label>Detail Address</label>
+                    <h6>{{ $user->Alamat }}</h6>
+                    <label>Username</label>
+                    <h6>{{ $user->Username }}</h6>
+
+                    <div class="row mt-4">
+                        <div class="col-md-3">
+                            <a href="{{ route('editProfile') }}" class="btn btn-primary w-100 py-2 fw-bold" role="button">Edit Profile</a>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-danger w-100 py-2 fw-bold" type="button" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout
                         </button>
                     </div>
                 </div>
             </div>
-
-            <!-- Section Gambar Ilustrasi -->
-            <div class="image-section text-center">
-                <img src="{{ asset('img/Illustration.png') }}" class="img-fluid rounded" style="max-height: 350px;"
-                    alt="Illustration" />
-            </div>
         </div>
+
+        <div class="image-section text-center">
+            <img src="{{ asset('img/Illustration.png') }}" class="img-fluid rounded" style="max-height: 350px;"
+                alt="Illustration" />
+        </div>
+    </div>
 
     </div>
 

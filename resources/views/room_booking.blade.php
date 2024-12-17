@@ -6,23 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blue Haven Hotel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('CSS/navbar.css') }}">
-
     <style>
-        html, body {
-            font-family: 'Inter', sans-serif;
+        body {
+            font-family: 'Inter', serif;
             margin: 0;
             padding: 0;
             background-color: #1965B3;
         }
-        
+
         .form-control {
             padding: 8px;
             font-size: 14px;
@@ -155,16 +148,21 @@
     <div class="navbar-container">
         <nav class="navbar">
             <ul>
-                <li><a href="{{ route('home_page') }}">Home</a></li>
-                <li><a href="{{ route('view_detail') }}">Accommodation</a></li>
+                <li><a href="{{ route('home_page') }}" class="{{ request()->routeIs('home_page') ? 'active' : '' }}">Home</a></li>
+                <li><a href="{{ route('accomodation') }}" class="{{ request()->routeIs('accomodation') ? 'active' : '' }}">Accommodation</a></li>
             </ul>
-            <img src="{{ asset('img/BLUE.png') }}" alt="Logo Hotel" class="navbar-logo">
+
+            <a href="{{ route('home_page') }}" class="navbar-logo-container">
+                <img src="{{ asset('img/BLUE.png') }}" alt="Blue Haven Hotel Logo" class="navbar-logo">
+            </a>
+
             <ul>
-                <li><a href="#">Special Offers</a></li>
-                <li><a href="#">Profile</a></li>
+                <li><a href="{{ route('special_offers') }}" class="{{ request()->routeIs('special_offers') ? 'active' : '' }}">Special Offers</a></li>
+                <li><a href="{{ route('profile') }}" class="{{ request()->routeIs('profile') ? 'active' : '' }}">Profile</a></li>
             </ul>
         </nav>
     </div>
+
     <div class="container-fluid py-5">
         <div class="container mt-4">
             <h1 class="text-white mb-4">Secure your reservation</h1>
@@ -286,7 +284,7 @@
                                 </li>
                             </ul>
                             <div class="tab-content" id="paymentTabsContent">
-                                <div class="tab-pane fade show active" id="bank-transfer" role="tabpanel">
+                                <div class="tab-pane fade " id="bank-transfer" role="tabpanel">
                                     <div class="row mb-3">
                                         <div class="col-8 d-flex align-items-center">
                                             @foreach (['BCA', 'Mandiri', 'BNI', 'BRI'] as $bank)
@@ -304,7 +302,7 @@
                                         <div class="col-4 d-flex align-items-center">
                                             <label for="NoKartu" class="form-label">Card Number</label>
                                             <input type="tel" class="form-control" id="NoKartu" name="NoKartu"
-                                                placeholder="Enter Card Number" value="number" readonly>
+                                                placeholder="Enter Card Number" required>
 
                                         </div>
                                     </div>
@@ -330,14 +328,13 @@
                                                 placeholder="Enter Phone Number" required>
 
                                         </div>
-
                                     </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-md-4">
                     <div class="booking-card">
                         <img src="{{ asset('storage/' . ($roomDetails['images'] ?? 'default.jpg')) }}"
@@ -503,7 +500,7 @@
                 </div>
             </div>
         </div>
-        
+
         <script>
             document.getElementById('paymentOkButton').addEventListener('click', function() {
                 var paymentBank = new bootstrap.Modal(document.getElementById('paymentBank'));
@@ -576,4 +573,5 @@
             }
         </script>
 </body>
+
 </html>
