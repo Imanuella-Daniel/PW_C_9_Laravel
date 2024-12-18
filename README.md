@@ -71,11 +71,11 @@ Anggota Kelompok:
 • Christophorus Raditya Bagas Putra Indrasmoro (220711620) - backend pemesanaFasilitas
 • Andreas Kuncoro Adi Nugroho (220711788) – merapihkan frontend
 • Imanuella Daniel (220711901) backend, frontend dan integrasi
-Username & Password Login
 
+Username & Password Login
 Login User
 Bisan mendaftarkan akun, lalu dapat login menggunakan username dan password yang telah dibuat, contoh
-• Username: Ella124
+• Username: Ella123
 • Password: 123456789
 Login Admin
 • Username: Admin
