@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atma HotelHotel - Home</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -20,7 +22,7 @@
             padding: 0;
             overflow-x: hidden;
         }
-        
+
         .logo {
             margin: 0 20px;
         }
@@ -137,7 +139,8 @@
             font-family: 'Inter', sans-serif;
         }
 
-        .lobby-content h2, p {
+        .lobby-content h2,
+        p {
             font-weight: normal;
             margin-top: 0px;
             margin-bottom: 0px;
@@ -156,7 +159,8 @@
             color: #9A9A9A;
         }
 
-        .room-check-form input, .room-check-form select {
+        .room-check-form input,
+        .room-check-form select {
             padding: 0px;
             margin-bottom: 5px;
             border-radius: 10px;
@@ -297,7 +301,8 @@
             align-items: baseline;
         }
 
-        .price-duration h2, .price-duration span {
+        .price-duration h2,
+        .price-duration span {
             margin: 0;
         }
 
@@ -331,7 +336,6 @@
         .person-count {
             position: absolute;
         }
-
     </style>
 </head>
 
@@ -340,8 +344,10 @@
     <div class="navbar-container">
         <nav class="navbar">
             <ul>
-                <li><a href="{{ route('home_page') }}" class="{{ request()->routeIs('home_page') ? 'active' : '' }}">Home</a></li>
-                <li><a href="{{ route('accomodation') }}" class="{{ request()->routeIs('accomodation') ? 'active' : '' }}">Accommodation</a></li>
+                <li><a href="{{ route('home_page') }}"
+                        class="{{ request()->routeIs('home_page') ? 'active' : '' }}">Home</a></li>
+                <li><a href="{{ route('accomodation') }}"
+                        class="{{ request()->routeIs('accomodation') ? 'active' : '' }}">Accommodation</a></li>
             </ul>
 
             <a href="{{ route('home_page') }}" class="navbar-logo-container">
@@ -349,8 +355,10 @@
             </a>
 
             <ul>
-                <li><a href="{{ route('special_offers') }}" class="{{ request()->routeIs('special_offers') ? 'active' : '' }}">Special Offers</a></li>
-                <li><a href="{{ route('profile') }}" class="{{ request()->routeIs('profile') ? 'active' : '' }}">Profile</a></li>
+                <li><a href="{{ route('special_offers') }}"
+                        class="{{ request()->routeIs('special_offers') ? 'active' : '' }}">Special Offers</a></li>
+                <li><a href="{{ route('profile') }}"
+                        class="{{ request()->routeIs('profile') ? 'active' : '' }}">Profile</a></li>
             </ul>
         </nav>
     </div>
@@ -402,13 +410,21 @@
                 <form method="GET" action="{{ route('available_room') }}"
                     style="display: flex; align-items: center; justify-content: flex-start; gap: 12px;">
                     <div>
-                        <label for="checkin" style="display: block; font-size: 13px; color: #9A9A9A; text-align: left; margin-bottom: 5px;">Check-in date</label>
-                        <input type="date" id="checkin" name="checkin" style="width: 200px; height: 40px; border-radius: 10px; border: 1px solid #ccc;" min="">
+                        <label for="checkin"
+                            style="display: block; font-size: 13px; color: #9A9A9A; text-align: left; margin-bottom: 5px;">Check-in
+                            date</label>
+                        <input type="date" id="checkin" name="checkin"
+                            style="width: 200px; height: 40px; border-radius: 10px; border: 1px solid #ccc;"
+                            min="">
                     </div>
 
                     <div>
-                        <label for="checkout" style="display: block; font-size: 13px; color: #9A9A9A; text-align: left; margin-bottom: 5px;">Check-out date</label>
-                        <input type="date" id="checkout" name="checkout" style="width: 200px; height: 40px; border-radius: 10px; border: 1px solid #ccc;" min="">
+                        <label for="checkout"
+                            style="display: block; font-size: 13px; color: #9A9A9A; text-align: left; margin-bottom: 5px;">Check-out
+                            date</label>
+                        <input type="date" id="checkout" name="checkout"
+                            style="width: 200px; height: 40px; border-radius: 10px; border: 1px solid #ccc;"
+                            min="">
                     </div>
 
                     <div>
@@ -456,7 +472,7 @@
             </div>
 
             <div class="offer-card" style="position: relative;">
-                <img src="{{ asset('img/ruang pertemuan.jpg') }}" style="width: 100%; border-radius: 10px;">
+                <img src="{{ asset('img/ruangPertemuan.jpg') }}" style="width: 100%; border-radius: 10px;">
                 <h5>Room</h5>
                 <h4>Meetings</h4>
                 <p>Experience an Exclusively Private Environment to Boost Your Productivity</p>
@@ -495,16 +511,16 @@
     const formattedToday = today.toISOString().split('T')[0];
     checkinInput.setAttribute('min', formattedToday);
 
-    checkinInput.addEventListener('change', function () {
+    checkinInput.addEventListener('change', function() {
         const checkinDate = new Date(checkinInput.value);
         const minCheckoutDate = new Date(checkinDate);
         minCheckoutDate.setDate(checkinDate.getDate() + 1);
         const formattedMinCheckout = minCheckoutDate.toISOString().split('T')[0];
-        
+
         checkoutInput.setAttribute('min', formattedMinCheckout);
     });
 
     checkoutInput.setAttribute('min', new Date(today.getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]);
 </script>
-</html>
 
+</html>

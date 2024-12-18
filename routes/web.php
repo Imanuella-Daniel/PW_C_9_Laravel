@@ -93,7 +93,7 @@ Route::get('/detailmeet', function () {
 })->name('meeting');
 
 Route::prefix('fasilitas')->name('fasilitas.')->group(function () {
-    Route::get('/', [FasilitasController::class, 'index'])->name('index'); 
+    Route::get('/', [FasilitasController::class, 'index'])->name('index');
     Route::get('/create', [FasilitasController::class, 'create'])->name('create');
     Route::post('/', [FasilitasController::class, 'store'])->name('store');
     Route::get('/{fasilitas}/edit', [FasilitasController::class, 'edit'])->name('edit');
@@ -104,7 +104,7 @@ Route::prefix('fasilitas')->name('fasilitas.')->group(function () {
 Route::get('/accomodation', [AccommodationController::class, 'index'])->name('accomodation');
 Route::get('/facility_details/{IDFasilitas}', [AdminFacilityController::class, 'show'])->name('facility_details');
 Route::get('/facility-booking/{IDFasilitas}', [TransaksiFasilitasController::class, 'show'])->name('facility_booking');
-Route::post('/transaksi/create', [TransaksiFasilitasController::class, 'createTransaction'])->name('transaksi.create');
+Route::post('/facility/create', [TransaksiFasilitasController::class, 'createTransaction'])->name('facility.create');
 Route::post('/create-facility-transaction', [TransaksiFasilitasController::class, 'createTransaction'])->name('create_facility_transaction');
 Route::get('/facility/{IDFasilitas}', [FasilitasController::class, 'showFacilityDetail'])
     ->name('facility.facility_detail');

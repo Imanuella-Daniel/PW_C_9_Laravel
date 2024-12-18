@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hahahihi Hotel - Special Offers</title>
+    <title>Atma Hotel - Special Offers</title>
     <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap"
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -161,7 +161,7 @@
         <div class="row g-4">
             <div class="col-md-6">
                 <div class="card h-100">
-                    <img src="img/ruang pertemuan.jpg" alt="Meeting Room" class="card-img-top rounded-top"
+                    <img src="img/ruangPertemuan.jpg" alt="Meeting Room" class="card-img-top rounded-top"
                         style="height: 200px; object-fit: cover;">
                     <div class="card-body">
                         <span class="badge bg-success position-absolute top-0 end-0 m-2">10% Off</span>
