@@ -22,7 +22,7 @@
             padding: 0;
             overflow-x: hidden;
         }
-        
+
         .logo {
             margin: 0 20px;
         }
@@ -336,77 +336,6 @@
         .person-count {
             position: absolute;
         }
-
-        .navbar-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .navbar {
-            font-size: 1.3rem;
-            justify-content: space-between;
-            color: #000;
-            margin: 0 50px;
-            font-weight: 500;
-            font-family: 'Lora', serif;
-            display: flex;
-            align-items: center;
-            padding: 10px 40px;
-            border-radius: 12px;
-            background-color: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            position: fixed;
-        }
-
-        .navbar-logo {
-            width: 50px;
-            height: auto;
-        }
-
-        .navbar ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .navbar ul li {
-            margin: 0 15px;
-        }
-
-        .navbar ul li a {
-            text-decoration: none;
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 20px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .navbar ul li a:hover {
-            color: #FF4081;
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-            }
-
-            .navbar ul {
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-            }
-
-            .navbar ul li {
-                margin: 10px 0;
-            }
-
-            .navbar-logo {
-                margin: 10px 0;
-            }
-        }
     </style>
 </head>
 
@@ -415,8 +344,10 @@
     <div class="navbar-container">
         <nav class="navbar">
             <ul>
-                <li><a href="{{ route('home_page') }}" class="{{ request()->routeIs('home_page') ? 'active' : '' }}">Home</a></li>
-                <li><a href="{{ route('accomodation') }}" class="{{ request()->routeIs('accomodation') ? 'active' : '' }}">Accommodation</a></li>
+                <li><a href="{{ route('home_page') }}"
+                        class="{{ request()->routeIs('home_page') ? 'active' : '' }}">Home</a></li>
+                <li><a href="{{ route('accomodation') }}"
+                        class="{{ request()->routeIs('accomodation') ? 'active' : '' }}">Accommodation</a></li>
             </ul>
 
             <a href="{{ route('home_page') }}" class="navbar-logo-container">
@@ -424,8 +355,10 @@
             </a>
 
             <ul>
-                <li><a href="{{ route('special_offers') }}" class="{{ request()->routeIs('special_offers') ? 'active' : '' }}">Special Offers</a></li>
-                <li><a href="{{ route('profile') }}" class="{{ request()->routeIs('profile') ? 'active' : '' }}">Profile</a></li>
+                <li><a href="{{ route('special_offers') }}"
+                        class="{{ request()->routeIs('special_offers') ? 'active' : '' }}">Special Offers</a></li>
+                <li><a href="{{ route('profile') }}"
+                        class="{{ request()->routeIs('profile') ? 'active' : '' }}">Profile</a></li>
             </ul>
         </nav>
     </div>
@@ -477,13 +410,21 @@
                 <form method="GET" action="{{ route('available_room') }}"
                     style="display: flex; align-items: center; justify-content: flex-start; gap: 12px;">
                     <div>
-                        <label for="checkin" style="display: block; font-size: 13px; color: #9A9A9A; text-align: left; margin-bottom: 5px;">Check-in date</label>
-                        <input type="date" id="checkin" name="checkin" style="width: 200px; height: 40px; border-radius: 10px; border: 1px solid #ccc;" min="">
+                        <label for="checkin"
+                            style="display: block; font-size: 13px; color: #9A9A9A; text-align: left; margin-bottom: 5px;">Check-in
+                            date</label>
+                        <input type="date" id="checkin" name="checkin"
+                            style="width: 200px; height: 40px; border-radius: 10px; border: 1px solid #ccc;"
+                            min="">
                     </div>
 
                     <div>
-                        <label for="checkout" style="display: block; font-size: 13px; color: #9A9A9A; text-align: left; margin-bottom: 5px;">Check-out date</label>
-                        <input type="date" id="checkout" name="checkout" style="width: 200px; height: 40px; border-radius: 10px; border: 1px solid #ccc;" min="">
+                        <label for="checkout"
+                            style="display: block; font-size: 13px; color: #9A9A9A; text-align: left; margin-bottom: 5px;">Check-out
+                            date</label>
+                        <input type="date" id="checkout" name="checkout"
+                            style="width: 200px; height: 40px; border-radius: 10px; border: 1px solid #ccc;"
+                            min="">
                     </div>
 
                     <div>
@@ -531,7 +472,7 @@
             </div>
 
             <div class="offer-card" style="position: relative;">
-                <img src="{{ asset('img/ruang pertemuan.jpg') }}" style="width: 100%; border-radius: 10px;">
+                <img src="{{ asset('img/ruangPertemuan.jpg') }}" style="width: 100%; border-radius: 10px;">
                 <h5>Room</h5>
                 <h4>Meetings</h4>
                 <p>Experience an Exclusively Private Environment to Boost Your Productivity</p>
@@ -561,6 +502,7 @@
         </div>
     </footer>
 </body>
+
 <script>
     const checkinInput = document.getElementById('checkin');
     const checkoutInput = document.getElementById('checkout');
@@ -569,16 +511,16 @@
     const formattedToday = today.toISOString().split('T')[0];
     checkinInput.setAttribute('min', formattedToday);
 
-    checkinInput.addEventListener('change', function () {
+    checkinInput.addEventListener('change', function() {
         const checkinDate = new Date(checkinInput.value);
         const minCheckoutDate = new Date(checkinDate);
         minCheckoutDate.setDate(checkinDate.getDate() + 1);
         const formattedMinCheckout = minCheckoutDate.toISOString().split('T')[0];
-        
+
         checkoutInput.setAttribute('min', formattedMinCheckout);
     });
 
     checkoutInput.setAttribute('min', new Date(today.getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]);
 </script>
-</html>
 
+</html>

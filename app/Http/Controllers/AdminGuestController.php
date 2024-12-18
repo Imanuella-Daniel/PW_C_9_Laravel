@@ -23,12 +23,13 @@ class AdminGuestController extends Controller
                 }
             })
             ->when($searchTerm, function ($query, $searchTerm) {
-                $query->where('NoTransaksi', 'LIKE', "%{$searchTerm}%");
+                $query->where('NoTransaksi', 'LIKE', "%{$searchTerm}%")
+              ->orWhere('IDPesanan', 'LIKE', "%{$searchTerm}%")
+              ->orWhere('NoKamar', 'LIKE', "%{$searchTerm}%");
             })
             ->get();
 
         $transaksis = Transaksi::all();
-
         $kamar = Kamar::all();
 
         return view('admin_guest', [
@@ -40,14 +41,10 @@ class AdminGuestController extends Controller
         ]);
     }
 
-
-
-
-
     public function showForm()
     {
-        $kamar = Kamar::all();  // Mengambil semua data kamar
-        return view('admin_guest', compact('kamar'));  // Mengirim data kamar ke view
+        $kamar = Kamar::all();
+        return view('admin_guest', compact('kamar'));
     }
 
 

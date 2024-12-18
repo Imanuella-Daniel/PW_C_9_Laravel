@@ -18,7 +18,7 @@ class PemesananKamarController extends Controller
     public function show($id)
     {
         $pemesanan = PemesananKamar::with(['user', 'transaksi', 'kamar'])->find($id);
-        
+
         if (!$pemesanan) {
             return response()->json(['message' => 'Data not found'], 404);
         }

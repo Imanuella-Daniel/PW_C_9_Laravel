@@ -1,31 +1,23 @@
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Accommodation - Hahahihi Hotel</title>
-        <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap"
-            rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link rel="stylesheet" href="{{ asset('CSS/navbar.css') }}">
-
         <style>
             body {
-                font-family: 'Lora', serif;
-                background-image: url('/img/eksterior2.png');
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
+                font-family: 'Inter', sans-serif;
+                margin: 0;
+                padding: 0;
+                overflow-x: hidden;
             }
 
             .logo {
@@ -102,6 +94,10 @@
                 margin-left: -10px;
             }
 
+            .stars {
+                font-size: 1.2rem;
+                color: #FFD21D;
+            }
 
             .room-details i {
                 margin-right: 5px;
@@ -109,16 +105,40 @@
 
             .room-price {
                 text-align: right;
-                margin-top: 140px;
+                margin-top: 145px;
             }
 
             .room-price h4 {
                 font-size: 1.4rem;
                 color: #000;
+                white-space: nowrap; 
             }
 
             .room-price small {
                 color: #666;
+            }
+
+            .room-info h4 {
+                font-weight: bold;
+                color: #000;
+            }
+
+            .room-title {
+                font-size: 2rem;
+                font-weight: bold;
+                color: #ffff;
+                text-align: center;
+                position: relative;
+                margin-bottom: 20px;
+            }
+
+            .room-title::after {
+                content: '';
+                display: block;
+                width: 60%;
+                height: 4px;
+                background: #ffff;
+                margin: 10px auto;
             }
 
             .btn-pink {
@@ -159,66 +179,27 @@
                 color: red;
             }
 
-            .room-info h4 {
-                font-weight: bold;
-                color: #000;
-            }
-
-            .room-title {
-                font-size: 2rem;
-                font-weight: bold;
-                color: #ffff;
-                text-align: center;
-                position: relative;
-                margin-bottom: 20px;
-            }
-
-            .room-title::after {
-                content: '';
-                display: block;
-                width: 60%;
-                height: 4px;
-                background: #ffff;
-                margin: 10px auto;
-            }
-
-            @media (max-width: 768px) {
-                .navbar {
-                    flex-direction: column;
-                }
-
-                .navbar ul {
-                    flex-direction: column;
-                    align-items: center;
-                    width: 100%;
-                }
-
-                .navbar ul li {
-                    margin: 10px 0;
-                }
-
-                .navbar-logo {
-                    margin: 10px 0;
-                }
-            }
-        </style>
         </style>
     </head>
 
     <body>
-    <div class="navbar-container">
-        <nav class="navbar">
-            <ul>
-                <li><a href="{{ route('home_page') }}" class="{{ request()->routeIs('home_page') ? 'active' : '' }}">Home</a></li>
-                <li><a href="{{ route('accomodation') }}" class="{{ request()->routeIs('accomodation') ? 'active' : '' }}">Accommodation</a></li>
-            </ul>
-            <img src="{{ asset('img/BLUE.png') }}" alt="Logo Hotel" class="navbar-logo">
-            <ul>
-                <li><a href="{{ route('special_offers') }}" class="{{ request()->routeIs('special_offers') ? 'active' : '' }}">Special Offers</a></li>
-                <li><a href="{{ route('profile') }}" class="{{ request()->routeIs('profile') ? 'active' : '' }}">Profile</a></li>
-            </ul>
-        </nav>
-    </div>
+        <div class="navbar-container">
+            <nav class="navbar">
+                <ul>
+                    <li><a href="{{ route('home_page') }}" class="{{ request()->routeIs('home_page') ? 'active' : '' }}">Home</a></li>
+                    <li><a href="{{ route('accomodation') }}" class="{{ request()->routeIs('accomodation') ? 'active' : '' }}">Accommodation</a></li>
+                </ul>
+
+                <a href="{{ route('home_page') }}" class="navbar-logo-container">
+                    <img src="{{ asset('img/BLUE.png') }}" alt="Blue Haven Hotel Logo" class="navbar-logo">
+                </a>
+
+                <ul>
+                    <li><a href="{{ route('special_offers') }}" class="{{ request()->routeIs('special_offers') ? 'active' : '' }}">Special Offers</a></li>
+                    <li><a href="{{ route('profile') }}" class="{{ request()->routeIs('profile') ? 'active' : '' }}">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
 
         <div class="banner">
             <div class="banner-content">
@@ -232,22 +213,76 @@
                     @foreach ($rooms as $room)
                         <div class="col-md-12 mb-4">
                             <div class="room-card d-flex justify-content-between align-items-center p-3 shadow">
-                                <img src="{{ asset('storage/' . $room->photo) }}" alt="{{ $room->TipeKamar }}"
-                                    class="img-fluid">
+                                <img src="{{ asset('storage/' . $room->photo) }}" alt="{{ $room->TipeKamar }}" class="img-fluid">
                                 <div class="room-info">
-                                    <h3>{{ $room->TipeKamar }}</h3>
+                                    <h4>{{ $room->TipeKamar }}</h4>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="stars text-warning">
+                                            @for ($i = 0; $i < floor($room->Rating); $i++)
+                                                <i class="bi bi-star-fill"></i>
+                                            @endfor
+
+                                            @if ($room->Rating - floor($room->Rating) >= 0.5)
+                                                <i class="bi bi-star-half"></i>
+                                            @endif
+
+                                            @for ($i = ceil($room->Rating); $i < 5; $i++)
+                                                <i class="bi bi-star"></i>
+                                            @endfor
+                                        </div>
+                                        <span class="ml-2">{{ $room->Rating }} ({{ $room->reviews }} Reviews)</span>
+                                    </div>
                                     <div class="room-details">
                                         <div><i class="bi bi-people-fill"></i> {{ $room->Kapasitas }} People</div>
                                         <div><i class="fa-solid fa-bed"></i> {{ $room->JumlahKamar }} Rooms</div>
                                     </div>
-                                    <h3 style="margin-top: 20px">Room Description</h3>
-                                    <p style="font-size: 14px; margin-bottom: 15px;">{{ $room->Desc }}</p>
-                                    <div class="price-container">
-                                        <span class="discount-price">Rp.
-                                            {{ number_format($room->HargaKamar, 0, ',', '.') }}/night</span>
-                                        <a href="{{ route('room.detail', $room->NoKamar) }}"
-                                            class="btn btn-primary availability-btn">Book Now</a>
+                                    <p class="mb-0">{{ strlen($room->Desc) > 200 ? substr($room->Desc, 0, 200) . '...' : $room->Desc }}</p>
+
+                                    <a href="{{ route('room.detail', $room->NoKamar) }}" class="btn btn-pink text-white">See availability</a>
+                                </div>
+                                <div class="room-price text-right">
+                                    <h4>Rp. {{ number_format($room->HargaKamar, 0, ',', '.') }}</h4>
+                                    <small>Includes taxes</small>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                    <h4 class="room-title">Facilities</h4>
+                    @foreach ($facilities as $facility)
+                        <div class="col-md-12 mb-4">
+                            <div class="room-card d-flex justify-content-between align-items-center p-3 shadow position-relative">
+                                <span class="badge badge-success position-absolute" style="top: 10px; left: 10px;">{{ $facility->discount_percentage }}50% off</span>
+                                <img src="{{ asset('/' . $facility->Gambar) }}" alt="{{ $facility->NamaFasilitas }}" class="img-fluid">
+                                <div class="room-info">
+                                    <h4>{{ $facility->NamaFasilitas }}</h4>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="stars text-warning">
+                                            @for ($i = 0; $i < floor($facility->Rating); $i++)
+                                                <i class="bi bi-star-fill"></i>
+                                            @endfor
+
+                                            @if ($facility->Rating - floor($facility->Rating) >= 0.5)
+                                                <i class="bi bi-star-half"></i>
+                                            @endif
+
+                                            @for ($i = ceil($facility->Rating); $i < 5; $i++)
+                                                <i class="bi bi-star"></i>
+                                            @endfor
+                                        </div>
+                                        <span class="ml-2">{{ $facility->Rating }} ({{ $facility->reviews }} Reviews)</span>
                                     </div>
+                                    <div class="room-details">
+                                        <div><i class="bi bi-people-fill"></i> {{ $facility->Kapasitas }} People</div>
+                                        <div><i class="fa-solid fa-toilet"></i> {{ $facility->bathrooms }} Bathrooms</div>
+                                    </div>
+                                    <p class="mb-0">{{ $facility->Deskripsi }}</p>
+                                    <a href="{{ route('facility_details', $facility->IDFasilitas) }}" class="btn btn-pink text-white">See availability</a>
+                                </div>
+                                <div class="room-price text-right">
+                                    <h4 class="small-red" style="font-size: 12px; color: red;"><del>Rp. {{ number_format($facility->Biaya*2, 0, ',', '.') }}</del></h4>
+                                    <h4>Rp. {{ number_format($facility->Biaya, 0, ',', '.') }}</h4>
+                                    <small>Includes taxes</small>
                                 </div>
                             </div>
                         </div>
@@ -255,7 +290,6 @@
                 </div>
             </div>
         </section>
-
 
         <footer class="footer">
             <div class="container text-center">
@@ -267,5 +301,4 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 
     </body>
-
-    </html>
+</html>
