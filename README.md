@@ -75,7 +75,7 @@ Username & Password Login
 
 Login User
 Bisan mendaftarkan akun, lalu dapat login menggunakan username dan password yang telah dibuat, contoh
-• Username: Ella124
+• Username: Ella123
 • Password: 123456789
 Login Admin
 • Username: Admin
