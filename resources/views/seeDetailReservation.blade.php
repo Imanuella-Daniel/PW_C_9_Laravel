@@ -5,22 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>seeDetailReservation</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('CSS/navbar.css') }}">
 
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #1965B3;
+            color: #333;
         }
+
+
+        h3,
+        h4,
+        h5 {
+            font-family: 'Lora', serif;
+            color: black;
+            font-weight: 700;
+        }
+
+
+        p,
+        label {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
 
         .logo {
             margin: 0 20px;
@@ -68,12 +89,6 @@
             margin-right: 3px;
         }
 
-        h4,
-        h5,
-        p,
-        label {
-            font-family: 'Inter', sans-serif;
-        }
 
         h4 {
             font-weight: 600;
@@ -94,8 +109,10 @@
     <div class="navbar-container">
         <nav class="navbar">
             <ul>
-                <li><a href="{{ route('home_page') }}" class="{{ request()->routeIs('home_page') ? 'active' : '' }}">Home</a></li>
-                <li><a href="{{ route('accomodation') }}" class="{{ request()->routeIs('accomodation') ? 'active' : '' }}">Accommodation</a></li>
+                <li><a href="{{ route('home_page') }}"
+                        class="{{ request()->routeIs('home_page') ? 'active' : '' }}">Home</a></li>
+                <li><a href="{{ route('accomodation') }}"
+                        class="{{ request()->routeIs('accomodation') ? 'active' : '' }}">Accommodation</a></li>
             </ul>
 
             <a href="{{ route('home_page') }}" class="navbar-logo-container">
@@ -103,8 +120,10 @@
             </a>
 
             <ul>
-                <li><a href="{{ route('special_offers') }}" class="{{ request()->routeIs('special_offers') ? 'active' : '' }}">Special Offers</a></li>
-                <li><a href="{{ route('profile') }}" class="{{ request()->routeIs('profile') ? 'active' : '' }}">Profile</a></li>
+                <li><a href="{{ route('special_offers') }}"
+                        class="{{ request()->routeIs('special_offers') ? 'active' : '' }}">Special Offers</a></li>
+                <li><a href="{{ route('profile') }}"
+                        class="{{ request()->routeIs('profile') ? 'active' : '' }}">Profile</a></li>
             </ul>
         </nav>
     </div>
@@ -128,8 +147,16 @@
                                 <h5>{{ $user->NamaBelakang }}</h5>
                             </div>
                         </div>
-                        <label>User ID</label>
-                        <h5>{{ $user->IDUser }}</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Phone Number</label>
+                                <h5>{{ $user->NoTelepon }}</h5>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Kode Transaksi</label>
+                                <h5>{{ $pemesananKamar->transaksi->NoTransaksi }}</h5>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -146,25 +173,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <ul class="list-unstyled">
-                                    @if (isset($room->amenities_left) && $room->amenities_left->isNotEmpty())
-                                        @foreach ($room->amenities_left as $amenity)
+                                    @if (!empty($facilities))
+                                        @foreach ($facilities as $amenity)
                                             <li class="amenity">
-                                                <span class="amenity-icon">{{ $amenity->icon }}</span>
-                                                {{ $amenity->name }}
-                                            </li>
-                                        @endforeach
-                                    @else
-                                        <li>No amenities available</li>
-                                    @endif
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <ul class="list-unstyled">
-                                    @if (isset($room->amenities_right) && $room->amenities_right->isNotEmpty())
-                                        @foreach ($room->amenities_right as $amenity)
-                                            <li class="amenity">
-                                                <span class="amenity-icon">{{ $amenity->icon }}</span>
-                                                {{ $amenity->name }}
+                                                <span class="amenity-icon">✔️</span>
+                                                {{ trim($amenity) }}
                                             </li>
                                         @endforeach
                                     @else
@@ -173,7 +186,6 @@
                                 </ul>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -190,8 +202,7 @@
         </div>
     </div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

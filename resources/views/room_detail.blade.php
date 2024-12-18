@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('CSS/navbar.css') }}">
-    
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -57,12 +57,14 @@
             grid-template-columns: 2fr 1fr;
             gap: 1.5rem;
         }
+
         .card {
             background-color: white;
             border-radius: 0.5rem;
             box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
             padding: 1.5rem;
         }
+
         .card-title {
             font-size: 1.25rem;
             font-weight: 600;
@@ -71,14 +73,16 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .availability-badge {
-            background-color:rgb(33, 150, 83);
+            background-color: rgb(33, 150, 83);
             color: white;
             font-size: 1rem;
             font-weight: 500;
             padding: 0.25rem 0.75rem;
             border-radius: 6px;
         }
+
         .amenities {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -89,6 +93,7 @@
             margin-right: 0.5rem;
             color: #9ca3af;
         }
+
         .booking-card {
             background-color: white;
             border-radius: 0.5rem;
@@ -97,13 +102,14 @@
             height: fit-content;
             max-width: fit-content;
         }
+
         .price {
-            font-size: 1.5rem; 
+            font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
-       
+
 
         .btn-pink {
             background-color: #ff007f;
@@ -111,7 +117,7 @@
             border: none;
             padding: 10px;
             border-radius: 8px;
-            
+
             font-size: 16px;
         }
 
@@ -168,7 +174,7 @@
                 </div>
                 <h6 class="fw-bold">Room Description</h6>
                 <p>{{ $roomDetails['description'] }}</p>
-                <h6 class="fw-bold">Offered Amenities</h6>
+                <h6 class="fw-bold">Fasility</h6>
                 <div class="amenities">
                     @foreach ($roomDetails['facilities'] as $amenity)
                         <div class="amenity">{{ $amenity }}</div>
@@ -177,10 +183,10 @@
             </div>
 
             <div class="booking-card">
-                    <div class="d-flex align-items-baseline">
-                        <h3 class="fw-bold mb-3" id="price">{{ $roomDetails['price'] }}</h3>
-                        <span class="text-muted ms-2">/ night</span>
-                    </div>
+                <div class="d-flex align-items-baseline">
+                    <h3 class="fw-bold mb-3" id="price">{{ $roomDetails['price'] }}</h3>
+                    <span class="text-muted ms-2">/ night</span>
+                </div>
                 <a href="{{ route('room_booking', ['NoKamar' => $roomDetails['NoKamar']]) }}"
                     class="btn btn-pink w-100">Book Now</a>
             </div>
