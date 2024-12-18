@@ -5,32 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlueHaven Profile</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap"
-        rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;700&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ asset('CSS/navbar.css') }}">
 
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Lora', serif;
             margin: 0;
             padding: 0;
             background-color: #1965B3;
+            font-size: 18px;
         }
-
 
         h1,
-        h5 {
+        h6 {
             font-family: 'Playfair Display', serif;
+            font-size: 19px;
         }
-
 
         .logo {
             margin: 0 20px;
@@ -101,11 +101,6 @@
             color: #333;
         }
 
-        .navbar-logo {
-            width: 50px;
-            height: auto;
-        }
-
         .form-section p {
             font-size: 12px;
             color: #999;
@@ -118,9 +113,13 @@
         }
 
         .edit-btn,
-        .logout-btn,
         .btn-sm {
             background-color: #F72585;
+            color: #fff;
+        }
+
+        .logout-btn {
+            background-color: rgb(227, 18, 18);
             color: #fff;
         }
 
@@ -170,77 +169,6 @@
                 margin-left: 0;
             }
         }
-
-        .navbar-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .navbar {
-            font-size: 1.3rem;
-            justify-content: space-between;
-            color: #000;
-            margin: 0 50px;
-            font-weight: 500;
-            font-family: 'Lora', serif;
-            display: flex;
-            align-items: center;
-            padding: 10px 40px;
-            border-radius: 12px;
-            background-color: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            position: fixed;
-        }
-
-        .navbar-logo {
-            width: 50px;
-            height: auto;
-        }
-
-        .navbar ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .navbar ul li {
-            margin: 0 15px;
-        }
-
-        .navbar ul li a {
-            text-decoration: none;
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 20px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .navbar ul li a:hover {
-            color: #FF4081;
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-            }
-
-            .navbar ul {
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-            }
-
-            .navbar ul li {
-                margin: 10px 0;
-            }
-
-            .navbar-logo {
-                margin: 10px 0;
-            }
-        }
     </style>
 </head>
 
@@ -248,8 +176,10 @@
     <div class="navbar-container">
         <nav class="navbar">
             <ul>
-                <li><a href="{{ route('home_page') }}">Home</a></li>
-                <li><a href="{{ route('accomodation') }}">Accommodation</a></li>
+                <li><a href="{{ route('home_page') }}"
+                        class="{{ request()->routeIs('home_page') ? 'active' : '' }}">Home</a></li>
+                <li><a href="{{ route('accomodation') }}"
+                        class="{{ request()->routeIs('accomodation') ? 'active' : '' }}">Accommodation</a></li>
             </ul>
 
             <a href="{{ route('home_page') }}" class="navbar-logo-container">
@@ -257,8 +187,10 @@
             </a>
 
             <ul>
-                <li><a href="{{ route('special_offers') }}">Special Offers</a></li>
-                <li><a href="{{ route('profile') }}">Profile</a></li>
+                <li><a href="{{ route('special_offers') }}"
+                        class="{{ request()->routeIs('special_offers') ? 'active' : '' }}">Special Offers</a></li>
+                <li><a href="{{ route('profile') }}"
+                        class="{{ request()->routeIs('profile') ? 'active' : '' }}">Profile</a></li>
             </ul>
         </nav>
     </div>
@@ -299,11 +231,9 @@
                 @endif
             </div>
         </div>
-
         <div class="content d-flex align-items-start justify-content-between p-5 bg-light rounded shadow">
             <div class="form-section pe-5" style="flex: 1;">
                 <h1 class="fw-bold text-primary mb-4">Hello, {{ $user->NamaDepan }}</h1>
-                <p class="text-muted">User ID: {{ $user->id }}</p>
                 <div class="row g-3">
                     <div class="col-md-6">
                         <label class="form-label text-secondary fw-semibold">First Name</label>

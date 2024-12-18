@@ -1,0 +1,138 @@
+body {
+    font-family: 'Inter', serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1965B3;
+}
+
+.form-control {
+    padding: 8px;
+    font-size: 14px;
+    font-family: 'Inika', serif;
+}
+
+.booking-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    height: fit-content;
+    max-width: fit-content;
+}
+
+.card-body {
+    padding: 15px;
+    margin: 10px;
+}
+
+.container-fluid.bg-primary {
+    margin-top: 20px;
+}
+
+.modal-header {
+    background-color: #f0f4ff;
+    border-bottom: none;
+}
+
+.modal-title {
+    font-weight: bold;
+}
+
+.total-payment {
+    color: #007bff;
+    font-size: 1.25rem;
+}
+
+.virtual-account {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.payment-instructions {
+    color: red;
+    font-size: 0.9rem;
+}
+
+.transfer-instructions {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.btn-ok {
+    background-color: #ff007f;
+    color: white;
+}
+
+.success-icon {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.btn-pink {
+    background-color: #ff007f;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Inika', serif;
+}
+
+.room-check-form {
+    display: flex;
+    border-radius: 10px;
+    margin: 20px auto;
+}
+
+.room-check-form .form-group {
+    flex-direction: column;
+    margin-right: 15px;
+}
+
+.room-check-form label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.room-check-form input,
+.room-check-form select {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 200px;
+    height: 40px;
+    font-size: 14px;
+    color: #555;
+}
+
+.room-check-form select {
+    width: 220px;
+}
+
+.btn-pink:hover {
+    background-color: #e6006f;
+}
+
+.text-warning {
+    color: #FFD700;
+}
+
+.bg-primary {
+    background-color: #1965B3;
+}
+
+.footer {
+    background-color: #1965B3;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+.btn-active {
+    background-color: #F72585;
+    color: white;
+    border-color: #F72585;
+}

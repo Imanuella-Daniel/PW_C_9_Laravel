@@ -78,9 +78,8 @@
             height: 400px;
             object-fit: cover;
             border-radius: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-
 
         .room-card h3 {
             font-size: 24px;
@@ -245,6 +244,9 @@
                 padding: 15px;
             }
 
+            .room-card img {
+                height: 150px;
+            }
 
             .room-card h3 {
                 font-size: 20px;
