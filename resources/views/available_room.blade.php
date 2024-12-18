@@ -66,7 +66,6 @@
             border: 1px solid #e0e0e0;
             display: flex;
             flex-direction: column;
-            height: 100%;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -76,8 +75,7 @@
         }
 
         .room-card img {
-            width: 100%;
-            height: 200px;
+            height: 400px;
             object-fit: cover;
             border-radius: 10px;
             margin-bottom: 15px;

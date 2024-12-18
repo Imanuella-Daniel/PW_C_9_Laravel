@@ -131,11 +131,10 @@
 
     <div class="container-fluid" style="margin-top: 80px;">
         <form method="GET" action="{{ route('admin_guest') }}" class="d-flex">
-            <input type="text" class="search-bar form-control me-2" name="searchTerm" value="{{ $searchTerm }}"
-                placeholder="Search Reservation ID">
+            <input type="text" class="search-bar form-control me-2" name="searchTerm"
+                value="{{ request()->input('searchTerm') }}" placeholder="Search Reservation ID">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-
         <div class="table-container border border-primary rounded p-3 mt-3 shadow">
             <form method="GET" action="{{ route('admin_guest') }}" class="mb-4 d-flex justify-content-between">
                 <div class="btn-group me-auto">
@@ -151,6 +150,7 @@
                 <thead>
                     <tr>
                         <th>ID Pesanan</th>
+                        <th>No Transaksi</th>
                         <th>Tipe Kamar</th>
                         <th>Room Number</th>
                         <th>Jumlah Dewasa</th>
@@ -158,6 +158,7 @@
                         <th>Tanggal Check In</th>
                         <th>Tanggal Check Out</th>
                         <th>Permintaan Khusus</th>
+                        <th>Total Pembayaran</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -165,6 +166,7 @@
                     @foreach ($users as $user)
                         <tr>
                             <td class="text-center">{{ $user->IDPesanan }}</td>
+                            <td class="text-center">{{ $user->transaksi->NoTransaksi ?? 'N/A' }}</td>
                             <td class="text-center">{{ $user->kamar->TipeKamar }}</td>
                             <td class="text-center">{{ $user->kamar->NoKamar }}</td>
                             <td class="text-center">{{ $user->JumlahDewasa }}</td>
@@ -172,6 +174,8 @@
                             <td class="text-center">{{ $user->TanggalCheckIn }}</td>
                             <td class="text-center">{{ $user->TanggalCheckOut }}</td>
                             <td class="text-center">{{ $user->PermintaanKhusus }}</td>
+                            <td class="text-center">Rp. {{ number_format($user->transaksi->BiayaKamar, 0, ',', '.') }}
+                            </td>
                             <td class="text-center">
                                 <button class="btn btn-warning btn-sm edit-data"
                                     data-room="{{ json_encode($user) }}">Edit</button>

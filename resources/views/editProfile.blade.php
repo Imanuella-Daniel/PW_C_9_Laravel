@@ -83,6 +83,13 @@
             max-height: 100%;
         }
 
+        .container-fluid {
+            margin-top: 0;
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
         .row {
             margin: 0 -10px;
             margin-top: 50px;
@@ -160,11 +167,6 @@
         }
 
         .edit-btn {
-            background-color: #F72585;
-            color: #fff;
-        }
-
-        .logout-btn {
             background-color: #F72585;
             color: #fff;
         }
@@ -265,11 +267,6 @@
                             <div class="row mt-3">
                                 <div class="col-md-3">
                                     <button type="submit" class="btn btn-primary">Save Changes</button>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-3">
-                                    <button class="btn logout-btn" type="button">Logout</button>
                                 </div>
                             </div>
                         </form>

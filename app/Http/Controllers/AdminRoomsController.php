@@ -163,6 +163,7 @@ class AdminRoomsController extends Controller
         $roomDetails = [
             'NoKamar' => $room->NoKamar,
             'name' => $room->TipeKamar,
+            'status' => $room->Status,
             'description' => $room->Desc,
             'price' => 'Rp. ' . number_format($room->HargaKamar, 0, ',', '.'),
             'facilities' => !is_null($room->Facility) ? explode(',', $room->Facility) : [],
@@ -195,7 +196,7 @@ class AdminRoomsController extends Controller
                 asset('img/Junior1.jpg'),
                 asset('img/Junior2.jpg'),
                 asset('img/Junior3.jpg'),
-                asset('img/Junior.jpg')
+                asset('img/Junior4.jpg')
             ],
             'Suite' => [
                 asset('img/Suite1.jpg'),
