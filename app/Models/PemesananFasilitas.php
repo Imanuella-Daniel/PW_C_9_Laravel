@@ -9,7 +9,7 @@ class PemesananFasilitas extends Model
 {
     use HasFactory;
 
-    protected $table = 'pemesanan_fasilitas';
+    protected $table = 'pemesananfasilitas';
     protected $primaryKey = 'IDFasilitas';
     public $timestamps = false;
 
