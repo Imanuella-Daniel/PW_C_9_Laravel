@@ -17,8 +17,7 @@ class PemesananKamar extends Model
         'NoTransaksi',
         'NoKamar',
         'TanggalPesan',
-        'JumlahDewasa',
-        'JumlahAnak',
+        'JumlahTamu',
         'PermintaanKhusus',
         'TanggalCheckIn',
         'TanggalCheckOut'

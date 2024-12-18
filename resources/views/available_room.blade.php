@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('CSS/navbar.css') }}">
 
     <style>
         body {
@@ -24,6 +25,9 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            background-color: #1965B3;
+            flex: 1;
+            padding-bottom: 75px; 
         }
 
         .logo {
@@ -77,29 +81,32 @@
 
         .room-card img {
             width: 100%;
-            height: 200px;
+            height: 150px;
             object-fit: cover;
             border-radius: 10px;
             margin-bottom: 15px;
         }
 
         .room-card h3 {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
             color: #1965B3;
             border-bottom: 2px solid #E0E2E6;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
+            padding-bottom: 10px; 
+            display: inline-block; 
+            width: 100%; /* Ubah agar sesuai dengan card */
+            box-sizing: border-box; /* Pastikan padding tidak menambah lebar */
+            margin-bottom: 10px; /* Tambahkan sedikit jarak dari elemen berikutnya */
         }
-
 
         .room-details {
             display: flex;
             flex-wrap: wrap;
-            margin-bottom: 15px;
+            padding-left: 10px;
         }
 
         .room-details>div {
+            font-size: 12px;
             width: 50%;
             margin-bottom: 5px;
             font-size: 14px;
@@ -117,6 +124,8 @@
             justify-content: space-between;
             align-items: center;
             margin-top: auto;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .availability-btn {
@@ -128,6 +137,8 @@
             cursor: pointer;
             font-size: 16px;
             transition: background-color 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
         }
 
         .availability-btn:hover {
@@ -139,7 +150,6 @@
             font-size: 20px;
             font-weight: bold;
         }
-
 
         .room-header {
             display: flex;
@@ -154,7 +164,7 @@
         }
 
         .room-title {
-            font-size: 28px;
+            font-size: 24px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -172,106 +182,12 @@
             color: #fff;
         }
 
-        .navbar-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .navbar {
-            font-size: 1.3rem;
-            justify-content: space-between;
+        .discount-price {
             color: #000;
-            margin: 0 50px;
-            font-weight: 500;
-            font-family: 'Lora', serif;
-            display: flex;
-            align-items: center;
-            padding: 10px 40px;
-            border-radius: 12px;
-            background-color: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            position: fixed;
+            font-size: 18px;
+            font-weight: bold;
         }
 
-        .navbar-logo {
-            width: 50px;
-            height: auto;
-        }
-
-        .navbar ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .navbar ul li {
-            margin: 0 15px;
-        }
-
-        .navbar ul li a {
-            text-decoration: none;
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 20px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .navbar ul li a:hover {
-            color: #FF4081;
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-            }
-
-            .navbar ul {
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-            }
-
-            .navbar ul li {
-                margin: 10px 0;
-            }
-
-            .navbar-logo {
-                margin: 10px 0;
-            }
-
-            .room-card {
-                padding: 15px;
-            }
-
-            .room-card img {
-                height: 150px;
-            }
-
-            .room-card h3 {
-                font-size: 20px;
-            }
-
-            .room-details>div {
-                width: 100%;
-                font-size: 12px;
-            }
-
-            .price-container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .availability-btn {
-                width: 100%;
-                margin-top: 10px;
-            }
-
-            .room-title {
-                font-size: 24px;
-            }
         }
     </style>
 
