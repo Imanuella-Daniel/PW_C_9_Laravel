@@ -68,7 +68,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 Kelas C Kelompok 9 Hotel
 
 Anggota Kelompok:
-• Christophorus Raditya Bagas Putra Indrasmoro (220711620) - backend pemesanaFasilitas
+• Christophorus Raditya Bagas Putra Indrasmoro (220711620) - backend dan frontend
 • Andreas Kuncoro Adi Nugroho (220711788) – merapihkan frontend dan Membantu Radit
 • Imanuella Daniel (220711901) backend, frontend dan integrasi
 
